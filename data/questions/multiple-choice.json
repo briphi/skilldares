@@ -1,0 +1,2954 @@
+[
+  {
+    "prompt": "Which ingredients come in the House Salad?",
+    "options": [
+      "Cucumbers, Tomatoes, Carrots, Red Onions, Croutons",
+      "Mixed Greens, Craisins, Spiced Walnuts, Blue Cheese Crumbles",
+      "Cucumbers, Tomatoes, Rat Feces",
+      "Chopped Romaine Lettuce, Tomatoes, Croutons, Caesar Dressing, Parmesan Cheese"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/house-salad"]
+  },
+  {
+    "prompt": "What's in the Caesar Salad?",
+    "options": [
+      "Mixed Greens, Craisins, Spiced Walnuts, Blue Cheese Crumbles, Balsamic Vinaigrette",
+      "Chopped Romaine Lettuce, Tomatoes, Croutons, Caesar Dressing, Parmesan Cheese",
+      "Romaine, Sadness, Caesar Dressing",
+      "Cucumbers, Tomatoes, Carrots, Red Onions, Croutons"
+    ],
+    "correctIndex": 1,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/caesar-salad"]
+  },
+  {
+    "prompt": "Which ingredients are in the Mixed Greens Salad?",
+    "options": [
+      "Mixed Greens, Craisins, Spiced Walnuts, Blue Cheese Crumbles, Balsamic Vinaigrette",
+      "Tomatoes, Cucumbers, Red Onion, Black Bean Corn Salsa, Cheddar Jack",
+      "Mixed Greens, Wet Cardboard, Croutons",
+      "Romaine, Tomatoes, Croutons, Caesar Dressing, Parmesan"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/mixed-greens-salad"]
+  },
+  {
+    "prompt": "What comes in the Southwest Salad?",
+    "options": [
+      "Tomatoes, Cucumbers, Red Onion, Black Bean Corn Salsa, Cheddar Jack, Crispy Tortilla Strips, Chimichurri Ranch",
+      "Mixed Greens, Craisins, Spiced Walnuts, Blue Cheese Crumbles",
+      "Cheddar Jack, Tortillas, Existential Dread",
+      "Romaine, Tomatoes, Croutons, Caesar Dressing"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/southwest-salad"]
+  },
+  {
+    "prompt": "Which ingredients are in the Street Corn Bowl?",
+    "options": [
+      "Grilled Chicken, Rice, Tomatoes, Avocado, Jalapenos, Roasted Corn, Queso Fresco, Cholula Aioli",
+      "Grilled Chicken, Roasted Broccoli and Cauliflower, Chickpeas, Avocado, Rice, Fried Egg",
+      "Grilled Chicken, Rice, Despair",
+      "Pineapples, Cucumber, Seaweed Salad, Avocado"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/street-corn-bowl"]
+  },
+  {
+    "prompt": "What's in the Chicken Power Bowl?",
+    "options": [
+      "Grilled Chicken, Roasted Broccoli and Cauliflower, Chickpeas, Avocado, Rice, Fried Egg, Peanut Vinaigrette",
+      "Grilled Chicken, Rice, Tomatoes, Avocado, Jalapenos, Roasted Corn, Queso Fresco",
+      "Chicken, Chickpeas, Power, Regret",
+      "Pineapples, Cucumber, Seaweed Salad, Avocado, Citrus Ponzu"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/chicken-power-bowl"]
+  },
+  {
+    "prompt": "Which ingredients come in the Grilled Salmon Bowl?",
+    "options": [
+      "Pineapples, Cucumber, Seaweed Salad, Avocado, House-Made Citrus Ponzu",
+      "Grilled Salmon, Bacon, Romaine, Tomatoes, Chipotle Mayo",
+      "Salmon, Seaweed, Soap",
+      "Grilled Chicken, Rice, Tomatoes, Avocado, Roasted Corn"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/grilled-salmon-bowl"]
+  },
+  {
+    "prompt": "What ingredients are in the Reuben Spring Roll?",
+    "options": [
+      "Homemade Corned Beef, Sauerkraut, Swiss Cheese, Marie Rose Dipping Sauce",
+      "Cheddar Cheese, Bacon, Hot Honey Drizzle",
+      "Corned Beef, Swiss, Soggy Socks",
+      "Hand Cut Corn Tortillas, Black Beans, Queso Fresco"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/reuben-spring-roll"]
+  },
+  {
+    "prompt": "What comes on the Nachos?",
+    "options": [
+      "Hand Cut Fried Corn Tortillas, Black Beans, Tomato Jalapeno Salsa, Queso Fresco, Pickled Red Onions, Lime Crema",
+      "Cheddar Jack, Bacon, House Made Ranch, Scallions",
+      "Corn Tortillas, Black Beans, Tears",
+      "Chicken, Cheddar Cheese, Tomato, Jalapeno, Avocado, Cilantro, Lime Crema"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/nachos"]
+  },
+  {
+    "prompt": "What's in the Stuffed Jalapenos?",
+    "options": [
+      "Cheddar Cheese Stuffed, Wrapped in Bacon, with a Hot Honey Drizzle",
+      "Roasted Red Peppers, Pickled Red Onion, Halloumi Cheese, Feta",
+      "Jalapenos, Cheese, Doom",
+      "Cheddar Cheese, Sour Cream, Scallions"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/stuffed-jalapenos"]
+  },
+  {
+    "prompt": "What's on the BBQ Chicken Flatbread?",
+    "options": [
+      "Cheddar Jack, Bacon, House Made Ranch, Scallions",
+      "Chicken, Cheddar Cheese, Tomato, Jalapeno, Avocado, Cilantro, Lime Crema",
+      "Chicken, Cheese, Failure",
+      "Roasted Red Peppers, Pickled Red Onion, Halloumi Cheese"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/bbq-chicken-flatbread"]
+  },
+  {
+    "prompt": "Which ingredients are on the Chipotle Lime Flatbread?",
+    "options": [
+      "Chicken, Cheddar Cheese, Tomato, Jalapeno, Avocado, Cilantro, Lime Crema",
+      "Cheddar Jack, Bacon, House Made Ranch, Scallions",
+      "Lime, Cilantro, Disappointment",
+      "Pulled Pork, Cheddar, BBQ Sauce, Scallions"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/chipotle-lime-flatbread"]
+  },
+  {
+    "prompt": "What's on the Hummus Board?",
+    "options": [
+      "Roasted Red Peppers, Pickled Red Onion, Halloumi Cheese, Feta and Olive Salad, Cucumbers, Pita",
+      "Cheddar Cheese, Bacon, Hot Honey",
+      "Hummus, Pita, Sadness",
+      "Hand Cut Corn Tortillas, Black Beans, Queso Fresco"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/hummus-board"]
+  },
+  {
+    "prompt": "What's on the Loaded Fries?",
+    "options": [
+      "Seasoned Fries, Bacon, Cheddar Cheese, Sour Cream, Scallions, Ranch Dressing",
+      "Slow Cooked Brisket, Guinness Caramelized Onions, Fresh Mozzarella, Gravy",
+      "Fries, Cheese, Broken Glass",
+      "Sweet Potato Fries with Chipotle Ranch"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/loaded-fries"]
+  },
+  {
+    "prompt": "What comes on the Brisket Fries?",
+    "options": [
+      "Slow Cooked Brisket, Guinness Caramelized Onions, Fresh Mozzarella, Gravy",
+      "Seasoned Fries, Bacon, Cheddar Cheese, Sour Cream, Scallions, Ranch",
+      "Fries, Brisket, Lies",
+      "Fries with Pub Cheese only"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/brisket-fries"]
+  },
+  {
+    "prompt": "Which ingredients are in the Pork tacos?",
+    "options": [
+      "BBQ Pulled Pork, White Onion, Pineapple, Cilantro, Queso Fresco",
+      "Pico De Gallo, Lettuce, House-Made Guacamole, Queso Fresco",
+      "Pork, Tortilla, Existential Dread",
+      "Beer Battered Fish, Lettuce, Tomato, Chipotle Mayo"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/pork"]
+  },
+  {
+    "prompt": "What's in the Marinated Shrimp tacos?",
+    "options": [
+      "Pico De Gallo, Lettuce, House-Made Guacamole, Queso Fresco",
+      "BBQ Pulled Pork, White Onion, Pineapple, Cilantro, Queso Fresco",
+      "Shrimp, Lettuce, Regret",
+      "Beer Battered Fish, Lettuce, Tomato, Chipotle Mayo"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/marinated-shrimp"]
+  },
+  {
+    "prompt": "What's in the Fish tacos?",
+    "options": [
+      "Beer Battered Fish, Lettuce, Tomato, Chipotle Mayo",
+      "Pico De Gallo, Lettuce, House-Made Guacamole, Queso Fresco",
+      "Fish, Tomato, Tears",
+      "BBQ Pulled Pork, White Onion, Pineapple, Cilantro"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/fish"]
+  },
+  {
+    "prompt": "What's on the All American Burger?",
+    "options": [
+      "Lettuce, Tomato, Red Onion, American Cheese, Bacon",
+      "Cheddar Cheese, Bacon, Sunny Side Up Egg, Lettuce",
+      "Beef, Cheese, Bad Vibes",
+      "Cheddar Cheese, Rasher, Guinness Caramelized Onions, Tomato Jam"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/all-american-burger"]
+  },
+  {
+    "prompt": "Which ingredients are on The Steakhouse burger?",
+    "options": [
+      "Homemade Beer Battered Onion Ring, Fresh Mozzarella, BBQ Sauce, Lettuce",
+      "Cheddar Cheese, Lettuce, Roasted Sliced Beets, Egg, Dill Pickle Aioli",
+      "Steakhouse Burger, Onion Ring, Doom",
+      "Cheddar Cheese, Bacon, Sunny Side Up Egg, Lettuce"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/the-steakhouse"]
+  },
+  {
+    "prompt": "What's on The Kildares Pub Burger?",
+    "options": [
+      "Cheddar Cheese, Lettuce, Roasted Sliced Beets, Egg, Dill Pickle Aioli",
+      "Lettuce, Tomato, Red Onion, American Cheese, Bacon",
+      "Beets, Egg, Soggy Socks",
+      "Cheddar Cheese, Bacon, Sunny Side Up Egg, Lettuce"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/the-kildares-pub-burger"]
+  },
+  {
+    "prompt": "Which ingredients come on the Bacon and Egg burger?",
+    "options": [
+      "Cheddar Cheese, Bacon, Sunny Side Up Egg, Lettuce",
+      "Cheddar Cheese, Rasher, Guinness Caramelized Onions, Tomato Jam, Grilled Tomato, Lettuce",
+      "Bacon, Egg, Despair",
+      "Homemade Beer Battered Onion Ring, Fresh Mozzarella, BBQ Sauce"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/bacon-and-egg"]
+  },
+  {
+    "prompt": "What's on The Dubliner burger?",
+    "options": [
+      "Cheddar Cheese, Rasher, Guinness Caramelized Onions, Homemade Tomato Jam, Grilled Tomato, Lettuce",
+      "Cheddar Cheese, Lettuce, Roasted Sliced Beets, Egg, Dill Pickle Aioli",
+      "Cheddar, Rasher, Wet Cardboard",
+      "Lettuce, Tomato, Red Onion, American Cheese, Bacon"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/the-dubliner"]
+  },
+  {
+    "prompt": "What's in the Salmon BLT Wrap?",
+    "options": [
+      "Grilled Salmon, Bacon, Romaine, Tomatoes, Chipotle Mayo",
+      "Corned Beef, Swiss, Sauerkraut, Marie Rose Dressing, on Rye",
+      "Salmon, Bacon, Sadness",
+      "Slow Roasted Pulled Pork, Whiskey BBQ, Coleslaw"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/salmon-blt-wrap"]
+  },
+  {
+    "prompt": "What's in the Reuben (Handheld)?",
+    "options": [
+      "Corned Beef, Swiss, Sauerkraut, Marie Rose Dressing, on Rye",
+      "Slow Roasted Pulled Pork, Whiskey BBQ, Coleslaw",
+      "Corned Beef, Sauerkraut, Regret",
+      "Homemade Pepper Relish, Cheddar, Jalapeno Aioli, Lettuce, Tomato"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/reuben"]
+  },
+  {
+    "prompt": "What's on the BBQ Pork sandwich?",
+    "options": [
+      "Slow Roasted Pulled Pork, Whiskey BBQ, Coleslaw",
+      "Corned Beef, Swiss, Sauerkraut, Marie Rose Dressing",
+      "Pork, BBQ, Tears",
+      "Grilled Salmon, Bacon, Romaine, Tomatoes, Chipotle Mayo"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/bbq-pork"]
+  },
+  {
+    "prompt": "Which ingredients are on the Grilled Chicken handheld?",
+    "options": [
+      "Homemade Pepper Relish, Cheddar, Jalapeno Aioli, Lettuce, Tomato, Red Onion",
+      "Grilled Salmon, Bacon, Romaine, Tomatoes, Chipotle Mayo",
+      "Chicken, Cheddar, Bad Vibes",
+      "Homemade Smoked Horseradish Mayo, Provolone, Crispy Onions, Au Jus"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/grilled-chicken"]
+  },
+  {
+    "prompt": "What comes on the Hot Roast Beef handheld?",
+    "options": [
+      "Homemade Smoked Horseradish Mayo, Provolone, Crispy Onions, Au Jus",
+      "Homemade Pepper Relish, Cheddar, Jalapeno Aioli, Lettuce, Tomato, Red Onion",
+      "Roast Beef, Horseradish, Failure",
+      "Slow Roasted Pulled Pork, Whiskey BBQ, Coleslaw"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/hot-roast-beef"]
+  },
+  {
+    "prompt": "Which ingredients are in the Ploughman?",
+    "options": [
+      "Portobello Mushroom, Mixed Greens, Tomatoes, Cucumbers, Red Onion, Fresh Mozzarella, Roasted Peppers, Fresh Pesto, on Toasted Flatbread",
+      "Corned Beef, Swiss, Sauerkraut, Marie Rose Dressing, on Rye",
+      "Mushrooms, Cheese, Existential Dread",
+      "American Cheese, Sauteed Mushrooms, Guinness Caramelized Onions"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/ploughman"]
+  },
+  {
+    "prompt": "What's in the Cheesesteak?",
+    "options": [
+      "American Cheese, Sauteed Mushrooms, and Guinness Caramelized Onions",
+      "Cheddar Cheese, Rasher, Guinness Caramelized Onions, Tomato Jam, Grilled Tomato",
+      "Steak, Cheese, Soap",
+      "Lettuce, Tomato, Red Onion, American Cheese, Bacon"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/cheesesteak"]
+  },
+  {
+    "prompt": "What's served with the Steak Frites?",
+    "options": [
+      "8oz Flatiron with Chimichurri, Queso Fresco, Cucumber Tomato Salad",
+      "Bangers, Rashers, Beans, Roasted Tomato, Eggs, Black & White Pudding, Toast",
+      "Steak, Chimichurri, Tears",
+      "Traditional Irish Sausages, Champ Potatoes, Whiskey Demi, Caramelized Onions"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/steak-frites"]
+  },
+  {
+    "prompt": "What's in the Shepherd's Pie?",
+    "options": [
+      "Beef, Carrots, Onions, Brown Gravy, Peas, Mashed Potatoes, Crispy Onions",
+      "Traditional Irish Sausages, Champ Potatoes, Whiskey Demi, Caramelized Onions",
+      "Beef, Potatoes, Disappointment",
+      "Bangers, Rashers, Beans, Roasted Tomato, Eggs, Black & White Pudding"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/shepherds-pie"]
+  },
+  {
+    "prompt": "What's served with the Grilled Salmon Entree?",
+    "options": [
+      "Couscous, Roasted Broccoli & Cauliflower, Green Goddess Dressing",
+      "Pineapples, Cucumber, Seaweed Salad, Avocado, Citrus Ponzu",
+      "Salmon, Couscous, Doom",
+      "8oz Flatiron with Chimichurri, Queso Fresco, Cucumber Tomato Salad"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/grilled-salmon-entree"]
+  },
+  {
+    "prompt": "Which ingredients are in the Irish Breakfast?",
+    "options": [
+      "Bangers, Rashers, Beans, Roasted Tomato, Eggs, Black & White Pudding, Toast",
+      "Traditional Irish Sausages, Champ Potatoes, Whiskey Demi, Caramelized Onions",
+      "Bangers, Beans, Despair",
+      "Ale Battered Fish, Fries, Herbed Tartar Sauce"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/irish-breakfast"]
+  },
+  {
+    "prompt": "What's served with the Fish and Chips?",
+    "options": [
+      "Ale Battered Fish, Fries, and Herbed Tartar Sauce",
+      "Beer Battered Fish, Lettuce, Tomato, Chipotle Mayo",
+      "Fish, Chips, Sadness",
+      "Couscous, Roasted Broccoli & Cauliflower, Green Goddess Dressing"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/fish-and-chips"]
+  },
+  {
+    "prompt": "Which ingredients are in the Bangers and Mash?",
+    "options": [
+      "Traditional Irish Sausages, Champ Potatoes, Whiskey Demi, Caramelized Onions",
+      "Bangers, Rashers, Beans, Roasted Tomato, Eggs, Black & White Pudding, Toast",
+      "Bangers, Mash, Wet Cardboard",
+      "Beef, Carrots, Onions, Brown Gravy, Peas, Mashed Potatoes"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/bangers-and-mash"]
+  },
+  {
+    "prompt": "What's in the Espresso Martini?",
+    "options": [
+      "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Gryphon Co. Espresso",
+      "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water",
+      "Espresso, Vodka, Existential Dread",
+      "Old Forester High Proof Bourbon, Angostura and Orange Bitters, Demerara, Luxardo Cherry"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/espresso-martini"]
+  },
+  {
+    "prompt": "Which ingredients are in the Gin Hibiscus Spritz?",
+    "options": [
+      "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water",
+      "Botanist Gin, Muddled Cucumbers, St. Germain, Simple, Lemon Juice",
+      "Gin, Hibiscus, Soap",
+      "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Espresso"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/gin-hibiscus-spritz"]
+  },
+  {
+    "prompt": "What's in The Kildares Old Fashioned?",
+    "options": [
+      "Old Forester High Proof Bourbon, Angostura and Orange Bitters, Demerara Syrup, Luxardo Cherry",
+      "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Dry Curacao, Agave",
+      "Bourbon, Bitters, Regret",
+      "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Espresso"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/kildares-old-fashioned"]
+  },
+  {
+    "prompt": "Which ingredients are in the Sweet and Spicy Margarita?",
+    "options": [
+      "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Dry Curacao, Agave",
+      "Bacardi Dragonberry Rum, Coconut Rum, Mint, Lime, Dragonfruit Simple Syrup",
+      "Tequila, Lime, Bad Vibes",
+      "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/sweet-and-spicy-margarita"]
+  },
+  {
+    "prompt": "What's in the Dragonfruit Mojito?",
+    "options": [
+      "Bacardi Dragonberry Rum, Coconut Rum, Mint, Lime, Dragonfruit Simple Syrup",
+      "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Dry Curacao",
+      "Rum, Mint, Tears",
+      "Botanist Gin, Muddled Cucumbers, St. Germain, Simple, Lemon Juice"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/dragonfruit-mojito"]
+  },
+  {
+    "prompt": "Which ingredients are in the Cucumber Cool?",
+    "options": [
+      "Botanist Gin, Muddled Cucumbers, St. Germain, Simple, Lemon Juice",
+      "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water",
+      "Gin, Cucumber, Doom",
+      "Pineapple Infused Strawberry Holla Vodka, Triple Sec, Simple, Cran"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/cucumber-cool"]
+  },
+  {
+    "prompt": "What's in the Strawberry Pineapple Martini?",
+    "options": [
+      "Pineapple Infused Strawberry Holla Vodka, Triple Sec, Simple, Splash of Cran",
+      "Holla Strawberry Infused with Fresh Pineapples, Fresh Squeezed OJ, Triple Sec, Sprite",
+      "Vodka, Strawberry, Sadness",
+      "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Espresso"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/strawberry-pineapple-martini"]
+  },
+  {
+    "prompt": "What's in the White Peach Sangria?",
+    "options": [
+      "A blend of white wines, Pureed Peaches and Fruit",
+      "Bacardi Dragonberry Rum, Coconut Rum, Mint, Lime",
+      "Wine, Peaches, Disappointment",
+      "Holla Vanilla Vodka, Fresh Squeezed Limes, Simple Syrup, Sprite"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/white-peach-sangria"]
+  },
+  {
+    "prompt": "Which ingredients are in the Orange Crush (Fresh Squeezed)?",
+    "options": [
+      "Holla Orange Vodka, Triple Sec, Fresh Squeezed Orange Juice, Sprite",
+      "Holla Strawberry Infused with Fresh Pineapples, Fresh Squeezed OJ, Triple Sec, Sprite",
+      "Orange, Vodka, Wet Cardboard",
+      "Holla Vanilla Vodka, Fresh Squeezed Limes, Simple Syrup, Sprite"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/fresh-squeezed/orange-crush"]
+  },
+  {
+    "prompt": "What's in the Endless Summer (Fresh Squeezed)?",
+    "options": [
+      "Holla Strawberry Infused with Fresh Pineapples, Fresh Squeezed OJ, Triple Sec, Sprite",
+      "Holla Orange Vodka, Triple Sec, Fresh Squeezed Orange Juice, Sprite",
+      "Strawberry, Pineapple, Failure",
+      "Holla Blueberry, Fresh Squeezed Lemons, Simple Syrup, Water"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/fresh-squeezed/endless-summer"]
+  },
+  {
+    "prompt": "Which ingredients are in the Key Lime Pie (Fresh Squeezed)?",
+    "options": [
+      "Holla Vanilla Vodka, Fresh Squeezed Limes, Simple Syrup, Sprite",
+      "Holla Blueberry, Fresh Squeezed Lemons, Simple Syrup, Water",
+      "Lime, Vodka, Existential Dread",
+      "Holla Orange Vodka, Triple Sec, Fresh Squeezed Orange Juice, Sprite"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/fresh-squeezed/key-lime-pie"]
+  },
+  {
+    "prompt": "What's in the Blueberry Lemonade (Fresh Squeezed)?",
+    "options": [
+      "Holla Blueberry, Fresh Squeezed Lemons, Simple Syrup, Water",
+      "Holla Vanilla Vodka, Fresh Squeezed Limes, Simple Syrup, Sprite",
+      "Blueberry, Lemon, Despair",
+      "Holla Strawberry Infused with Fresh Pineapples, Fresh Squeezed OJ"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/fresh-squeezed/blueberry-lemonade"]
+  },
+  {
+    "prompt": "What's the Flourless Chocolate Cake served with?",
+    "options": [
+      "A Chocolate Syrup Drizzle",
+      "Strawberry Sauce",
+      "Graham Crackers and Tears",
+      "Marshmallow and Chocolate"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/flourless-chocolate-cake"]
+  },
+  {
+    "prompt": "What's the New York Cheesecake served with?",
+    "options": [
+      "Strawberry Sauce",
+      "Chocolate Syrup Drizzle",
+      "Existential Dread on the side",
+      "Graham Crackers for Dipping"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/new-york-cheesecake"]
+  },
+  {
+    "prompt": "What's the S'mores Dip made of?",
+    "options": [
+      "Marshmallow and Chocolate with Graham Crackers for Dipping",
+      "Strawberry Sauce and Fudge",
+      "Marshmallow, Chocolate, Regret",
+      "Vanilla Ice Cream and Berries"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/smores-dip"]
+  },
+  {
+    "prompt": "What's served with the Chicken Tenders?",
+    "options": [
+      "Fries and House-Made BBQ and Whiskey Honey Mustard",
+      "Carrots, Celery, Corn Tortillas And Flatbread",
+      "Fries and Bad Vibes",
+      "Blue Cheese or Ranch"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/chicken-tenders"]
+  },
+  {
+    "prompt": "What's served with the Buffalo Chicken Dip?",
+    "options": [
+      "Carrots, Celery, Corn Tortillas, and Flatbread",
+      "Fries and Whiskey Honey Mustard",
+      "Existential Dread for Dipping",
+      "Pita and Hummus Board accompaniments"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/buffalo-chicken-dip"]
+  },
+  {
+    "prompt": "What's served with the Baked Pretzel Bites?",
+    "options": [
+      "House-Made Pub Cheese",
+      "Marie Rose Dipping Sauce",
+      "Soap",
+      "Chipotle Ranch"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/baked-pretzel-bites"]
+  },
+  {
+    "prompt": "What's the Basket of Fries served with?",
+    "options": [
+      "Pub Cheese",
+      "Chipotle Ranch",
+      "Failure",
+      "Old Bay Aioli"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/basket-of-fries"]
+  },
+  {
+    "prompt": "What are the Old Bay Fries served with?",
+    "options": [
+      "Old Bay Aioli",
+      "Pub Cheese",
+      "Soggy Socks",
+      "Ranch Dressing"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/old-bay-fries"]
+  },
+  {
+    "prompt": "What are the Sweet Potato Fries served with?",
+    "options": [
+      "Chipotle Ranch",
+      "Pub Cheese",
+      "Whiskey Honey Tears",
+      "Marie Rose Dipping Sauce"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/sweet-potato-fries"]
+  },
+  {
+    "prompt": "Wings are served with which sauces?",
+    "options": [
+      "Blue Cheese or Ranch",
+      "Whiskey Honey Mustard or BBQ",
+      "Soap or Despair",
+      "Marie Rose or Tartar"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "How much does the House Salad cost?",
+    "options": [
+      "$8.99",
+      "$9.99",
+      "$3.50",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/house-salad"]
+  },
+  {
+    "prompt": "How much is the Mixed Greens Salad?",
+    "options": [
+      "$9.99",
+      "$8.99",
+      "Pay what you want, but they'll judge",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/mixed-greens-salad"]
+  },
+  {
+    "prompt": "How much does the Caesar Salad cost?",
+    "options": [
+      "$8.99",
+      "$9.99",
+      "$420.69",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/caesar-salad"]
+  },
+  {
+    "prompt": "How much is the Southwest Salad?",
+    "options": [
+      "$9.99",
+      "$8.99",
+      "Free if you arm wrestle the manager",
+      "$11.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/southwest-salad"]
+  },
+  {
+    "prompt": "How much does it cost to add Chicken to a salad?",
+    "options": [
+      "$5",
+      "$10",
+      "Your firstborn",
+      "$9"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/protein-options"]
+  },
+  {
+    "prompt": "How much to add Salmon to a salad?",
+    "options": [
+      "$10",
+      "$5",
+      "Negotiable",
+      "$14"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/protein-options"]
+  },
+  {
+    "prompt": "How much to add Shrimp (9) to a salad?",
+    "options": [
+      "$9",
+      "$5",
+      "$3.50 plus a small dance",
+      "$10"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/protein-options"]
+  },
+  {
+    "prompt": "How much to add 8oz Flatiron to a salad?",
+    "options": [
+      "$14",
+      "$10",
+      "$1000 if you ask nicely",
+      "$5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/protein-options"]
+  },
+  {
+    "prompt": "How much to add Blackening Spices to your protein?",
+    "options": [
+      "$1",
+      "$5",
+      "Free, but it'll come with regret",
+      "$3"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/protein-options"]
+  },
+  {
+    "prompt": "How much is the Street Corn Bowl?",
+    "options": [
+      "$15.99",
+      "$14.99",
+      "Pay what you weigh",
+      "$17.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/street-corn-bowl"]
+  },
+  {
+    "prompt": "How much does the Chicken Power Bowl cost?",
+    "options": [
+      "$14.99",
+      "$15.99",
+      "$3.50",
+      "$17.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/chicken-power-bowl"]
+  },
+  {
+    "prompt": "How much is the Grilled Salmon Bowl?",
+    "options": [
+      "$15.99",
+      "$14.99",
+      "Whatever feels right",
+      "$17.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/grilled-salmon-bowl"]
+  },
+  {
+    "prompt": "How much do Pork tacos cost?",
+    "options": [
+      "$13.99",
+      "$14.99",
+      "$420.69",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/pork"]
+  },
+  {
+    "prompt": "How much for Marinated Shrimp tacos?",
+    "options": [
+      "$14.99",
+      "$13.99",
+      "Free for the brave",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/marinated-shrimp"]
+  },
+  {
+    "prompt": "How much do Fish tacos cost?",
+    "options": [
+      "$14.99",
+      "$13.99",
+      "Three fish secrets",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/fish"]
+  },
+  {
+    "prompt": "How much is the All American Burger?",
+    "options": [
+      "$15.99",
+      "$16.99",
+      "Patriotism + $5",
+      "$14.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/all-american-burger"]
+  },
+  {
+    "prompt": "How much does The Kildares Pub Burger cost?",
+    "options": [
+      "$16.99",
+      "$15.99",
+      "An Irish blessing",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/the-kildares-pub-burger"]
+  },
+  {
+    "prompt": "How much is The Dubliner burger?",
+    "options": [
+      "$15.99",
+      "$16.99",
+      "100 leprechaun coins",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/the-dubliner"]
+  },
+  {
+    "prompt": "How much is the Bacon and Egg burger?",
+    "options": [
+      "$15.99",
+      "$16.99",
+      "Three chicken nuggets",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/bacon-and-egg"]
+  },
+  {
+    "prompt": "How much is The Steakhouse burger?",
+    "options": [
+      "$15.99",
+      "$16.99",
+      "Your weight in onion rings",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/the-steakhouse"]
+  },
+  {
+    "prompt": "How much is the Reuben Spring Roll?",
+    "options": [
+      "$10.99",
+      "$11.99",
+      "$3.50 and a wink",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/reuben-spring-roll"]
+  },
+  {
+    "prompt": "How much do the Nachos cost?",
+    "options": [
+      "$13.99",
+      "$12.99",
+      "Free with despair",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/nachos"]
+  },
+  {
+    "prompt": "How much for the Stuffed Jalapenos?",
+    "options": [
+      "$10.99",
+      "$11.99",
+      "Pay with a high five",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/stuffed-jalapenos"]
+  },
+  {
+    "prompt": "How much for the Chicken Tenders?",
+    "options": [
+      "$11.99",
+      "$10.99",
+      "$420.69",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/chicken-tenders"]
+  },
+  {
+    "prompt": "How much is the Buffalo Chicken Dip?",
+    "options": [
+      "$12.99",
+      "$11.99",
+      "Two compliments",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/buffalo-chicken-dip"]
+  },
+  {
+    "prompt": "How much for the Deviled Eggs?",
+    "options": [
+      "$10.99",
+      "$11.99",
+      "Your soul",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/deviled-eggs"]
+  },
+  {
+    "prompt": "How much for the BBQ Chicken Flatbread?",
+    "options": [
+      "$11.99",
+      "$10.99",
+      "Five thousand high fives",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/bbq-chicken-flatbread"]
+  },
+  {
+    "prompt": "How much is the Chipotle Lime Flatbread?",
+    "options": [
+      "$11.99",
+      "$10.99",
+      "$3.50",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/chipotle-lime-flatbread"]
+  },
+  {
+    "prompt": "How much for the Hummus Board?",
+    "options": [
+      "$13.99",
+      "$12.99",
+      "Pay in hummus",
+      "$11.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/hummus-board"]
+  },
+  {
+    "prompt": "How much for the Baked Pretzel Bites?",
+    "options": [
+      "$10.99",
+      "$11.99",
+      "A pretzel-shaped IOU",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/baked-pretzel-bites"]
+  },
+  {
+    "prompt": "How much is the Basket of Fries?",
+    "options": [
+      "$8.99",
+      "$9.99",
+      "Three potatoes",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/basket-of-fries"]
+  },
+  {
+    "prompt": "How much are the Loaded Fries?",
+    "options": [
+      "$12.99",
+      "$10.99",
+      "Your gym membership",
+      "$8.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/loaded-fries"]
+  },
+  {
+    "prompt": "How much are the Old Bay Fries?",
+    "options": [
+      "$9.99",
+      "$8.99",
+      "Two seashells",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/old-bay-fries"]
+  },
+  {
+    "prompt": "How much are the Brisket Fries?",
+    "options": [
+      "$12.99",
+      "$11.99",
+      "Free with brisket lore",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/brisket-fries"]
+  },
+  {
+    "prompt": "How much are the Sweet Potato Fries?",
+    "options": [
+      "$10.99",
+      "$9.99",
+      "A polite request",
+      "$12.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/sweet-potato-fries"]
+  },
+  {
+    "prompt": "How much is a bowl of French Onion soup?",
+    "options": [
+      "$7.99",
+      "$8.99",
+      "Onion ring count divided by zero",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/soups/french-onion"]
+  },
+  {
+    "prompt": "How much for the Beef and Chorizo Chili?",
+    "options": [
+      "$7.99",
+      "$8.99",
+      "Six brave beans",
+      "$10.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/soups/beef-and-chorizo-chili"]
+  },
+  {
+    "prompt": "How much is the Reuben handheld?",
+    "options": [
+      "$15.99",
+      "$14.99",
+      "An Irish folk song",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/reuben"]
+  },
+  {
+    "prompt": "How much is the Salmon BLT Wrap?",
+    "options": [
+      "$16.99",
+      "$15.99",
+      "Free with a salmon impression",
+      "$13.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/salmon-blt-wrap"]
+  },
+  {
+    "prompt": "How much is the BBQ Pork sandwich?",
+    "options": [
+      "$13.99",
+      "$15.99",
+      "Three oinks",
+      "$11.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/bbq-pork"]
+  },
+  {
+    "prompt": "How much is the Grilled Chicken handheld?",
+    "options": [
+      "$14.99",
+      "$13.99",
+      "$3.50",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/grilled-chicken"]
+  },
+  {
+    "prompt": "How much for the Hot Roast Beef handheld?",
+    "options": [
+      "$14.99",
+      "$13.99",
+      "Your address",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/hot-roast-beef"]
+  },
+  {
+    "prompt": "How much is the Ploughman?",
+    "options": [
+      "$13.99",
+      "$14.99",
+      "One sincere apology",
+      "$11.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/ploughman"]
+  },
+  {
+    "prompt": "How much for the Cheesesteak?",
+    "options": [
+      "$13.99",
+      "$14.99",
+      "Cheese-related guilt",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/cheesesteak"]
+  },
+  {
+    "prompt": "How much is the Steak Frites?",
+    "options": [
+      "$23.99",
+      "$19.99",
+      "Your hand in marriage",
+      "$17.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/steak-frites"]
+  },
+  {
+    "prompt": "How much is the Shepherd's Pie?",
+    "options": [
+      "$17.99",
+      "$19.99",
+      "A solid handshake",
+      "$23.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/shepherds-pie"]
+  },
+  {
+    "prompt": "How much is the Grilled Salmon Entree?",
+    "options": [
+      "$17.99",
+      "$15.99",
+      "Free, but only on leap years",
+      "$19.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/grilled-salmon-entree"]
+  },
+  {
+    "prompt": "How much for the Irish Breakfast?",
+    "options": [
+      "$19.99",
+      "$17.99",
+      "Three pots of gold",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/irish-breakfast"]
+  },
+  {
+    "prompt": "How much for the Fish and Chips (regular price)?",
+    "options": [
+      "$17.99",
+      "$10",
+      "Negotiable on Mondays",
+      "$23.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/fish-and-chips"]
+  },
+  {
+    "prompt": "How much is the Bangers and Mash?",
+    "options": [
+      "$17.99",
+      "$19.99",
+      "Bring your own bangers",
+      "$15.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/bangers-and-mash"]
+  },
+  {
+    "prompt": "How much is the Flourless Chocolate Cake?",
+    "options": [
+      "$7",
+      "$8",
+      "Your dignity",
+      "$12"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/flourless-chocolate-cake"]
+  },
+  {
+    "prompt": "How much is the New York Cheesecake?",
+    "options": [
+      "$8",
+      "$7",
+      "Pay in cheese",
+      "$12"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/new-york-cheesecake"]
+  },
+  {
+    "prompt": "How much is the S'mores Dip?",
+    "options": [
+      "$12",
+      "$8",
+      "Three marshmallow apologies",
+      "$7"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/smores-dip"]
+  },
+  {
+    "prompt": "How much is the Mac & Cheese (side)?",
+    "options": [
+      "$8",
+      "$9",
+      "Free with a mac & cheese joke",
+      "$5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/mac-and-cheese"]
+  },
+  {
+    "prompt": "How much is the Bacon Mac & Cheese?",
+    "options": [
+      "$9",
+      "$8",
+      "Three sad oinks",
+      "$5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/bacon-mac-and-cheese"]
+  },
+  {
+    "prompt": "How much is a side of Coleslaw?",
+    "options": [
+      "$4",
+      "$5",
+      "Two cabbage compliments",
+      "$8"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/coleslaw"]
+  },
+  {
+    "prompt": "How much for a side of Mashed Potatoes?",
+    "options": [
+      "$4",
+      "$5",
+      "Pay in butter",
+      "$8"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/mashed-potatoes"]
+  },
+  {
+    "prompt": "How much for the Sauteed Mushrooms side?",
+    "options": [
+      "$4",
+      "$5",
+      "Fungi-related riddle",
+      "$8"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/sauteed-mushrooms"]
+  },
+  {
+    "prompt": "How much for the Roasted Broccoli & Cauliflower side?",
+    "options": [
+      "$5",
+      "$4",
+      "Eat your vegetables for free... NOT",
+      "$3"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/roasted-broccoli-cauliflower"]
+  },
+  {
+    "prompt": "How much for the Side House Salad?",
+    "options": [
+      "$4",
+      "$5",
+      "$3.50 and a salad confession",
+      "$8"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/side-house-salad"]
+  },
+  {
+    "prompt": "How much for the Side Caesar Salad?",
+    "options": [
+      "$4",
+      "$5",
+      "Et tu Brute and $3",
+      "$8"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/side-caesar-salad"]
+  },
+  {
+    "prompt": "How much for the Carrots & Celery side?",
+    "options": [
+      "$3",
+      "$4",
+      "A loud crunch",
+      "$5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/carrots-celery"]
+  },
+  {
+    "prompt": "How much is the Espresso Martini?",
+    "options": [
+      "$14",
+      "$12",
+      "Pay in espresso shots",
+      "$11"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/espresso-martini"]
+  },
+  {
+    "prompt": "How much is the Gin Hibiscus Spritz?",
+    "options": [
+      "$11",
+      "$14",
+      "Free with a flower compliment",
+      "$12"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/gin-hibiscus-spritz"]
+  },
+  {
+    "prompt": "How much is The Kildares Old Fashioned?",
+    "options": [
+      "$14",
+      "$12",
+      "An old-fashioned thank-you note",
+      "$11"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/kildares-old-fashioned"]
+  },
+  {
+    "prompt": "How much is the Sweet and Spicy Margarita?",
+    "options": [
+      "$14",
+      "$12",
+      "Heat tolerance test",
+      "$11"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/sweet-and-spicy-margarita"]
+  },
+  {
+    "prompt": "How much is the Dragonfruit Mojito?",
+    "options": [
+      "$12",
+      "$11",
+      "Slay one dragon",
+      "$14"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/dragonfruit-mojito"]
+  },
+  {
+    "prompt": "How much is the Cucumber Cool?",
+    "options": [
+      "$11",
+      "$12",
+      "Stay cool, pay nothing... just kidding",
+      "$14"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/cucumber-cool"]
+  },
+  {
+    "prompt": "How much is the Strawberry Pineapple Martini?",
+    "options": [
+      "$12",
+      "$11",
+      "Three strawberry secrets",
+      "$14"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/strawberry-pineapple-martini"]
+  },
+  {
+    "prompt": "How much is the White Peach Sangria?",
+    "options": [
+      "$12",
+      "$11",
+      "Peach-shaped IOU",
+      "$14"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/white-peach-sangria"]
+  },
+  {
+    "prompt": "How much is any Fresh Squeezed cocktail?",
+    "options": [
+      "$10",
+      "$11",
+      "Hand-squeezed favors",
+      "$14"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/fresh-squeezed"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Cabernet Sauvignon?",
+    "options": [
+      "$10",
+      "$11",
+      "Compliments to the vineyard",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/cabernet-sauvignon"]
+  },
+  {
+    "prompt": "How much is a bottle of Cabernet Sauvignon?",
+    "options": [
+      "$30",
+      "$33",
+      "Three sincere wine tears",
+      "$24"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/cabernet-sauvignon"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Malbec?",
+    "options": [
+      "$11",
+      "$10",
+      "Pay in wine puns",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/malbec"]
+  },
+  {
+    "prompt": "How much is a bottle of Malbec?",
+    "options": [
+      "$33",
+      "$30",
+      "Three Malbec-inspired haikus",
+      "$24"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/malbec"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Pinot Noir?",
+    "options": [
+      "$11",
+      "$10",
+      "A song about grapes",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/pinot-noir"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Chardonnay?",
+    "options": [
+      "$10",
+      "$11",
+      "Whatever Chardonnay feels right",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/chardonnay"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Sauvignon Blanc?",
+    "options": [
+      "$11",
+      "$10",
+      "A sav-blanc serenade",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/sauvignon-blanc"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Pinot Grigio?",
+    "options": [
+      "$11",
+      "$10",
+      "Speak Italian to the bartender",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/pinot-grigio"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Moscato?",
+    "options": [
+      "$10",
+      "$11",
+      "Sweet wine secret handshake",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/moscato"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Riesling?",
+    "options": [
+      "$11",
+      "$10",
+      "Three Riesling riddles",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/riesling"]
+  },
+  {
+    "prompt": "How much is a Prosecco pour (6.3oz)?",
+    "options": [
+      "$13",
+      "$11",
+      "Sparkle for free",
+      "$8"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/prosecco"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Brut?",
+    "options": [
+      "$8",
+      "$10",
+      "Three brut comments",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/brut"]
+  },
+  {
+    "prompt": "How much is a bottle of Brut?",
+    "options": [
+      "$24",
+      "$30",
+      "An emotional commitment",
+      "$33"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/brut"]
+  },
+  {
+    "prompt": "How much is a 5oz pour of Rose?",
+    "options": [
+      "$10",
+      "$11",
+      "Pay in flower petals",
+      "$13"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/wine/rose"]
+  },
+  {
+    "prompt": "Which of these items is Gluten Free?",
+    "options": [
+      "Stuffed Jalapenos",
+      "Reuben Spring Roll",
+      "Wet Cardboard Special",
+      "Nachos"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/stuffed-jalapenos", "front/shareables/reuben-spring-roll", "front/shareables/nachos"]
+  },
+  {
+    "prompt": "Which of these is Gluten Free?",
+    "options": [
+      "Deviled Eggs",
+      "Reuben Spring Roll",
+      "Sadness Sandwich",
+      "Chicken Tenders"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/deviled-eggs", "front/shareables/reuben-spring-roll", "front/shareables/chicken-tenders"]
+  },
+  {
+    "prompt": "Which salad is marked Gluten Free?",
+    "options": [
+      "Mixed Greens Salad",
+      "Caesar Salad",
+      "Despair Salad",
+      "House Salad"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/mixed-greens-salad", "front/salads/caesar-salad", "front/salads/house-salad"]
+  },
+  {
+    "prompt": "Which bowl is Gluten Free?",
+    "options": [
+      "Street Corn Bowl",
+      "Chicken Power Bowl",
+      "Bowl of Existential Dread",
+      "Grilled Salmon Bowl"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/street-corn-bowl", "front/bowls/chicken-power-bowl", "front/bowls/grilled-salmon-bowl"]
+  },
+  {
+    "prompt": "Which tacos are Gluten Free?",
+    "options": [
+      "Pork tacos",
+      "Fish tacos",
+      "Tofu of Doom tacos",
+      "All tacos are GF"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/pork", "front/tacos/fish"]
+  },
+  {
+    "prompt": "Which tacos are Gluten Free (besides Pork)?",
+    "options": [
+      "Marinated Shrimp",
+      "Fish",
+      "Mystery Soap",
+      "All of them"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/marinated-shrimp", "front/tacos/fish"]
+  },
+  {
+    "prompt": "Which dessert is Gluten Free?",
+    "options": [
+      "Flourless Chocolate Cake",
+      "New York Cheesecake",
+      "Dessert of Lies",
+      "S'mores Dip"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/flourless-chocolate-cake", "back/desserts/new-york-cheesecake", "back/desserts/smores-dip"]
+  },
+  {
+    "prompt": "Is the Reuben Spring Roll marked Gluten Free on the menu?",
+    "options": [
+      "No",
+      "Yes",
+      "Only with despair",
+      "Only at full moons"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/reuben-spring-roll"]
+  },
+  {
+    "prompt": "Is the House Salad marked Gluten Free?",
+    "options": [
+      "No",
+      "Yes",
+      "Yes, with a side of Doom",
+      "Only on Tuesdays"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/house-salad"]
+  },
+  {
+    "prompt": "Is the Caesar Salad marked Gluten Free?",
+    "options": [
+      "No",
+      "Yes",
+      "Et tu, gluten?",
+      "Yes, except the croutons"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/caesar-salad"]
+  },
+  {
+    "prompt": "Is the Chicken Power Bowl marked Gluten Free?",
+    "options": [
+      "No",
+      "Yes",
+      "Only if you're powerful",
+      "Yes, but only the chicken"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/chicken-power-bowl"]
+  },
+  {
+    "prompt": "Is the Street Corn Bowl marked Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Yes, but only on the street",
+      "Maybe, ask your server"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/street-corn-bowl"]
+  },
+  {
+    "prompt": "Is the Stuffed Jalapenos shareable Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Yes, with extra regret",
+      "Only stuffed with rice"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/stuffed-jalapenos"]
+  },
+  {
+    "prompt": "Is the Deviled Eggs shareable Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Yes, devilishly so",
+      "Only the shrimp on top"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/deviled-eggs"]
+  },
+  {
+    "prompt": "Is the Mixed Greens Salad Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Yes, with a side of leaves",
+      "Only on Wednesdays"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/salads/mixed-greens-salad"]
+  },
+  {
+    "prompt": "Are the Pork tacos Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Only if pork is gluten",
+      "Yes, but only the pineapple"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/pork"]
+  },
+  {
+    "prompt": "Are the Marinated Shrimp tacos Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Yes, with shrimp blessings",
+      "Only the guacamole"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/marinated-shrimp"]
+  },
+  {
+    "prompt": "Are the Fish tacos marked Gluten Free?",
+    "options": [
+      "No",
+      "Yes",
+      "Yes, ask the fish",
+      "Only on Fish Fridays"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/fish"]
+  },
+  {
+    "prompt": "Is the Flourless Chocolate Cake Gluten Free?",
+    "options": [
+      "Yes",
+      "No",
+      "Yes, but only the chocolate",
+      "Only if you ask in Gaelic"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/flourless-chocolate-cake"]
+  },
+  {
+    "prompt": "Is the New York Cheesecake marked Gluten Free?",
+    "options": [
+      "No",
+      "Yes",
+      "Yes, with a NY accent",
+      "Only the strawberry sauce"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/new-york-cheesecake"]
+  },
+  {
+    "prompt": "Which menu section is the Reuben Spring Roll in?",
+    "options": [
+      "Shareables",
+      "Handhelds",
+      "The Dishwashing Section",
+      "Salads"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/reuben-spring-roll"]
+  },
+  {
+    "prompt": "Which section is the Brisket Fries in?",
+    "options": [
+      "Fry Baskets",
+      "Shareables",
+      "Soup Wing",
+      "Entrees"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/brisket-fries"]
+  },
+  {
+    "prompt": "Which section is the Street Corn Bowl in?",
+    "options": [
+      "Bowls",
+      "Salads",
+      "The Forbidden Bowls",
+      "Tacos"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/street-corn-bowl"]
+  },
+  {
+    "prompt": "Which section is the Chicken Power Bowl in?",
+    "options": [
+      "Bowls",
+      "Salads",
+      "Power Outage",
+      "Handhelds"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/bowls/chicken-power-bowl"]
+  },
+  {
+    "prompt": "Which menu section are the Pork tacos in?",
+    "options": [
+      "Tacos",
+      "Shareables",
+      "Pig Special",
+      "Handhelds"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos/pork"]
+  },
+  {
+    "prompt": "Which section is the All American Burger in?",
+    "options": [
+      "Pub Burgers",
+      "Handhelds",
+      "Patriot Wing",
+      "Entrees"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers/all-american-burger"]
+  },
+  {
+    "prompt": "Which section is the Reuben handheld in?",
+    "options": [
+      "Handhelds",
+      "Pub Burgers",
+      "Wet Bread Section",
+      "Shareables"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/reuben"]
+  },
+  {
+    "prompt": "Which section is the Salmon BLT Wrap in?",
+    "options": [
+      "Handhelds",
+      "Bowls",
+      "Aquatic Wing",
+      "Shareables"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/salmon-blt-wrap"]
+  },
+  {
+    "prompt": "Which section is the Shepherd's Pie in?",
+    "options": [
+      "Entrees",
+      "Pub Burgers",
+      "Lost Sheep Department",
+      "Handhelds"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/shepherds-pie"]
+  },
+  {
+    "prompt": "Which section is the Bangers and Mash in?",
+    "options": [
+      "Entrees",
+      "A Wee Bit More",
+      "Loud Bangers Wing",
+      "Shareables"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/bangers-and-mash"]
+  },
+  {
+    "prompt": "Which section is the Irish Breakfast in?",
+    "options": [
+      "Entrees",
+      "A Wee Bit More",
+      "Leprechaun Lounge",
+      "Pub Burgers"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/irish-breakfast"]
+  },
+  {
+    "prompt": "Which section is the Flourless Chocolate Cake in?",
+    "options": [
+      "Desserts",
+      "Entrees",
+      "Sad Cake Wing",
+      "A Wee Bit More"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/desserts/flourless-chocolate-cake"]
+  },
+  {
+    "prompt": "Which section is the Espresso Martini in?",
+    "options": [
+      "Signature Cocktails",
+      "Fresh Squeezed",
+      "Caffeinated Catastrophes",
+      "Wine"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/espresso-martini"]
+  },
+  {
+    "prompt": "Which section is the Orange Crush in?",
+    "options": [
+      "Fresh Squeezed",
+      "Signature Cocktails",
+      "Crushing Disappointment",
+      "Wine"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/fresh-squeezed/orange-crush"]
+  },
+  {
+    "prompt": "Which section is the Guinness in?",
+    "options": [
+      "Draft Beer",
+      "Signature Cocktails",
+      "Black Stuff Wing",
+      "Wine"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/guinness"]
+  },
+  {
+    "prompt": "Which section is the Mac & Cheese (side) in?",
+    "options": [
+      "A Wee Bit More",
+      "Entrees",
+      "Cheese Wing of Despair",
+      "Shareables"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/a-wee-bit-more/mac-and-cheese"]
+  },
+  {
+    "prompt": "Which section is the Hummus Board in?",
+    "options": [
+      "Shareables",
+      "Salads",
+      "Chickpea Tribunal",
+      "Handhelds"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/hummus-board"]
+  },
+  {
+    "prompt": "Which section are the Chicken Tenders in?",
+    "options": [
+      "Shareables",
+      "Handhelds",
+      "The Cluck-pit",
+      "Pub Burgers"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/chicken-tenders"]
+  },
+  {
+    "prompt": "Which section is the Hot Roast Beef in?",
+    "options": [
+      "Handhelds",
+      "Entrees",
+      "Beef Sauna",
+      "Pub Burgers"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/hot-roast-beef"]
+  },
+  {
+    "prompt": "Which section is the Cheesesteak in?",
+    "options": [
+      "Handhelds",
+      "Pub Burgers",
+      "Cheese Court",
+      "Entrees"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/cheesesteak"]
+  },
+  {
+    "prompt": "Which section is the Cucumber Cool cocktail in?",
+    "options": [
+      "Signature Cocktails",
+      "Fresh Squeezed",
+      "Salad Bar",
+      "Wine"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/cocktails/cucumber-cool"]
+  },
+  {
+    "prompt": "Which section is the Buffalo Chicken Dip in?",
+    "options": [
+      "Shareables",
+      "Handhelds",
+      "Buffalo Plains",
+      "Pub Burgers"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/shareables/buffalo-chicken-dip"]
+  },
+  {
+    "prompt": "Which section is the Loaded Fries in?",
+    "options": [
+      "Fry Baskets",
+      "Shareables",
+      "Heavy Things",
+      "Entrees"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/loaded-fries"]
+  },
+  {
+    "prompt": "Which section are the Fish and Chips in?",
+    "options": [
+      "Entrees",
+      "Tacos",
+      "Aquarium",
+      "Shareables"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/entrees/fish-and-chips"]
+  },
+  {
+    "prompt": "What style of beer is Guinness?",
+    "options": [
+      "Stout",
+      "Irish Red Ale",
+      "Liquid Despair",
+      "NEIPA"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/guinness"]
+  },
+  {
+    "prompt": "What style is Harp?",
+    "options": [
+      "Irish Lager",
+      "Wheat Beer",
+      "Mythical Lager",
+      "NEIPA"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/harp"]
+  },
+  {
+    "prompt": "What style is Kronenbourg?",
+    "options": [
+      "Wheat Beer",
+      "Irish Lager",
+      "Crown Juice",
+      "Pilsner"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/kronenbourg"]
+  },
+  {
+    "prompt": "What style is Fiddlehead?",
+    "options": [
+      "NEIPA",
+      "Stout",
+      "Hop Soup",
+      "Pilsner"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/fiddlehead"]
+  },
+  {
+    "prompt": "What style is Stella?",
+    "options": [
+      "Pale Lager",
+      "Wheat Beer",
+      "Yelling at the bartender",
+      "Stout"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/stella"]
+  },
+  {
+    "prompt": "What style is Kona Big Wave?",
+    "options": [
+      "Golden Ale",
+      "NEIPA",
+      "Surfboard juice",
+      "Stout"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/kona-big-wave"]
+  },
+  {
+    "prompt": "What style is Bitburger?",
+    "options": [
+      "German Pils",
+      "Wheat Beer",
+      "Bavarian Vibes",
+      "Stout"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/bitburger"]
+  },
+  {
+    "prompt": "What style is Smithwicks?",
+    "options": [
+      "Irish Red Ale",
+      "Stout",
+      "Carpentry-themed lager",
+      "NEIPA"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/smithwicks"]
+  },
+  {
+    "prompt": "What style is Carlsberg?",
+    "options": [
+      "Danish Pilsner",
+      "Stout",
+      "Pirate ale",
+      "NEIPA"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/carlsberg"]
+  },
+  {
+    "prompt": "What style is Levante Cloudy?",
+    "options": [
+      "NEIPA",
+      "Stout",
+      "Fog in a glass",
+      "Pilsner"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/levante-cloudy"]
+  },
+  {
+    "prompt": "What style is Kilkenny Nitro?",
+    "options": [
+      "Irish Red Ale",
+      "Stout",
+      "Explosive lager",
+      "Pilsner"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/kilkenny-nitro"]
+  },
+  {
+    "prompt": "What style is Downeast?",
+    "options": [
+      "Cider (Original Blend)",
+      "Stout",
+      "Apple Anxiety",
+      "Pilsner"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/downeast-cider"]
+  },
+  {
+    "prompt": "What style is Michelob Ultra?",
+    "options": [
+      "Light Lager",
+      "Stout",
+      "Gym Juice",
+      "NEIPA"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/michelob-ultra"]
+  },
+  {
+    "prompt": "What's the ABV of Guinness on draft?",
+    "options": [
+      "4.2%",
+      "5.0%",
+      "Nine Irish ghosts",
+      "6.5%"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/guinness"]
+  },
+  {
+    "prompt": "What's the ABV of Fiddlehead?",
+    "options": [
+      "6.5%",
+      "4.2%",
+      "Loud hop yelling",
+      "5.0%"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/fiddlehead"]
+  },
+  {
+    "prompt": "What's the ABV of Stella?",
+    "options": [
+      "5.0%",
+      "4.2%",
+      "Marlon Brando energy",
+      "6.5%"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/stella"]
+  },
+  {
+    "prompt": "What's the ABV of Bitburger?",
+    "options": [
+      "4.8%",
+      "5.0%",
+      "Mostly hops, mostly regret",
+      "4.2%"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/bitburger"]
+  },
+  {
+    "prompt": "What's the ABV of Downeast Cider?",
+    "options": [
+      "5.1%",
+      "5.0%",
+      "One sad apple",
+      "4.2%"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/downeast-cider"]
+  },
+  {
+    "prompt": "What's the ABV of Kona Big Wave?",
+    "options": [
+      "4.4%",
+      "4.2%",
+      "Surf's up percent",
+      "5.0%"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/kona-big-wave"]
+  },
+  {
+    "prompt": "Which draft beer has the highest ABV?",
+    "options": [
+      "Fiddlehead",
+      "Guinness",
+      "Liquid Sadness IPA",
+      "Stella"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/draft-beer/fiddlehead"]
+  },
+  {
+    "prompt": "How many wing flavors does Kildares offer?",
+    "options": [
+      "4",
+      "3",
+      "Infinity, but only two are real",
+      "5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "How much for 10 wings?",
+    "options": [
+      "$15.99",
+      "$29.99",
+      "Ten apologies",
+      "$11.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "How much for 20 wings?",
+    "options": [
+      "$29.99",
+      "$15.99",
+      "Two airplane tickets",
+      "$25.99"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "How are the Tacos served?",
+    "options": [
+      "Three tacos per order, on corn tortilla",
+      "Two tacos per order, on flour tortilla",
+      "On a bed of dreams",
+      "Five tacos per order, family style"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/tacos"]
+  },
+  {
+    "prompt": "What patties can the Pub Burgers be made with?",
+    "options": [
+      "Beef, chicken, or veggie",
+      "Beef, lamb, or fish",
+      "Beef, regret, or veggie",
+      "Beef only"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers"]
+  },
+  {
+    "prompt": "How much to sub a side salad on a burger or handheld?",
+    "options": [
+      "$2",
+      "$3",
+      "An aggressive nod",
+      "$4"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers", "front/handhelds"]
+  },
+  {
+    "prompt": "How much to sub Sweet Potato Fries on a burger or handheld?",
+    "options": [
+      "$4",
+      "$3",
+      "A sweet potato story",
+      "$2"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers", "front/handhelds"]
+  },
+  {
+    "prompt": "How much to sub Old Bay Fries on a burger or handheld?",
+    "options": [
+      "$3",
+      "$4",
+      "A maritime salute",
+      "$2"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/pub-burgers", "front/handhelds"]
+  },
+  {
+    "prompt": "What can the Cheesesteak be made with?",
+    "options": [
+      "Choice of Beef or Chicken",
+      "Beef only",
+      "Cheese plus more cheese",
+      "Beef, chicken, or veggie"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/handhelds/cheesesteak"]
+  },
+  {
+    "prompt": "What's the Monday draft beer special?",
+    "options": [
+      "$4 Michelob Drafts",
+      "$5 Levante Cloudy",
+      "Free with a leprechaun joke",
+      "$4 Harp Lager"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/monday"]
+  },
+  {
+    "prompt": "What's the Monday food special?",
+    "options": [
+      "$10 Fish and Chips",
+      "$1 Wings All Day",
+      "Bring your own fish",
+      "$10 Shepherd's Pie"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/monday"]
+  },
+  {
+    "prompt": "What's the Tuesday draft special?",
+    "options": [
+      "$5 Levante Cloudy",
+      "$4 Michelob Drafts",
+      "Five beers but they're all foam",
+      "$4 Harp Lager"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/tuesday"]
+  },
+  {
+    "prompt": "What's the Tuesday special drink (besides Levante)?",
+    "options": [
+      "$7 Vodka Redbulls",
+      "$6 Mojitos",
+      "Free Red Bulls if you fly",
+      "$3 Well Drinks"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/tuesday"]
+  },
+  {
+    "prompt": "What's the Wednesday cocktail special?",
+    "options": [
+      "$6 Mojitos",
+      "$6 Holla Orange Crushes",
+      "Mojito with extra mojo",
+      "$4 Miller Lite"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/wednesday"]
+  },
+  {
+    "prompt": "What's Wednesday's wing deal?",
+    "options": [
+      "$1 Wings All Day",
+      "$15.99 for 10",
+      "Bring your own wing",
+      "Half off wings 4-6PM"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/wednesday"]
+  },
+  {
+    "prompt": "What's the Thursday special drink?",
+    "options": [
+      "$6 Holla Orange Crushes",
+      "$6 Mojitos",
+      "Orange-flavored Despair",
+      "$4 Michelob Drafts"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/thursday"]
+  },
+  {
+    "prompt": "What's the Friday draft special?",
+    "options": [
+      "$4 Miller Lite",
+      "$4 Michelob Drafts",
+      "Beer if you can guess the bartender's mood",
+      "$5 Levante Cloudy"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/friday"]
+  },
+  {
+    "prompt": "What's the Saturday draft special?",
+    "options": [
+      "$4 Harp Lager",
+      "$4 Michelob Drafts",
+      "Beer played on the harp",
+      "$5 Levante Cloudy"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/saturday"]
+  },
+  {
+    "prompt": "What's the Sunday brunch special?",
+    "options": [
+      "$20 Bottomless Mimosas (ends at 4 PM)",
+      "$10 Fish and Chips",
+      "Bottomless tears",
+      "$6 Mojitos"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/sunday"]
+  },
+  {
+    "prompt": "When are Happy Hour Specials?",
+    "options": [
+      "4 PM – 6 PM, Monday–Friday",
+      "5 PM – 7 PM, Monday–Friday",
+      "Whenever you arrive sad",
+      "3 PM – 6 PM, daily"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/happy-hour"]
+  },
+  {
+    "prompt": "What's the Happy Hour appetizer deal?",
+    "options": [
+      "25% OFF All Appetizers",
+      "50% OFF All Appetizers",
+      "Free if you sing the menu",
+      "BOGO Appetizers"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/happy-hour"]
+  },
+  {
+    "prompt": "What's the Happy Hour drink deal?",
+    "options": [
+      "$3 OFF Draft Beer, Specialty Cocktails, Wine",
+      "$5 OFF Anything",
+      "Free if you cry",
+      "$3 OFF only beer"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/happy-hour"]
+  },
+  {
+    "prompt": "When are Late Night Specials?",
+    "options": [
+      "9 PM – 11 PM, 7 days a week",
+      "10 PM – Midnight, weekends only",
+      "When the bartender feels lonely",
+      "8 PM – 10 PM weeknights"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/late-night"]
+  },
+  {
+    "prompt": "How much for a Well Drink during Late Night?",
+    "options": [
+      "$3",
+      "$4",
+      "Free if you finish a poem",
+      "$5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/late-night"]
+  },
+  {
+    "prompt": "How much for a Michelob Ultra Draft during Late Night?",
+    "options": [
+      "$4",
+      "$3",
+      "Bench press the keg",
+      "$5"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/late-night"]
+  },
+  {
+    "prompt": "How much for a Hornitos Ranch Water during Late Night?",
+    "options": [
+      "$5",
+      "$3",
+      "Three ranch facts",
+      "$4"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/late-night"]
+  },
+  {
+    "prompt": "How much for a Suncruiser during Late Night?",
+    "options": [
+      "$6",
+      "$5",
+      "A sun-related dare",
+      "$4"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/late-night"]
+  },
+  {
+    "prompt": "What night is Karaoke (besides Thursday)?",
+    "options": [
+      "Sunday",
+      "Monday",
+      "Whenever the bartender allows",
+      "Friday"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/thursday", "back/daily-specials/sunday"]
+  },
+  {
+    "prompt": "What's the Monday trivia event called?",
+    "options": [
+      "Big Mike Quizzo",
+      "Tiny Tim Trivia",
+      "Quiz of Doom",
+      "Pub Pong"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/monday"]
+  },
+  {
+    "prompt": "What time is Big Mike Quizzo on Monday?",
+    "options": [
+      "9–11 PM",
+      "8–10 PM",
+      "Whenever Big Mike feels like it",
+      "10 PM – 2 AM"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/monday"]
+  },
+  {
+    "prompt": "What's Wednesday night's late game?",
+    "options": [
+      "Pub Pong 10 PM–2 AM",
+      "Karaoke 10 PM–2 AM",
+      "Pong of Despair",
+      "Live DJ 10 PM–2 AM"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/wednesday"]
+  },
+  {
+    "prompt": "What's Thursday's 8 PM event?",
+    "options": [
+      "Name That Tune",
+      "Karaoke",
+      "Hum-That-Vibe",
+      "Pub Pong"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/thursday"]
+  },
+  {
+    "prompt": "What's playing Friday and Saturday from 10 PM – 2 AM?",
+    "options": [
+      "Live DJ",
+      "Karaoke",
+      "A man playing the spoons",
+      "Big Mike Quizzo"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/friday", "back/daily-specials/saturday"]
+  },
+  {
+    "prompt": "What's the 'In the Biz' Tuesday discount?",
+    "options": [
+      "25% OFF",
+      "50% OFF",
+      "100% OFF, but only the napkins",
+      "10% OFF"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/tuesday"]
+  },
+  {
+    "prompt": "What time do the Sunday Bottomless Mimosas end?",
+    "options": [
+      "4 PM",
+      "6 PM",
+      "When the mimosas develop a bottom",
+      "Noon"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["back/daily-specials/sunday"]
+  },
+  {
+    "prompt": "Which Wings flavor is 'Famous'?",
+    "options": [
+      "BFG",
+      "Buffalo",
+      "The Mysterious One",
+      "Whiskey BBQ"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "Which IS a Kildares Wing flavor?",
+    "options": [
+      "Whiskey BBQ",
+      "Honey Mustard",
+      "Soap-Glazed Sadness",
+      "Lemon Pepper"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "Which of these is one of the 4 Wings flavors?",
+    "options": [
+      "Garlic Parmesan",
+      "Lemon Pepper",
+      "Suffering",
+      "Ranch"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/wings"]
+  },
+  {
+    "prompt": "Which fries come with the Pub Cheese by default?",
+    "options": [
+      "Basket of Fries",
+      "Old Bay Fries",
+      "Sad Fries",
+      "Brisket Fries"
+    ],
+    "correctIndex": 0,
+    "funnyWrongIndex": 2,
+    "menuRefs": ["front/fry-baskets/basket-of-fries"]
+  }
+]
