@@ -1,112 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kildares</title>
-  <style>
-    :root {
-      --bg: #1b2a1f;
-      --fg: #f4ead5;
-      --accent: #c9a227;
-      --muted: #a8b3a0;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background: var(--bg);
-      color: var(--fg);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      text-align: center;
-      padding: 4rem 1.5rem 2rem;
-      border-bottom: 1px solid rgba(244, 234, 213, 0.15);
-    }
-    header h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      margin: 0;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-    }
-    header p {
-      margin-top: 0.5rem;
-      font-style: italic;
-      color: var(--muted);
-    }
-    main {
-      flex: 1;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-      width: 100%;
-    }
-    main p {
-      line-height: 1.6;
-      font-size: 1.1rem;
-    }
-    .cards {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      margin-top: 2.5rem;
-    }
-    .card {
-      display: block;
-      padding: 1.75rem;
-      background: rgba(244, 234, 213, 0.05);
-      border: 1px solid rgba(244, 234, 213, 0.15);
-      border-radius: 6px;
-      color: inherit;
-      text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .card:hover {
-      background: rgba(201, 162, 39, 0.12);
-      transform: translateY(-2px);
-    }
-    .card h2 {
-      margin: 0 0 0.5rem;
-      color: var(--accent);
-      font-size: 1.4rem;
-    }
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(244, 234, 213, 0.15);
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Kildares</h1>
-    <p>..It's not a bar, it's a pub..</p>
-  </header>
-  <main>
-    <p>Welcome to Kildares. Browse our menu below.</p>
-    <div class="cards">
-      <a class="card" href="data/menu_front.md">
-        <h2>Front of Menu</h2>
-        <p>Shareables, wings, burgers, tacos, and more.</p>
-      </a>
-      <a class="card" href="data/menu_back.md">
-        <h2>Back of Menu</h2>
-        <p>Drinks, cocktails, and beverages.</p>
-      </a>
-    </div>
-  </main>
-  <footer>
-    &copy; Kildares Pub
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skilldares-app-temp</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

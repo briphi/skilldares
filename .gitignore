@@ -83,3 +83,7 @@ coverage/
 *.tmp
 *.bak
 *.orig
+
+# Vite
+*.local
+dist-ssr/
