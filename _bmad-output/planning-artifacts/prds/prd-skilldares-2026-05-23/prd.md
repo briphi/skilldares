@@ -2,7 +2,7 @@
 title: "Skilldares — Product Requirements Document"
 status: final
 created: 2026-05-23
-updated: 2026-05-23
+updated: 2026-05-23 (post-finalize override — content quality bar raised, see decision log)
 ---
 
 # Skilldares — Product Requirements Document
@@ -172,7 +172,7 @@ Total authored messages: **370**.
 The 80 speed-round questions, ≥200 multiple-choice questions, and 370 personality messages are generated **once** by an external LLM chat session (not a script in the repo), reviewed informally for obvious errors, and committed manually to the repository as JSON files.
 
 - **Source of truth for menu facts:** `data/menu_front.md` and `data/menu_back.md`. These files are the authoritative input to the LLM prompt at content-generation time.
-- **Quality strategy:** "good enough" for v1. Some LLM hallucinations are accepted as the cost of the learning-project experiment. A future LLM-driven question-correctness review pass is deferred and out of v1 scope.
+- **Quality strategy:** **No hallucinations** for factual content (MC questions, speed-round questions). Every question's correct answer MUST be traceable to a specific line in the menu source. The authoring workflow uses a menu-first approach: build a structured fact ledger from the menu, generate questions only from that ledger, then run a dedicated verification pass cross-referencing every committed question against the menu. Where a question can't be verified with 100% confidence, it does NOT ship. (Inventive content — personality message pools — has no facts to hallucinate; voice consistency is the quality bar there.) See PRD decision log entry 2026-05-23 "Content quality bar override" for the history.
 - **Voice consistency:** All 370 personality messages MUST share a recognizable voice — irreverent, sharp, willing to be harsh or profane in the "doing badly" pools and to praise enthusiastically in the "doing well" pools. The reference vibe is *"Fuck yea, you are amazing, and possibl[y] a genius."*
 - **Menu drift:** When the Kildares menu changes (price tweak, new item, removed item, etc.), the affected questions SHALL be manually identified using the `menuRefs` field on each question, and the questions SHALL be either regenerated or hand-edited. There is no automated drift detection in v1.
 
@@ -207,7 +207,7 @@ Explicit non-goals. These may revisit in v2 or never:
 - **Accessibility** — keyboard navigation, screen-reader support, contrast standards, focus management. Deferred per brief decision.
 - **End-to-end browser-automation tests** — Playwright, Cypress, or equivalent. (Unit and component tests ARE required — see NFR9.)
 - **A build-time question-generator script in the repo** — content is generated externally in an LLM chat session and pasted in. No automated generator pipeline.
-- **An LLM-driven question-correctness review pass** — quality stays at "good enough."
+- **A programmatic / automated question-correctness validator** — correctness verification is done at authoring time by the dev agent against the menu source (see §6 Content Authoring Pipeline). No standalone validator tool ships in v1.
 - **Login, accounts, leaderboards, cross-device sync** — no user identity.
 - **Per-question history, seen-question avoidance, adaptive difficulty** — repeats are allowed and the question selection is purely random.
 - **Shared-device support** — single user per device assumed.
