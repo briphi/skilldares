@@ -1,0 +1,2 @@
+- [Skilldares vision](project_skilldares_vision.md) — static web quiz app for Kildares pub staff to learn the menu
+- [Skilldares audience](project_skilldares_audience.md) — targets new staff (first-week onboarding) only, not veterans or managers

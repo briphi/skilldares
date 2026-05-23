@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skilldares — Design Tokens & Color Themes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Backgrounds */
+      --color-bg-default: #0e1117;
+      --color-bg-elevated: #181c22;
+      --color-bg-accent: #212732;
+
+      /* Text */
+      --color-text-primary: #f4ead5;
+      --color-text-muted: #a8b3a0;
+      --color-text-inverse: #0e1117;
+
+      /* Brand */
+      --color-brand-primary: #f4b400;
+      --color-brand-secondary: #2d6a4f;
+      --color-brand-accent: #ff6b35;
+
+      /* Answer block colors */
+      --color-answer-1: #3b82f6;
+      --color-answer-2: #ec4899;
+      --color-answer-3: #f59e0b;
+      --color-answer-4: #10b981;
+
+      /* States */
+      --color-state-success: #22c55e;
+      --color-state-error: #dc2626;
+      --color-state-warning: #f97316;
+      --color-state-info: #06b6d4;
+
+      /* Typography */
+      --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-ui: 'Inter', system-ui, sans-serif;
+
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
+      --text-md: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+      --text-lg: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+      --text-2xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+      --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+
+      /* Spacing (4px base) */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+
+      /* Radii */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      /* Motion */
+      --motion-fast: 150ms;
+      --motion-base: 250ms;
+      --motion-slow: 400ms;
+      --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--color-bg-default);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      padding: var(--space-6);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: var(--text-3xl);
+      margin: 0 0 var(--space-2) 0;
+      color: var(--color-brand-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--color-text-muted);
+      font-size: var(--text-md);
+      margin-bottom: var(--space-8);
+    }
+
+    section {
+      margin-bottom: var(--space-8);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-xl);
+      margin: 0 0 var(--space-4) 0;
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid rgba(244, 234, 213, 0.1);
+    }
+
+    /* Color swatch grid */
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .swatch {
+      background: var(--color-bg-elevated);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(244, 234, 213, 0.05);
+    }
+
+    .swatch-chip {
+      height: 80px;
+      width: 100%;
+    }
+
+    .swatch-meta {
+      padding: var(--space-3);
+    }
+
+    .swatch-name {
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+    }
+
+    .swatch-token {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+      word-break: break-all;
+    }
+
+    .swatch-hex {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      color: var(--color-brand-primary);
+      margin-top: 2px;
+    }
+
+    /* Type samples */
+    .type-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: var(--space-4);
+      align-items: baseline;
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid rgba(244, 234, 213, 0.05);
+    }
+
+    .type-label {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    .type-sample-display { font-family: var(--font-display); font-weight: 700; }
+    .type-sample-body { font-family: var(--font-body); }
+
+    /* Spacing samples */
+    .space-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-2) 0;
+    }
+
+    .space-label {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      color: var(--color-text-muted);
+      width: 120px;
+    }
+
+    .space-bar {
+      background: var(--color-brand-primary);
+      height: 16px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Button samples */
+    .button-row {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--color-brand-primary);
+      color: var(--color-text-inverse);
+      padding: var(--space-4) var(--space-7);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: var(--text-lg);
+      border: none;
+      border-radius: var(--radius-md);
+      min-height: 56px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: transform var(--motion-fast) var(--ease-bounce), background var(--motion-fast) var(--ease-snappy);
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-text-primary);
+      padding: var(--space-3) var(--space-5);
+      font-family: var(--font-ui);
+      font-weight: 600;
+      font-size: var(--text-md);
+      border: 1px solid rgba(244, 234, 213, 0.2);
+      border-radius: var(--radius-full);
+      min-height: 44px;
+      cursor: pointer;
+    }
+
+    /* Answer block samples */
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-2);
+      max-width: 500px;
+    }
+
+    .answer-block {
+      padding: var(--space-5);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: var(--text-md);
+      color: white;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform var(--motion-fast) var(--ease-bounce);
+    }
+    .answer-block:hover { transform: scale(1.02); }
+    .answer-1 { background: var(--color-answer-1); }
+    .answer-2 { background: var(--color-answer-2); }
+    .answer-3 { background: var(--color-answer-3); }
+    .answer-4 { background: var(--color-answer-4); }
+
+    /* Motion samples */
+    .motion-sample {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+    }
+
+    .motion-token {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      font-size: 11px;
+      color: var(--color-text-muted);
+      width: 160px;
+    }
+
+    .motion-demo-button {
+      background: var(--color-brand-secondary);
+      color: white;
+      padding: var(--space-2) var(--space-4);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 500;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    .demo-shake { animation: shake 200ms infinite; background: var(--color-state-warning); }
+
+    @keyframes fade-loop {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .demo-fade { animation: fade-loop 2s infinite var(--ease-snappy); }
+
+    .footer {
+      margin-top: var(--space-8);
+      padding-top: var(--space-5);
+      border-top: 1px solid rgba(244, 234, 213, 0.05);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+  </style>
+</head>
+<body>
+  <h1>Skilldares — Design Tokens</h1>
+  <p class="subtitle">Visual reference for the custom design system. All values implemented as CSS custom properties at <code>:root</code> in <code>src/styles/global.css</code>.</p>
+
+  <section>
+    <h2>Brand & Background</h2>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-bg-default);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Background Default</div>
+          <div class="swatch-token">--color-bg-default</div>
+          <div class="swatch-hex">#0e1117</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-bg-elevated);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Background Elevated</div>
+          <div class="swatch-token">--color-bg-elevated</div>
+          <div class="swatch-hex">#181c22</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-bg-accent);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Background Accent</div>
+          <div class="swatch-token">--color-bg-accent</div>
+          <div class="swatch-hex">#212732</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-brand-primary);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Brand Primary</div>
+          <div class="swatch-token">--color-brand-primary</div>
+          <div class="swatch-hex">#f4b400 (Kildares gold)</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-brand-secondary);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Brand Secondary</div>
+          <div class="swatch-token">--color-brand-secondary</div>
+          <div class="swatch-hex">#2d6a4f (Kildares green)</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-brand-accent);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Brand Accent</div>
+          <div class="swatch-token">--color-brand-accent</div>
+          <div class="swatch-hex">#ff6b35 (celebratory coral)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Text</h2>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-text-primary);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Text Primary</div>
+          <div class="swatch-token">--color-text-primary</div>
+          <div class="swatch-hex">#f4ead5 (Kildares cream)</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-text-muted);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Text Muted</div>
+          <div class="swatch-token">--color-text-muted</div>
+          <div class="swatch-hex">#a8b3a0</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-text-inverse); border: 1px solid rgba(244,234,213,0.1);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Text Inverse</div>
+          <div class="swatch-token">--color-text-inverse</div>
+          <div class="swatch-hex">#0e1117</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Answer Block Palette</h2>
+    <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);">The four distinct colors for MC answer quadrants. Kahoot-inspired but refined.</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-answer-1);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Answer 1 — Blue</div>
+          <div class="swatch-token">--color-answer-1</div>
+          <div class="swatch-hex">#3b82f6</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-answer-2);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Answer 2 — Pink</div>
+          <div class="swatch-token">--color-answer-2</div>
+          <div class="swatch-hex">#ec4899</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-answer-3);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Answer 3 — Amber</div>
+          <div class="swatch-token">--color-answer-3</div>
+          <div class="swatch-hex">#f59e0b</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-answer-4);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Answer 4 — Emerald</div>
+          <div class="swatch-token">--color-answer-4</div>
+          <div class="swatch-hex">#10b981</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>State Colors</h2>
+    <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);">Used sparingly — never as punishment color.</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-state-success);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Success</div>
+          <div class="swatch-token">--color-state-success</div>
+          <div class="swatch-hex">#22c55e</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-state-error);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Error (muted)</div>
+          <div class="swatch-token">--color-state-error</div>
+          <div class="swatch-hex">#dc2626</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-state-warning);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Warning (timer low)</div>
+          <div class="swatch-token">--color-state-warning</div>
+          <div class="swatch-hex">#f97316</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-chip" style="background: var(--color-state-info);"></div>
+        <div class="swatch-meta">
+          <div class="swatch-name">Info</div>
+          <div class="swatch-token">--color-state-info</div>
+          <div class="swatch-hex">#06b6d4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Typography</h2>
+    <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);"><strong>Display:</strong> Bricolage Grotesque (personality at large sizes). <strong>Body:</strong> Inter (universally readable). Both via Google Fonts. Type sizes are fluid via <code>clamp()</code> — resize the window to see them adapt.</p>
+
+    <div class="type-row">
+      <div class="type-label">--text-3xl<br/>display</div>
+      <div class="type-sample-display" style="font-size: var(--text-3xl); color: var(--color-brand-primary);">Fuck yea, you're a genius.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">--text-2xl<br/>display</div>
+      <div class="type-sample-display" style="font-size: var(--text-2xl);">SKILLDARES</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">--text-xl<br/>display</div>
+      <div class="type-sample-display" style="font-size: var(--text-xl);">Let's not be a dumbass.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">--text-lg<br/>body</div>
+      <div class="type-sample-body" style="font-size: var(--text-lg);">Which ingredients come in the House Salad?</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">--text-md<br/>body</div>
+      <div class="type-sample-body" style="font-size: var(--text-md);">Cucumbers, Tomatoes, Carrots</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">--text-sm<br/>body</div>
+      <div class="type-sample-body" style="font-size: var(--text-sm); color: var(--color-text-muted);">Score: 45 · Question 5 of 30</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">--text-xs<br/>body</div>
+      <div class="type-sample-body" style="font-size: var(--text-xs); color: var(--color-text-muted);">15 seconds remaining</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Spacing Scale (4px base)</h2>
+    <div class="space-row"><div class="space-label">--space-1 (4px)</div><div class="space-bar" style="width: 4px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-2 (8px)</div><div class="space-bar" style="width: 8px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-3 (12px)</div><div class="space-bar" style="width: 12px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-4 (16px)</div><div class="space-bar" style="width: 16px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-5 (24px)</div><div class="space-bar" style="width: 24px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-6 (32px)</div><div class="space-bar" style="width: 32px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-7 (48px)</div><div class="space-bar" style="width: 48px;"></div></div>
+    <div class="space-row"><div class="space-label">--space-8 (64px)</div><div class="space-bar" style="width: 64px;"></div></div>
+  </section>
+
+  <section>
+    <h2>Buttons</h2>
+    <div class="button-row">
+      <button class="btn-primary">START GAME</button>
+      <button class="btn-primary">LOCK IT IN</button>
+      <button class="btn-primary">NEXT →</button>
+      <button class="btn-secondary">💡 Hint</button>
+    </div>
+    <p style="color: var(--color-text-muted); margin-top: var(--space-4); font-size: var(--text-sm);">Primary CTAs ≥56pt tall, hover for bounce. Secondary (Hint) ≥44pt pill shape.</p>
+  </section>
+
+  <section>
+    <h2>Answer Blocks (MC)</h2>
+    <p style="color: var(--color-text-muted); margin-bottom: var(--space-4);">2×2 grid of color quadrants. Hover for slight scale.</p>
+    <div class="answer-grid">
+      <div class="answer-block answer-1">Cucumbers, Tomatoes, Carrots</div>
+      <div class="answer-block answer-2">Lettuce, Tomatoes, Croutons</div>
+      <div class="answer-block answer-3">Cucumbers, Tomatoes, Rat Feces</div>
+      <div class="answer-block answer-4">Lettuce, Croutons, Onions</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Motion</h2>
+    <div class="motion-sample">
+      <div class="motion-token">--motion-fast (150ms)</div>
+      <button class="motion-demo-button" onclick="this.style.transition='transform 150ms var(--ease-snappy)';this.style.transform='scale(1.1)';setTimeout(()=>this.style.transform='scale(1)',150);">Tap response</button>
+    </div>
+    <div class="motion-sample">
+      <div class="motion-token">--motion-base (250ms)</div>
+      <button class="motion-demo-button" onclick="this.style.transition='transform 250ms var(--ease-bounce)';this.style.transform='scale(1.15)';setTimeout(()=>this.style.transform='scale(1)',250);">Standard transition (with bounce)</button>
+    </div>
+    <div class="motion-sample">
+      <div class="motion-token">--motion-slow (400ms)</div>
+      <button class="motion-demo-button" onclick="this.style.transition='opacity 400ms var(--ease-snappy)';this.style.opacity='0.3';setTimeout(()=>this.style.opacity='1',400);">Screen transition fade</button>
+    </div>
+    <div class="motion-sample">
+      <div class="motion-token">shake (timer low)</div>
+      <button class="motion-demo-button demo-shake">Speed round, &lt;5s remaining</button>
+    </div>
+  </section>
+
+  <div class="footer">
+    Skilldares UX Design System · 2026-05-23 · See <code>ux-design-specification.md</code> for the full spec.
+  </div>
+</body>
+</html>
