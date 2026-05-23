@@ -1,0 +1,115 @@
+/* ============================================================
+   Skilldares — Design Tokens
+   Single source of truth for visual design (UX spec §Visual Foundation).
+   Component CSS Modules MUST consume these via var(--...) — never hardcode.
+   ============================================================ */
+
+:root {
+  /* ----- Backgrounds ----- */
+  --color-bg-default: #0e1117;
+  --color-bg-elevated: #181c22;
+  --color-bg-accent: #212732;
+
+  /* ----- Text ----- */
+  --color-text-primary: #f4ead5;
+  --color-text-muted: #a8b3a0;
+  --color-text-inverse: #0e1117;
+
+  /* ----- Brand ----- */
+  --color-brand-primary: #f4b400;
+  --color-brand-secondary: #2d6a4f;
+  --color-brand-accent: #ff6b35;
+
+  /* ----- Answer block palette (MC question quadrants) ----- */
+  --color-answer-1: #3b82f6;
+  --color-answer-2: #ec4899;
+  --color-answer-3: #f59e0b;
+  --color-answer-4: #10b981;
+
+  /* ----- State (used sparingly) ----- */
+  --color-state-success: #22c55e;
+  --color-state-error: #dc2626;
+  --color-state-warning: #f97316;
+  --color-state-info: #06b6d4;
+
+  /* ----- Typography ----- */
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale via clamp(min, preferred, max) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
+  --text-md: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-2xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+
+  /* Weight scale */
+  --font-weight-body: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* ----- Spacing (4px base) ----- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ----- Radii ----- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* ----- Motion ----- */
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+  --motion-slow: 400ms;
+  --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+html {
+  background-color: var(--color-bg-default);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
