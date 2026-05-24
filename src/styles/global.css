@@ -90,7 +90,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+  /* dvh = dynamic viewport height — tracks the visible area as the
+     mobile URL bar shows/hides. 100vh is the FALLBACK for older browsers;
+     on mobile Safari/Chrome it's the max viewport (URL bar hidden) and
+     causes always-on scrolling when the URL bar is in fact visible. */
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 html {
@@ -112,4 +117,5 @@ body {
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
 }

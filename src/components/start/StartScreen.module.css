@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   /* Tightened from --space-6/--space-7 — the 1.5× Kildares logo added
      enough vertical real estate that the prior padding + gap was
      pushing the START button below the viewport fold on phone-sized
