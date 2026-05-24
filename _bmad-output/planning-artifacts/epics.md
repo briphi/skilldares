@@ -201,7 +201,7 @@ All 58 FRs covered across 3 epics.
 
 ## Epic List
 
-### Epic 1: Deployable MC Game — Foundation + Multiple-Choice Round
+### Epic 1: Deployable MC Game — Foundation + Multiple-Choice Round ✅ Complete (2026-05-24)
 
 **User outcome:** A new server opens the public URL, plays through a 15-round MC-only game with hints, scoring, and the irreverent personality voice. The end screen shows the final score and personal best (no celebration variant yet). The full product foundation is in place — speed rounds follow in Epic 2.
 
@@ -211,7 +211,7 @@ All 58 FRs covered across 3 epics.
 
 **Implementation notes:** Includes scaffold + dependencies + AWS Amplify deploy as foundation stories. Delivers a complete working app — just MC-only. Establishes all foundational architecture (state, content pipeline, error boundary, design tokens). Stories ordered: foundation → pure logic → components → integration.
 
-### Epic 2: Add Speed Rounds — Full 30-Round Production Game
+### Epic 2: Add Speed Rounds — Full 30-Round Production Game ✅ Complete (2026-05-24)
 
 **User outcome:** Full 30-round game with MC + drag-to-order + multi-select speed rounds. The 15-second timer + shake-on-low urgency lands. The product is now spec-complete (minus the new-high-score celebration polish).
 
@@ -221,7 +221,7 @@ All 58 FRs covered across 3 epics.
 
 **Implementation notes:** Extends game loop to 30 rounds, adds 2 new question component types + timer + dnd-kit integration. Requires speed-round question content authoring (40 Type A + 40 Type B questions).
 
-### Epic 3: New-High-Score Celebration
+### Epic 3: New-High-Score Celebration ✅ Complete (2026-05-24)
 
 **User outcome:** Beating the personal best triggers a distinctive celebratory moment — confetti, accent color, dedicated celebratory message pool. The most positively-charged emotional beat of the game lands properly.
 
@@ -233,7 +233,7 @@ All 58 FRs covered across 3 epics.
 
 ---
 
-## Epic 1: Deployable MC Game — Foundation + Multiple-Choice Round
+## Epic 1: Deployable MC Game — Foundation + Multiple-Choice Round ✅ Complete (2026-05-24)
 
 A new server opens the public URL, plays through a 15-round MC-only game with hints, scoring, and the irreverent personality voice. The end screen shows final score and personal best. The full product foundation is in place — speed rounds follow in Epic 2.
 
@@ -539,7 +539,7 @@ So that the Epic 1 milestone is a live, shareable URL.
 
 ---
 
-## Epic 2: Add Speed Rounds — Full 30-Round Production Game
+## Epic 2: Add Speed Rounds — Full 30-Round Production Game ✅ Complete (2026-05-24)
 
 Full 30-round game with MC + drag-to-order + multi-select speed rounds, with the 15-second timer and shake-on-low urgency.
 
@@ -672,7 +672,7 @@ So that Epic 2 ships the spec-complete game.
 
 ---
 
-## Epic 3: New-High-Score Celebration
+## Epic 3: New-High-Score Celebration ✅ Complete (2026-05-24)
 
 Beating the personal best triggers a distinctive celebratory moment — confetti, accent color, dedicated celebratory message pool.
 
@@ -735,3 +735,17 @@ So that Epic 3 ships the complete product including the most positively-charged 
 **And** the second game shows the celebrating variant with confetti, accent color, and a `new-high-score` pool message
 **And** the high score in localStorage is updated to the new value
 **And** the production deploy via Amplify serves the celebrating variant correctly
+
+---
+
+## Project v1 status: ✅ Complete
+
+**Shipped:** 2026-05-24
+**Live at:** https://www.skilldares.com/
+
+- 29 of 29 planned stories implemented across 3 epics
+- 290 tests passing (28 test files)
+- ~159 kB gzipped JS bundle (well under the 200 kB mobile budget)
+- AWS Amplify continuous deployment from `main`
+
+Skilldares v1 ships the full menu-memorization quiz: 15 multiple-choice rounds, 15 speed rounds (drag-to-order + multi-select), personality-driven feedback across 8 message pools, a confetti-and-accent-color celebration when the player beats their high score, and graceful localStorage degradation for private-browsing sessions.
