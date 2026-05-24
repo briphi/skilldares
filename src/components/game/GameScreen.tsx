@@ -7,6 +7,8 @@ import { MessagePoolSchema, type MessagePoolId } from '../../lib/schemas/message
 import { uiStrings } from '../../content/uiStrings';
 import { ScoreDisplay } from './ScoreDisplay';
 import { QuestionMC } from './QuestionMC';
+import { QuestionOrder } from './QuestionOrder';
+import { QuestionSelect } from './QuestionSelect';
 import { HintButton } from './HintButton';
 import { FeedbackOverlay } from './FeedbackOverlay';
 import styles from './GameScreen.module.css';
@@ -77,7 +79,7 @@ export function GameScreen({
       </header>
 
       <main className={styles.body}>
-        {state.phase === 'question' && isMC && (
+        {state.phase === 'question' && currentQuestion.type === 'mc' && (
           <QuestionMC
             key={state.roundIndex}
             question={currentQuestion.question}
@@ -88,8 +90,19 @@ export function GameScreen({
             lockDurationMs={mcLockDurationMs}
           />
         )}
-        {state.phase === 'question' && !isMC && (
-          <div className={styles.placeholder}>Speed round coming soon</div>
+        {state.phase === 'question' && currentQuestion.type === 'order' && (
+          <QuestionOrder
+            key={state.roundIndex}
+            question={currentQuestion.question}
+            onAnswer={helpers.answerQuestion}
+          />
+        )}
+        {state.phase === 'question' && currentQuestion.type === 'select' && (
+          <QuestionSelect
+            key={state.roundIndex}
+            question={currentQuestion.question}
+            onAnswer={helpers.answerQuestion}
+          />
         )}
         {state.phase === 'feedback' && state.lastFeedback && (
           <FeedbackOverlay

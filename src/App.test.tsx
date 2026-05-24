@@ -14,7 +14,7 @@ describe('App (integration)', () => {
   it('tapping START GAME transitions to the Game screen with the first MC question', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: uiStrings.buttons.start }));
-    expect(screen.getByText(uiStrings.progress(1, 15))).toBeTruthy();
+    expect(screen.getByText(uiStrings.progress(1, 30))).toBeTruthy();
     expect(screen.getByText('Score:')).toBeTruthy();
     expect(screen.queryByText(uiStrings.appTitle)).toBeNull();
   });

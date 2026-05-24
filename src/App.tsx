@@ -7,13 +7,21 @@ import { useEndOfGameHighScorePersist } from './state/useEndOfGameHighScorePersi
 import { StartScreen } from './components/start/StartScreen';
 import { GameScreen } from './components/game/GameScreen';
 import { EndScreen } from './components/end/EndScreen';
-import { selectEpic1Game } from './lib/gameSetup';
+import { selectGameQuestions } from './lib/questionSelection';
 import { defaultRng } from './lib/rng';
-import { MultipleChoicePoolSchema } from './lib/schemas/question.schema';
+import {
+  MultipleChoicePoolSchema,
+  SpeedOrderPoolSchema,
+  SpeedSelectPoolSchema,
+} from './lib/schemas/question.schema';
 import rawMC from '../data/questions/multiple-choice.json';
+import rawOrder from '../data/questions/speed-order.json';
+import rawSelect from '../data/questions/speed-select.json';
 
 // Validate + parse at module scope; failures throw → ErrorBoundary.
 const mcPool = MultipleChoicePoolSchema.parse(rawMC);
+const orderPool = SpeedOrderPoolSchema.parse(rawOrder);
+const selectPool = SpeedSelectPoolSchema.parse(rawSelect);
 
 function App() {
   return (
@@ -32,11 +40,11 @@ function AppShell() {
   useEndOfGameHighScorePersist(state.phase, state.score, highScore, updateHighScore);
 
   const handleStart = useCallback(() => {
-    helpers.startGame(selectEpic1Game(mcPool, defaultRng));
+    helpers.startGame(selectGameQuestions(mcPool, orderPool, selectPool, defaultRng));
   }, [helpers]);
 
   const handlePlayAgain = useCallback(() => {
-    helpers.playAgain(selectEpic1Game(mcPool, defaultRng));
+    helpers.playAgain(selectGameQuestions(mcPool, orderPool, selectPool, defaultRng));
   }, [helpers]);
 
   if (state.phase === 'start') {
