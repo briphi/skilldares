@@ -1,52 +1,39 @@
 /**
  * Hint-button lightbulb emoji glitch.
  *
- * Most of the 8-second cycle the bulb sits quietly in its default cream-yellow
- * font color. A short flicker window (~0.4s every 8s) briefly cranks brightness
- * + saturation and adds a warm yellow drop-shadow glow — reads as "the bulb
- * is malfunctioning, like an old fluorescent" rather than a designed pulse.
+ * Scheduling is JS-driven (HintButton.tsx) — random 8–30s gaps between
+ * flashes, randomly 1 or 2 pulses per flash. CSS only defines the
+ * single-pulse keyframes; iteration-count controls double vs single.
  *
- * Reduced motion: animation off entirely; the bulb stays static.
+ * Reduced motion: HintButton skips scheduling entirely. The bulb sits
+ * static. The :empty attribute selector below also means no animation
+ * applies until JS sets the data-flash-count.
  */
 
 .bulb {
   display: inline-block;
   margin-right: 0.4em;
-  /* will-change hints the compositor that this element changes filter — keeps
-     the flicker on the GPU and avoids repaints to the button's text. */
+  /* will-change hints the compositor that this element changes filter —
+     keeps the flash on the GPU and avoids repaints to the button text. */
   will-change: filter;
-  animation: bulbGlitch 8s linear infinite;
 }
 
-@keyframes bulbGlitch {
-  /* Idle for the first 88% of the cycle, then a brief two-pulse flicker,
-     then back to idle for the rest. The 0%/5%/100% rest stops keep the
-     interpolated state at "no filter". */
-  0%, 88%, 100% {
+/* Single pulse: bright + warm-yellow glow at the peak, no filter at start/end.
+   The base rule sets animation-iteration-count: 1; the [="2"] rule below
+   overrides to 2 for the double-flash case. */
+.bulb[data-flash-count] {
+  animation: bulbFlash 0.35s ease-out;
+}
+
+.bulb[data-flash-count="2"] {
+  animation-iteration-count: 2;
+}
+
+@keyframes bulbFlash {
+  0%, 100% {
     filter: none;
   }
-  89% {
-    filter: brightness(1.7) saturate(1.6) drop-shadow(0 0 6px #ffd54f);
-  }
-  90% {
-    filter: none;
-  }
-  91% {
+  50% {
     filter: brightness(2) saturate(1.8) drop-shadow(0 0 10px #ffe066);
-  }
-  92% {
-    filter: brightness(0.85);
-  }
-  93% {
-    filter: brightness(1.6) drop-shadow(0 0 8px #ffd54f);
-  }
-  94% {
-    filter: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bulb {
-    animation: none;
   }
 }
