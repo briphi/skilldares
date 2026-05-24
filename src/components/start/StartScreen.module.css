@@ -4,8 +4,12 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: var(--space-6);
-  gap: var(--space-7);
+  /* Tightened from --space-6/--space-7 — the 1.5× Kildares logo added
+     enough vertical real estate that the prior padding + gap was
+     pushing the START button below the viewport fold on phone-sized
+     screens. */
+  padding: var(--space-4);
+  gap: var(--space-5);
   text-align: center;
   max-width: 640px;
   margin: 0 auto;
