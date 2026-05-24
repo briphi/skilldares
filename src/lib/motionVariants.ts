@@ -27,3 +27,19 @@ export const countUp: Transition = {
   duration: BASE_DURATION,
   ease: EASE_BOUNCE,
 };
+
+/**
+ * Low-time shake (FR15 / TimerDisplay).
+ *
+ * Two states: `still` (no motion) and `shake` (small horizontal oscillation).
+ * Consumers SHOULD branch on `useReducedMotion()` and pass 'still' instead of
+ * 'shake' when the user prefers reduced motion (the color shift remains as
+ * the urgency signal in that case).
+ */
+export const shake: Variants = {
+  still: { x: 0 },
+  shake: {
+    x: [0, -3, 3, -3, 3, 0],
+    transition: { duration: 0.35, repeat: Infinity, ease: 'linear' },
+  },
+};
