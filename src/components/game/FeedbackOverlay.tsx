@@ -14,6 +14,12 @@ export type FeedbackOverlayProps = {
   pool: MessagePoolId;
   isLastRound: boolean;
   onAdvance: () => void;
+  /**
+   * True when this answer's points include the streak bonus (player is
+   * at or past the streak threshold). Drives the "Extra point!" note
+   * shown above the points line.
+   */
+  onStreak?: boolean;
 };
 
 function poolVariantKey(pool: MessagePoolId): string {
@@ -37,6 +43,7 @@ export function FeedbackOverlay({
   pool,
   isLastRound,
   onAdvance,
+  onStreak = false,
 }: FeedbackOverlayProps) {
   const variantClass = styles[poolVariantKey(pool)] ?? '';
   const containerClasses = [styles.container, variantClass].filter(Boolean).join(' ');
@@ -60,6 +67,9 @@ export function FeedbackOverlay({
     >
       <div className={styles.icon} aria-hidden="true">{verdictIcon}</div>
       <p ref={messageRef} className={styles.message}>{message}</p>
+      {onStreak && (
+        <p className={styles.streakBonus}>You're on a streak. Extra point!</p>
+      )}
       <p className={styles.points}>+{pointsAwarded} Points</p>
       <Button variant="primary" onClick={onAdvance}>
         {buttonLabel}

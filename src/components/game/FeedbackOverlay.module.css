@@ -40,6 +40,19 @@
   font-variant-numeric: tabular-nums;
 }
 
+.streakBonus {
+  /* Sits between the message and the +N Points line when this answer
+     earned the streak bonus. Accent-orange to tie back to the
+     "Streaking" indicator in the header. */
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
 .variantRightNoStreak {
   background-color: color-mix(in srgb, var(--color-state-success) 12%, var(--color-bg-elevated));
 }

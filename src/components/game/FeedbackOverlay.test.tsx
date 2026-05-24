@@ -44,6 +44,16 @@ describe('FeedbackOverlay', () => {
       render(<FeedbackOverlay {...baseProps} isCorrect />);
       expect(screen.getByRole('alert')).toBeTruthy();
     });
+
+    it('renders the streak-bonus line when onStreak is true', () => {
+      render(<FeedbackOverlay {...baseProps} isCorrect onStreak />);
+      expect(screen.getByText("You're on a streak. Extra point!")).toBeTruthy();
+    });
+
+    it('does NOT render the streak-bonus line when onStreak is false (default)', () => {
+      render(<FeedbackOverlay {...baseProps} isCorrect />);
+      expect(screen.queryByText("You're on a streak. Extra point!")).toBeNull();
+    });
   });
 
   describe('pool variants', () => {

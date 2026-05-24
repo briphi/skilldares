@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useGameState } from '../../state/useGameState';
-import { computePoints } from '../../lib/scoring';
+import { computePoints, STREAK_BONUS_THRESHOLD } from '../../lib/scoring';
 import { pickMessage } from '../../lib/picker';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema, type MessagePoolId } from '../../lib/schemas/message.schema';
@@ -66,8 +66,12 @@ export function GameScreen({
   const isLastRound = state.roundIndex === state.questions.length - 1;
   const isMC = currentQuestion.type === 'mc';
 
+  // state.streak is the POST-update value (already includes this answer's
+  // contribution). Bonus + indicator both use the same threshold so the
+  // visual cue and the extra point land in the same moment.
+  const onStreak = state.streak >= STREAK_BONUS_THRESHOLD;
   const pointsAwarded = state.lastFeedback
-    ? computePoints(state.lastFeedback.isCorrect, state.usedHintThisQuestion)
+    ? computePoints(state.lastFeedback.isCorrect, state.usedHintThisQuestion, state.streak)
     : 0;
 
   return (
@@ -115,6 +119,7 @@ export function GameScreen({
             pool={state.lastFeedback.pool}
             isLastRound={isLastRound}
             onAdvance={isLastRound ? helpers.finishGame : helpers.advanceToNext}
+            onStreak={onStreak && state.lastFeedback.isCorrect}
           />
         )}
       </main>
