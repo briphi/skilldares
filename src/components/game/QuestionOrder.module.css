@@ -33,6 +33,12 @@
   border: none;
   cursor: grab;
   text-align: left;
+  /* touch-action: none tells iOS Safari to hand all touch events on this
+     element to JS (dnd-kit) instead of using them for native gestures.
+     Without this, a downward swipe to start a drag triggers Safari's
+     pull-to-refresh and reloads the page mid-question. Required for any
+     dnd-kit draggable surface on touch devices. */
+  touch-action: none;
 }
 
 .row:active {
