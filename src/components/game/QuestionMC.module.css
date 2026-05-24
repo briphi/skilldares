@@ -44,6 +44,26 @@
     opacity var(--motion-base) var(--ease-snappy);
   text-align: center;
   overflow: hidden;
+  /* Idle-state wiggle — see @keyframes mcWiggle below. Per-quadrant
+     animation-delay is set on the .color{N} rules so each square is at
+     a different phase, giving the grid an organic, game-like feel.
+     Halted when the quadrant enters .locked / .correct / .muted /
+     .greyed (those rules override animation-name to "none" so the
+     static transforms in those states take over cleanly). */
+  animation: mcWiggle 3s ease-in-out infinite;
+}
+
+@keyframes mcWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-0.9deg); }
+  75%      { transform: rotate(0.9deg); }
+}
+
+/* Reduced motion: hold still. */
+@media (prefers-reduced-motion: reduce) {
+  .quadrant {
+    animation: none;
+  }
 }
 
 .quadrant:active:not(:disabled) {
@@ -54,10 +74,10 @@
   cursor: default;
 }
 
-.color1 { background-color: var(--color-answer-1); }
-.color2 { background-color: var(--color-answer-2); }
-.color3 { background-color: var(--color-answer-3); }
-.color4 { background-color: var(--color-answer-4); }
+.color1 { background-color: var(--color-answer-1); animation-delay: 0s; }
+.color2 { background-color: var(--color-answer-2); animation-delay: 0.75s; }
+.color3 { background-color: var(--color-answer-3); animation-delay: 1.5s; }
+.color4 { background-color: var(--color-answer-4); animation-delay: 2.25s; }
 
 .default {
   /* default styling */
@@ -67,6 +87,7 @@
   background-color: var(--color-bg-accent);
   color: var(--color-text-muted);
   opacity: 0.5;
+  animation: none;
 }
 
 .locked {
@@ -76,6 +97,7 @@
   box-shadow: inset 0 0 0 4px var(--color-brand-primary);
   transform: scale(1.02);
   z-index: 1;
+  animation: none;
 }
 
 .correct {
@@ -88,10 +110,12 @@
     0 0 24px rgba(34, 197, 94, 0.35);
   transform: scale(1.04);
   z-index: 2;
+  animation: none;
 }
 
 .muted {
   opacity: 0.25;
+  animation: none;
 }
 
 .optionText {
