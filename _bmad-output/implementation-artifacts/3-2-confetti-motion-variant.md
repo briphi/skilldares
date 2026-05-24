@@ -1,6 +1,6 @@
 # Story 3.2: Confetti Motion Variant
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -43,33 +43,33 @@ so that the moment feels memorable.
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Pre-work safety check**
-  - [ ] Working tree clean; on `main`; up to date
-  - [ ] Confirm 267 tests pass
-  - [ ] Create branch `story/3-2-confetti-variant`
+- [x] **Task 1: Pre-work safety check**
+  - [x] Working tree clean; on `main`; up to date
+  - [x] Confirm 267 tests pass
+  - [x] Create branch `story/3-2-confetti-variant`
 
-- [ ] **Task 2: Extend `src/lib/motionVariants.ts`**
-  - [ ] Add `confettiParticle` Variants + `CONFETTI_COLORS` array
-  - [ ] Add 1-2 shape-assertion tests to `motionVariants.test.ts`
+- [x] **Task 2: Extend `src/lib/motionVariants.ts`**
+  - [x] Add `confettiParticle` Variants + `CONFETTI_COLORS` array
+  - [x] Add 1-2 shape-assertion tests to `motionVariants.test.ts`
 
-- [ ] **Task 3: Implement `src/components/shared/Confetti.tsx`**
-  - [ ] Per Dev Notes — 40 particles with random props, reduced-motion fallback
-  - [ ] Type-check clean
+- [x] **Task 3: Implement `src/components/shared/Confetti.tsx`**
+  - [x] Per Dev Notes — 40 particles with random props, reduced-motion fallback
+  - [x] Type-check clean
 
-- [ ] **Task 4: Implement `src/components/shared/Confetti.module.css`**
-  - [ ] Container (fixed/absolute positioning, pointer-events: none), particle (absolute, square), reduced-motion flash
+- [x] **Task 4: Implement `src/components/shared/Confetti.module.css`**
+  - [x] Container (fixed/absolute positioning, pointer-events: none), particle (absolute, square), reduced-motion flash
 
-- [ ] **Task 5: Implement `src/components/shared/Confetti.test.tsx`**
-  - [ ] 3+ tests per AC #5 (render, full-motion particles, reduced-motion fallback)
-  - [ ] Tests pass
+- [x] **Task 5: Implement `src/components/shared/Confetti.test.tsx`**
+  - [x] 3+ tests per AC #5 (render, full-motion particles, reduced-motion fallback)
+  - [x] Tests pass
 
-- [ ] **Task 6: Full test + build**
-  - [ ] `npm test` all green
-  - [ ] `npm run build` clean
+- [x] **Task 6: Full test + build**
+  - [x] `npm test` all green
+  - [x] `npm run build` clean
 
-- [ ] **Task 7: Commit + push to main**
-  - [ ] Two commits (impl + spec)
-  - [ ] Fast-forward main, push, delete branch
+- [x] **Task 7: Commit + push to main**
+  - [x] Two commits (impl + spec)
+  - [x] Fast-forward main, push, delete branch
 
 ## Dev Notes
 
@@ -348,19 +348,31 @@ Story 3.2 builds on `955cc1c`.
 
 ### Agent Model Used
 
-_To be filled by dev agent_
+claude-opus-4-7 (Claude Code)
 
 ### Debug Log References
 
-_To be filled by dev agent_
+**`vi.stubGlobal('matchMedia', ...)` didn't propagate to Motion's `useReducedMotion`:**
+- First test attempt stubbed `window.matchMedia` to return `matches: true`. Motion's hook reads matchMedia inside a `useEffect`, so the initial render still saw the default (false → full-motion path).
+- Fix: switched to `vi.mock('motion/react', ...)` with `vi.hoisted(() => vi.fn())` to swap `useReducedMotion` directly. Per-describe `mockReturnValue(true|false)` selects the path.
+- Lesson: mock the hook, not the underlying browser API, when the hook has its own subscription/effect lifecycle.
 
 ### Completion Notes List
 
-_To be filled by dev agent_
+- `confettiParticle` Variants in motionVariants.ts (uses Motion's `custom` prop for per-particle direction/distance via function-shaped `burst` state)
+- `CONFETTI_COLORS` array — 6 design-system colors centralized
+- `Confetti.tsx` (~50 lines) — 40 particles, `useState(() => generateParticles())` for one-time random gen, `useReducedMotion()` gates full-vs-reduced path, both modes pointer-events:none + aria-hidden
+- `data-confetti-mode="full|reduced"` attribute for stable test selectors
+- **6 new tests**: 2 variant shape + 4 Confetti (full mode renders + multi-particle + aria-hidden; reduced mode renders fallback + no particle container)
+- **Test count: 273** (was 267 → +6). Build clean. Bundle unchanged — Confetti tree-shaken until Story 3.3 wires it in.
 
 ### File List
 
-_To be filled by dev agent_
+- **NEW** `src/components/shared/Confetti.tsx`
+- **NEW** `src/components/shared/Confetti.module.css`
+- **NEW** `src/components/shared/Confetti.test.tsx`
+- **MODIFIED** `src/lib/motionVariants.ts` (added confettiParticle + CONFETTI_COLORS)
+- **MODIFIED** `src/lib/motionVariants.test.ts` (added 2 confetti tests)
 
 ## Change Log
 
