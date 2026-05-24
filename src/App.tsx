@@ -1,4 +1,5 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import { GameProvider } from './state/GameProvider';
 import { useGameState } from './state/useGameState';
@@ -10,6 +11,8 @@ import { EndScreen } from './components/end/EndScreen';
 import { selectGameQuestions } from './lib/questionSelection';
 import { defaultRng } from './lib/rng';
 import { parseGameConfigFromSearch } from './lib/urlConfig';
+import { gameScreenEnter, transitionFlash } from './lib/motionVariants';
+import styles from './App.module.css';
 import {
   MultipleChoicePoolSchema,
   SpeedOrderPoolSchema,
@@ -56,7 +59,19 @@ function AppShell() {
     [],
   );
 
+  // Drives the brief full-screen flash that pulses during the
+  // Start → first question transition. Independent of game phase so
+  // it can render on top of both the exiting StartScreen and the
+  // entering GameScreen during the handoff.
+  const [isFlashing, setIsFlashing] = useState(false);
+  const flashTimeoutRef = useRef<number | null>(null);
+
   const handleStart = useCallback(() => {
+    setIsFlashing(true);
+    if (flashTimeoutRef.current !== null) {
+      window.clearTimeout(flashTimeoutRef.current);
+    }
+    flashTimeoutRef.current = window.setTimeout(() => setIsFlashing(false), 500);
     helpers.startGame(
       selectGameQuestions(mcPool, orderPool, selectPool, defaultRng, roundCounts),
     );
@@ -68,24 +83,55 @@ function AppShell() {
     );
   }, [helpers, roundCounts]);
 
-  if (state.phase === 'start') {
-    return <StartScreen onStart={handleStart} />;
-  }
-  if (state.phase === 'question' || state.phase === 'feedback') {
-    return <GameScreen />;
-  }
-  if (state.phase === 'end') {
-    return (
-      <EndScreen
-        finalScore={state.score}
-        personalBest={highScore}
-        previousPersonalBest={previousHighScore}
-        onPlayAgain={handlePlayAgain}
-      />
-    );
-  }
+  return (
+    <>
+      {/* mode="wait" → the exiting StartScreen finishes its scale-up +
+          fade-out animation before the GameScreen mounts and plays its
+          scale-in + fade-in entrance. */}
+      <AnimatePresence mode="wait">
+        {state.phase === 'start' && (
+          <StartScreen key="start" onStart={handleStart} />
+        )}
+        {(state.phase === 'question' || state.phase === 'feedback') && (
+          <motion.div
+            key="game"
+            variants={gameScreenEnter}
+            initial="initial"
+            animate="animate"
+          >
+            <GameScreen />
+          </motion.div>
+        )}
+        {state.phase === 'end' && (
+          <EndScreen
+            key="end"
+            finalScore={state.score}
+            personalBest={highScore}
+            previousPersonalBest={previousHighScore}
+            onPlayAgain={handlePlayAgain}
+          />
+        )}
+      </AnimatePresence>
 
-  return null;
+      {/* Full-screen accent-color flash. Rendered independently of the
+          phase-driven AnimatePresence so it can pulse OVER the transition
+          rather than waiting for one screen to leave before the other
+          enters. */}
+      <AnimatePresence>
+        {isFlashing && (
+          <motion.div
+            key="transition-flash"
+            className={styles.transitionFlash}
+            variants={transitionFlash}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
 
 export default App;

@@ -23,6 +23,53 @@ export const fadeOut: Variants = {
   exit: { opacity: 0, transition: { duration: BASE_DURATION, ease: EASE_SNAPPY } },
 };
 
+/**
+ * StartScreen exit animation — fades in normally on mount, then on exit
+ * (when phase transitions to 'question') scales UP and out, like the
+ * whole screen is being launched forward. Pairs with a brief
+ * full-screen accent-color flash and the gameScreenEnter variant
+ * below to make the Start → first question transition feel decisive.
+ */
+export const startScreenAnim: Variants = {
+  initial: { opacity: 0, scale: 1 },
+  animate: { opacity: 1, scale: 1, transition: { duration: BASE_DURATION, ease: EASE_SNAPPY } },
+  exit: {
+    opacity: 0,
+    scale: 1.4,
+    transition: { duration: 0.45, ease: EASE_SNAPPY },
+  },
+};
+
+/**
+ * GameScreen entrance — fades in + scales up slightly from 0.96 so the
+ * first question feels like it's coming into focus from behind, not
+ * popping in flat. Plays AFTER the StartScreen exit completes (via
+ * AnimatePresence mode="wait").
+ */
+export const gameScreenEnter: Variants = {
+  initial: { opacity: 0, scale: 0.96 },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4, ease: EASE_SNAPPY },
+  },
+};
+
+/**
+ * Transition flash — a brief full-screen accent-color pulse rendered
+ * during the Start → first question handoff. Opacity goes 0 → 0.7 → 0
+ * over ~500ms so the peak hits mid-transition, hiding the moment of
+ * component swap and selling the "kickoff" feeling.
+ */
+export const transitionFlash: Variants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: [0, 0.7, 0],
+    transition: { duration: 0.5, times: [0, 0.45, 1], ease: 'easeOut' },
+  },
+  exit: { opacity: 0 },
+};
+
 export const countUp: Transition = {
   duration: BASE_DURATION,
   ease: EASE_BOUNCE,

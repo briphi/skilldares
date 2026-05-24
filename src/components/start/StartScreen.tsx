@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '../shared/Button';
 import { uiStrings } from '../../content/uiStrings';
-import { fadeIn } from '../../lib/motionVariants';
+import { startScreenAnim } from '../../lib/motionVariants';
 import { pickMessage } from '../../lib/picker';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema } from '../../lib/schemas/message.schema';
@@ -26,9 +26,10 @@ export function StartScreen({ onStart, messages = defaultPool, rng = defaultRng 
   return (
     <motion.div
       className={styles.container}
-      variants={fadeIn}
+      variants={startScreenAnim}
       initial="initial"
       animate="animate"
+      exit="exit"
     >
       <div className={styles.header}>
         <h1 className={styles.wordmark}>{uiStrings.appTitle}</h1>

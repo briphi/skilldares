@@ -14,7 +14,9 @@ describe('App (integration)', () => {
   it('tapping START GAME transitions to the Game screen with the first MC question', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: uiStrings.buttons.start }));
-    expect(screen.getByText(uiStrings.progress(1, 30))).toBeTruthy();
+    // AnimatePresence mode="wait" delays GameScreen mount until StartScreen's
+    // exit animation completes — use findByText to await the new screen.
+    expect(await screen.findByText(uiStrings.progress(1, 30))).toBeTruthy();
     expect(screen.getByText('Score:')).toBeTruthy();
     expect(screen.queryByText(uiStrings.appTitle)).toBeNull();
   });
@@ -22,7 +24,9 @@ describe('App (integration)', () => {
   it('tapping a hint then an answer transitions to the feedback overlay', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: uiStrings.buttons.start }));
-    await userEvent.click(screen.getByRole('button', { name: 'Hint' }));
+    // Wait for GameScreen to mount after StartScreen's exit animation.
+    const hintButton = await screen.findByRole('button', { name: 'Hint' });
+    await userEvent.click(hintButton);
 
     // Pick the first non-greyed quadrant.
     const allButtons = screen.getAllByRole('button');
