@@ -10,6 +10,7 @@
 
 export const uiStrings = {
   appTitle: 'SKILLDARES',
+  tagline: 'A Kildares Menu Training Quiz',
 
   buttons: {
     start: 'START GAME',

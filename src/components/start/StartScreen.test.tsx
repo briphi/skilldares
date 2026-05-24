@@ -12,6 +12,11 @@ describe('StartScreen', () => {
     expect(screen.getByText(uiStrings.appTitle)).toBeTruthy();
   });
 
+  it('renders the Kildares Menu Training Quiz tagline beneath the wordmark', () => {
+    render(<StartScreen onStart={() => {}} messages={fixtureMessages} rng={() => 0} />);
+    expect(screen.getByText(uiStrings.tagline)).toBeTruthy();
+  });
+
   it('renders a deterministic message when given a fixed rng', () => {
     // rng() => 0 → Math.floor(0 * 3) = 0 → first message
     render(<StartScreen onStart={() => {}} messages={fixtureMessages} rng={() => 0} />);

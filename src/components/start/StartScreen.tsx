@@ -30,7 +30,10 @@ export function StartScreen({ onStart, messages = defaultPool, rng = defaultRng 
       initial="initial"
       animate="animate"
     >
-      <h1 className={styles.wordmark}>{uiStrings.appTitle}</h1>
+      <div className={styles.header}>
+        <h1 className={styles.wordmark}>{uiStrings.appTitle}</h1>
+        <p className={styles.tagline}>{uiStrings.tagline}</p>
+      </div>
       <p className={styles.message}>{message}</p>
       <Button variant="primary" onClick={onStart}>
         {uiStrings.buttons.start}
