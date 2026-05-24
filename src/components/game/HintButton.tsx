@@ -10,9 +10,9 @@ export type HintButtonProps = {
 };
 
 const MIN_FLASH_GAP_MS = 8000;
-const MAX_FLASH_GAP_MS = 30000;
+const MAX_FLASH_GAP_MS = 15000;
 /** Matches the bulbFlash keyframes duration in HintButton.module.css. */
-const FLASH_PULSE_MS = 350;
+const FLASH_PULSE_MS = 500;
 
 export function HintButton({ onUse, disabled = false }: HintButtonProps) {
   const reducedMotion = useReducedMotion();
