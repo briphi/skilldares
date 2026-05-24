@@ -1,11 +1,12 @@
 .transitionFlash {
-  /* Full-screen accent-color flash used during the Start → first question
-     handoff. pointer-events: none so taps still go through if it's mid-fade
-     when the player taps; z-index very high so it sits above every other
-     element including modal-like overlays. */
+  /* Full-screen black flash used during the Start → first question
+     handoff. Acts like a quick cut-to-black between scenes — feels
+     decisive without coloring the moment. pointer-events: none so
+     taps pass through if it's mid-fade; z-index very high so it sits
+     above every other element including modal-like overlays. */
   position: fixed;
   inset: 0;
-  background-color: var(--color-brand-accent);
+  background-color: var(--color-bg-default);
   pointer-events: none;
   z-index: 9999;
 }
