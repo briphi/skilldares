@@ -76,10 +76,9 @@ export function GameScreen({
         <span className={styles.progress}>
           {uiStrings.progress(state.roundIndex + 1, state.questions.length)}
         </span>
+        <StreakIndicator streak={state.streak} />
         <ScoreDisplay score={state.score} />
       </header>
-
-      <StreakIndicator streak={state.streak} />
 
       <main className={styles.body}>
         {state.phase === 'question' && currentQuestion.type === 'mc' && (

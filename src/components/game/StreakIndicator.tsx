@@ -46,7 +46,7 @@ export function StreakIndicator({ streak, minStreak = 3 }: StreakIndicatorProps)
           aria-live="polite"
           data-streak={streak}
         >
-          <span className={styles.label}>You're on a streak!</span>
+          <span className={styles.label}>Streak</span>
         </motion.div>
       )}
     </AnimatePresence>

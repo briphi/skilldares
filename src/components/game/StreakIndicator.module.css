@@ -1,11 +1,10 @@
 .container {
-  /* Sits as its own row in the GameScreen flow, between header and body.
-     Centered with a subtle accent-color halo around the text to feel
-     celebratory without competing with the question content. */
+  /* Sits inline in the GameScreen header between progress (left) and
+     score (right). No padding so it doesn't push the edge elements
+     around when it mounts/unmounts at the streak threshold. */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--space-2) var(--space-4);
   pointer-events: none;
 }
 
