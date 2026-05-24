@@ -13,7 +13,7 @@ const fixtureQuestion: MultipleChoiceQuestion = {
 };
 
 // Default props for tests: synchronous reveal (no timers) so click→assert flows synchronously.
-const syncProps = { revealDurationMs: 0, lockDurationMs: 0 };
+const syncProps = { correctRevealMs: 0, wrongRevealMs: 0, lockDurationMs: 0 };
 
 describe('QuestionMC', () => {
   describe('default render', () => {
@@ -126,7 +126,8 @@ describe('QuestionMC', () => {
           question={fixtureQuestion}
           usedHint={false}
           onAnswer={onAnswer}
-          revealDurationMs={1500}
+          correctRevealMs={1500}
+          wrongRevealMs={3000}
           lockDurationMs={400}
         />,
       );
@@ -145,20 +146,52 @@ describe('QuestionMC', () => {
       expect(onAnswer).not.toHaveBeenCalled();
     });
 
-    it('transitions to revealed phase after lockDurationMs, then dispatches after revealDurationMs', () => {
+    it('CORRECT answer: dispatches at correctRevealMs (1500ms)', () => {
       const onAnswer = vi.fn();
       const { container } = render(
         <QuestionMC
           question={fixtureQuestion}
           usedHint={false}
           onAnswer={onAnswer}
-          revealDurationMs={1500}
+          correctRevealMs={1500}
+          wrongRevealMs={3000}
           lockDurationMs={400}
         />,
       );
-      fireEvent.click(screen.getByRole('button', { name: 'Buffalo' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Whiskey BBQ' })); // correct
 
-      // After 400ms: in revealed phase.
+      act(() => {
+        vi.advanceTimersByTime(400);
+      });
+      // Now in revealed phase.
+      expect(
+        container.querySelector('[data-quadrant-index="0"]')!.getAttribute('data-quadrant-state'),
+      ).toBe('correct');
+      expect(onAnswer).not.toHaveBeenCalled();
+
+      // At 1500ms total → dispatched.
+      act(() => {
+        vi.advanceTimersByTime(1100);
+      });
+      expect(onAnswer).toHaveBeenCalledTimes(1);
+      expect(onAnswer).toHaveBeenCalledWith(true);
+    });
+
+    it('WRONG answer: dispatches at wrongRevealMs (3000ms, longer than correct)', () => {
+      const onAnswer = vi.fn();
+      const { container } = render(
+        <QuestionMC
+          question={fixtureQuestion}
+          usedHint={false}
+          onAnswer={onAnswer}
+          correctRevealMs={1500}
+          wrongRevealMs={3000}
+          lockDurationMs={400}
+        />,
+      );
+      fireEvent.click(screen.getByRole('button', { name: 'Buffalo' })); // wrong
+
+      // At 400ms: revealed phase begins.
       act(() => {
         vi.advanceTimersByTime(400);
       });
@@ -168,12 +201,17 @@ describe('QuestionMC', () => {
       expect(
         container.querySelector('[data-quadrant-index="3"]')!.getAttribute('data-quadrant-state'),
       ).toBe('muted');
-      // onAnswer still not called (waiting for full 1500ms).
       expect(onAnswer).not.toHaveBeenCalled();
 
-      // After full 1500ms: dispatched.
+      // At 1500ms (the "correct" cutoff): still NOT dispatched — wrong gets longer reveal.
       act(() => {
         vi.advanceTimersByTime(1100);
+      });
+      expect(onAnswer).not.toHaveBeenCalled();
+
+      // At full 3000ms: dispatched.
+      act(() => {
+        vi.advanceTimersByTime(1500);
       });
       expect(onAnswer).toHaveBeenCalledTimes(1);
       expect(onAnswer).toHaveBeenCalledWith(false);

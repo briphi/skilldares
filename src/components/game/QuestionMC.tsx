@@ -10,15 +10,21 @@ export type QuestionMCProps = {
   /** Override randomness — used by tests. Defaults to Math.random(). */
   rng?: Rng;
   /**
-   * Total ms from tap → onAnswer fires (transitions to feedback overlay).
-   * Default 1500ms (UX spec: brief reveal so the player sees the correct answer).
-   * Tests pass 0 for a synchronous path (no timers, instant dispatch).
+   * Total ms from tap → onAnswer fires when the user picks the CORRECT answer.
+   * Default 1500ms. Tests pass 0 for a synchronous path.
    */
-  revealDurationMs?: number;
+  correctRevealMs?: number;
+  /**
+   * Total ms from tap → onAnswer fires when the user picks a WRONG answer.
+   * Default 3000ms — longer so the player has time to read the correct answer
+   * (which is highlighted via outline + brightness during the reveal phase).
+   * Tests pass 0 for a synchronous path.
+   */
+  wrongRevealMs?: number;
   /**
    * Ms from tap → reveal phase begins (the lock phase duration).
    * During the lock phase, only the tapped quadrant is highlighted; others stay default.
-   * Default 400ms.
+   * Default 400ms. Same for both correct and wrong answers.
    */
   lockDurationMs?: number;
 };
@@ -64,7 +70,8 @@ export function QuestionMC({
   usedHint,
   onAnswer,
   rng = defaultRng,
-  revealDurationMs = 1500,
+  correctRevealMs = 1500,
+  wrongRevealMs = 3000,
   lockDurationMs = 400,
 }: QuestionMCProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -92,8 +99,9 @@ export function QuestionMC({
 
     setSelectedIndex(index);
     const isCorrect = index === question.correctIndex;
+    const totalDuration = isCorrect ? correctRevealMs : wrongRevealMs;
 
-    if (revealDurationMs <= 0) {
+    if (totalDuration <= 0) {
       // Synchronous path for tests — snap to revealed state, dispatch immediately.
       setRevealPhase('revealed');
       onAnswer(isCorrect);
@@ -106,7 +114,7 @@ export function QuestionMC({
     }, lockDurationMs);
     dispatchTimerRef.current = setTimeout(() => {
       onAnswer(isCorrect);
-    }, revealDurationMs);
+    }, totalDuration);
   };
 
   return (
