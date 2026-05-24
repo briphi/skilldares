@@ -60,7 +60,7 @@ export function FeedbackOverlay({
     >
       <div className={styles.icon} aria-hidden="true">{verdictIcon}</div>
       <p ref={messageRef} className={styles.message}>{message}</p>
-      <p className={styles.points}>+{pointsAwarded}</p>
+      <p className={styles.points}>+{pointsAwarded} Points</p>
       <Button variant="primary" onClick={onAdvance}>
         {buttonLabel}
       </Button>

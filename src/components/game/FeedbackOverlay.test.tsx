@@ -30,14 +30,14 @@ describe('FeedbackOverlay', () => {
       expect(screen.getByText('Custom voice line.')).toBeTruthy();
     });
 
-    it('renders the points indicator as "+{pointsAwarded}"', () => {
+    it('renders the points indicator as "+{pointsAwarded} Points"', () => {
       render(<FeedbackOverlay {...baseProps} isCorrect pointsAwarded={2} />);
-      expect(screen.getByText('+2')).toBeTruthy();
+      expect(screen.getByText('+2 Points')).toBeTruthy();
     });
 
-    it('renders +0 for a wrong answer', () => {
+    it('renders "+0 Points" for a wrong answer', () => {
       render(<FeedbackOverlay {...baseProps} isCorrect={false} pointsAwarded={0} />);
-      expect(screen.getByText('+0')).toBeTruthy();
+      expect(screen.getByText('+0 Points')).toBeTruthy();
     });
 
     it('marks the root with role="alert"', () => {

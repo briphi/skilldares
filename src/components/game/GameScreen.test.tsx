@@ -82,14 +82,14 @@ describe('GameScreen', () => {
       setupGameScreen(makeMCQuestions(3));
       await userEvent.click(screen.getByRole('button', { name: 'Alpha' }));
       expect(screen.getByText('✓')).toBeTruthy();
-      expect(screen.getByText('+5')).toBeTruthy();
+      expect(screen.getByText('+5 Points')).toBeTruthy();
     });
 
     it('feedback overlay shows wrong verdict + 0 points for a wrong answer', async () => {
       setupGameScreen(makeMCQuestions(3));
       await userEvent.click(screen.getByRole('button', { name: 'Bravo' }));
       expect(screen.getByText('✗')).toBeTruthy();
-      expect(screen.getByText('+0')).toBeTruthy();
+      expect(screen.getByText('+0 Points')).toBeTruthy();
     });
   });
 
