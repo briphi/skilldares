@@ -1,6 +1,6 @@
 # Story 2.7: QuestionSelect Component (Speed Type B)
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -72,30 +72,30 @@ so that the multi-select speed round is fast and unambiguous.
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Pre-work safety check**
-  - [ ] Working tree clean; on `main`; up to date
-  - [ ] Confirm 256 tests pass
-  - [ ] Create branch `story/2-7-question-select`
+- [x] **Task 1: Pre-work safety check**
+  - [x] Working tree clean; on `main`; up to date
+  - [x] Confirm 256 tests pass
+  - [x] Create branch `story/2-7-question-select`
 
-- [ ] **Task 2: Implement `src/components/game/QuestionSelect.tsx`**
-  - [ ] Per Dev Notes — `Set<string>` state for selections, variant-per-item matrix on reveal
-  - [ ] Type-check clean
+- [x] **Task 2: Implement `src/components/game/QuestionSelect.tsx`**
+  - [x] Per Dev Notes — `Set<string>` state for selections, variant-per-item matrix on reveal
+  - [x] Type-check clean
 
-- [ ] **Task 3: Implement `src/components/game/QuestionSelect.module.css`**
-  - [ ] Grid layout (2-column on narrow viewports, more on wider — or auto-fit)
-  - [ ] Submit row below
+- [x] **Task 3: Implement `src/components/game/QuestionSelect.module.css`**
+  - [x] Grid layout (2-column on narrow viewports, more on wider — or auto-fit)
+  - [x] Submit row below
 
-- [ ] **Task 4: Implement `src/components/game/QuestionSelect.test.tsx`**
-  - [ ] 11+ tests per AC #8
-  - [ ] Tests pass
+- [x] **Task 4: Implement `src/components/game/QuestionSelect.test.tsx`**
+  - [x] 11+ tests per AC #8
+  - [x] Tests pass
 
-- [ ] **Task 5: Full test + build**
-  - [ ] `npm test` all green
-  - [ ] `npm run build` clean
+- [x] **Task 5: Full test + build**
+  - [x] `npm test` all green
+  - [x] `npm run build` clean
 
-- [ ] **Task 6: Commit + push to main**
-  - [ ] Two commits (impl + spec)
-  - [ ] Fast-forward main, push, delete branch
+- [x] **Task 6: Commit + push to main**
+  - [x] Two commits (impl + spec)
+  - [x] Fast-forward main, push, delete branch
 
 ## Dev Notes
 
@@ -569,22 +569,34 @@ No new dependencies. Reuses everything from Stories 1.9 / 2.4 / 2.5 / 2.6.
 
 ### Agent Model Used
 
-_To be filled by dev agent_
+claude-opus-4-7 (Claude Code)
 
 ### Debug Log References
 
-_To be filled by dev agent_
+None — all 15 tests passed on first run. Per spec, ItemSquare's `onClick` is always provided (so it stays a `<button>` across phase transitions for smooth animation); `toggleItem` internally guards against phase !== 'idle'.
 
 ### Completion Notes List
 
-_To be filled by dev agent_
+- **`src/components/game/QuestionSelect.tsx`** — Set-based selection state, two-phase reveal pattern, 4-way variant matrix per (selected, correct), display items shuffled per mount via `pickRandomFromPool` (Story 1.6) for replayability.
+- **Set immutability** — `setSelected((prev) => { const next = new Set(prev); ... })` creates a new Set each update.
+- **Variant matrix on reveal:**
+  - selected ∧ correct → `revealed-correct`
+  - selected ∧ ¬correct → `revealed-wrong`
+  - ¬selected ∧ correct → `revealed-missed` (dashed green — "you missed this")
+  - ¬selected ∧ ¬correct → `default`
+- **Responsive grid** via `repeat(auto-fit, minmax(140px, 1fr))` — no media queries needed.
+- **15 tests pass**: default render (5), toggle (3), submit (4: exact/missing/extra/empty), post-submit reveal (2: variant matrix, submit lock), timer expiry (1).
+- **Test count: 271** (was 256 → +15). Build clean. **Bundle unchanged at 468.50 / 138.90 kB** — tree-shaken until Story 2.8's integration.
 
 ### File List
 
-_To be filled by dev agent_
+- **NEW** `src/components/game/QuestionSelect.tsx`
+- **NEW** `src/components/game/QuestionSelect.module.css`
+- **NEW** `src/components/game/QuestionSelect.test.tsx`
 
 ## Change Log
 
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-05-24 | Story created. Tap-to-toggle grid with Set-based selection state, 4-way reveal variant matrix (selected-correct/wrong + unselected-missed/default), aria-pressed accessibility, set-equality scoring. Display order shuffled per mount for replayability. | bmad-create-story (Claude Opus 4.7) |
+| 2026-05-24 | Story shipped (impl in 01ae22b). 15 tests pass on first run. Bundle unchanged — tree-shaken until Story 2.8 integration. | bmad-dev-story (Claude Opus 4.7) |
