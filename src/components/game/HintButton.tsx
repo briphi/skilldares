@@ -1,5 +1,6 @@
 import { Button } from '../shared/Button';
 import { uiStrings } from '../../content/uiStrings';
+import styles from './HintButton.module.css';
 
 export type HintButtonProps = {
   onUse: () => void;
@@ -14,6 +15,9 @@ export function HintButton({ onUse, disabled = false }: HintButtonProps) {
       disabled={disabled}
       aria-label="Hint"
     >
+      <span className={styles.bulb} aria-hidden="true">
+        {uiStrings.buttons.hintBulb}
+      </span>
       {uiStrings.buttons.hint}
     </Button>
   );

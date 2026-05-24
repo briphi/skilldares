@@ -15,7 +15,10 @@ export const uiStrings = {
   buttons: {
     start: 'START GAME',
     lockIn: 'LOCK IT IN',
-    hint: '💡 Hint',
+    hint: 'Hint',
+    /** Lightbulb emoji shown before the hint button label. Lives separately
+        so HintButton can animate it (occasional yellow flash glitch). */
+    hintBulb: '💡',
     next: 'NEXT →',
     finish: 'FINISH IT',
     playAgain: 'RUN IT BACK',
