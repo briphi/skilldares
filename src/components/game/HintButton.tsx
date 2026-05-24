@@ -23,7 +23,15 @@ export function HintButton({ onUse, disabled = false }: HintButtonProps) {
   const [flashCount, setFlashCount] = useState<number | null>(null);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    // No scheduler when reduced motion is requested OR while the hint
+    // button is disabled (after the player uses their hint for this
+    // round). Resets flashCount so any in-flight flash visual returns
+    // to baseline. The effect re-runs when disabled flips back to false
+    // (next round), restarting the scheduler from scratch.
+    if (reducedMotion || disabled) {
+      setFlashCount(null);
+      return;
+    }
 
     let scheduleTimer: ReturnType<typeof setTimeout> | undefined;
     let clearTimer: ReturnType<typeof setTimeout> | undefined;
@@ -51,7 +59,7 @@ export function HintButton({ onUse, disabled = false }: HintButtonProps) {
       if (scheduleTimer !== undefined) clearTimeout(scheduleTimer);
       if (clearTimer !== undefined) clearTimeout(clearTimer);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, disabled]);
 
   return (
     <Button
