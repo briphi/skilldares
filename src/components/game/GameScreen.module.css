@@ -4,16 +4,12 @@
   min-height: 100vh;
   max-width: 640px;
   margin: 0 auto;
-  /* Top padding is intentionally generous (var(--space-7) = 48px) because
-     iOS Safari's URL bar sits in what would be the "safe area" and
-     env(safe-area-inset-top) reports 0 in normal portrait mode — so just
-     using the env value wouldn't add breathing room. The bigger base value
-     handles the common case (URL bar visible, content crowding the bar)
-     AND scales up further when the URL bar minimizes and the notch IS
-     exposed (env wins via max()). Chrome on iOS has a slightly taller URL
-     bar and looked fine with less padding, but the bigger value harmlessly
-     applies there too. */
-  padding-top: max(var(--space-7), env(safe-area-inset-top));
+  /* Top padding uses max(base, safe-area-inset-top) so iOS Safari's
+     status bar / notch doesn't crowd the question-count + score row.
+     On Chrome mobile and desktop the inset is 0 and the base wins.
+     The viewport meta in index.html includes viewport-fit=cover to
+     enable the safe-area-inset-* envs. */
+  padding-top: max(var(--space-4), env(safe-area-inset-top));
   padding-right: var(--space-5);
   padding-bottom: var(--space-4);
   padding-left: var(--space-5);
