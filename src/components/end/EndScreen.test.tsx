@@ -175,7 +175,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('🎉 NEW HIGH SCORE! 🎉')).toBeTruthy();
+      expect(screen.getByText(/NEW HIGH SCORE!/)).toBeTruthy();
     });
 
     it('renders the celebrating variant when previousPersonalBest is null (first game ever) and score > 0', () => {
@@ -190,7 +190,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('🎉 NEW HIGH SCORE! 🎉')).toBeTruthy();
+      expect(screen.getByText(/NEW HIGH SCORE!/)).toBeTruthy();
     });
 
     it('renders the final score in the celebrating variant', () => {

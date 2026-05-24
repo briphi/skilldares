@@ -43,7 +43,9 @@ export function EndScreen({
     return (
       <div className={`${styles.container} ${styles.celebrating}`}>
         <Confetti />
-        <p className={styles.celebrateHeader}>🎉 NEW HIGH SCORE! 🎉</p>
+        {/* Non-breaking spaces ( ) flank the emojis so iOS Safari can't
+            wrap a lone emoji onto its own line at narrow viewport widths. */}
+        <p className={styles.celebrateHeader}>{'🎉 NEW HIGH SCORE! 🎉'}</p>
         <p className={`${styles.score} ${styles.scoreAccent}`}>{finalScore}</p>
         {previousPersonalBest !== null && (
           <p className={styles.wasLine}>Was: {previousPersonalBest}</p>
