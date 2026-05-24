@@ -7,6 +7,7 @@ import { pickMessage } from '../../lib/picker';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema } from '../../lib/schemas/message.schema';
 import rawPool from '../../../data/messages/pre-game-encouragement.json';
+import kildaresLogo from '../../assets/kildares-logo.webp';
 import styles from './StartScreen.module.css';
 
 const defaultPool = MessagePoolSchema.parse(rawPool);
@@ -32,6 +33,11 @@ export function StartScreen({ onStart, messages = defaultPool, rng = defaultRng 
       exit="exit"
     >
       <div className={styles.header}>
+        <img
+          className={styles.kildaresLogo}
+          src={kildaresLogo}
+          alt="Kildares — It's not a bar, it's a pub — West Chester"
+        />
         <h1 className={styles.wordmark}>{uiStrings.appTitle}</h1>
         <p className={styles.tagline}>{uiStrings.tagline}</p>
       </div>
