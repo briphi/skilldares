@@ -2,7 +2,7 @@
 title: "Skilldares — Product Requirements Document"
 status: final
 created: 2026-05-23
-updated: 2026-05-23 (post-finalize override — content quality bar raised, see decision log)
+updated: 2026-05-24 (post-finalize: FR9.1 added — MC option order randomized per game, see decision log)
 ---
 
 # Skilldares — Product Requirements Document
@@ -49,7 +49,8 @@ Features are grouped by concern. FR IDs are globally numbered and stable.
 ### F2 — Multiple-Choice Round (Rounds 1–15)
 
 - **FR8** Each MC question SHALL present a question prompt and exactly four answer options.
-- **FR9** Of the four options, exactly one SHALL be correct, exactly one SHALL be obviously-wrong-and-funny (e.g., "Rat Feces" in an ingredient list), and exactly two SHALL be close-distractors (plausible wrong answers from adjacent menu items or attributes).
+- **FR9** Of the four options, exactly one SHALL be correct, exactly one SHALL be obviously-wrong-and-funny (e.g., "Rat Feces" in an ingredient list), and exactly two SHALL be close-distractors (plausible wrong answers from adjacent menu items or attributes). The four options describe the option *set*; their *displayed order* SHALL be randomized per question per game (see FR9.1).
+- **FR9.1** The four answer options SHALL be presented in a uniform-random order per question per game so that the correct answer (and the funny-wrong option) do not occupy a predictable quadrant. The authored `correctIndex` and `funnyWrongIndex` in the content JSON define the *identity* of the options, not their displayed positions. A given question replayed across multiple games MAY (and typically WILL) show its options in different orders.
 - **FR10** Question shapes SHALL include at minimum: ingredient listing ("Which ingredients come in the House Salad?"), pricing ("How much does the Street Corn Bowl cost?"), and attribute/category ("Which of the following is Gluten Free?"). The authoring brief encourages additional creative shapes.
 - **FR11** Selecting an option SHALL immediately lock the answer (no change after selection) and trigger the feedback flow (see F7).
 
