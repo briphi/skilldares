@@ -24,7 +24,9 @@
 }
 
 .row {
-  /* Wrapper for the sortable surface — ItemSquare provides the visual. */
+  /* Wrapper for the sortable surface — ItemSquare provides the visual.
+     position: relative anchors the absolutely-positioned .dragHandle. */
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
@@ -39,6 +41,20 @@
      pull-to-refresh and reloads the page mid-question. Required for any
      dnd-kit draggable surface on touch devices. */
   touch-action: none;
+}
+
+.dragHandle {
+  /* iOS-style three-line drag affordance on the right edge of each row.
+     Decorative (aria-hidden); the parent <button> handles the actual
+     drag interaction. Muted color so it doesn't compete with the item
+     text or with the colored borders during the reveal phase (which is
+     why we only render it while disabled=false). */
+  position: absolute;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
 }
 
 .row:active {

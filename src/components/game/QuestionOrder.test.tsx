@@ -118,6 +118,20 @@ describe('QuestionOrder', () => {
     });
   });
 
+  describe('drag-handle affordance', () => {
+    it('renders one drag-handle icon per row in idle phase', () => {
+      render(<QuestionOrder question={fixturePriceQuestion} onAnswer={() => {}} rng={identityRng} {...syncProps} />);
+      const handles = screen.getAllByTestId('drag-handle');
+      expect(handles.length).toBe(fixturePriceQuestion.items.length);
+    });
+
+    it('hides drag-handle icons after lock-in (reveal phase)', () => {
+      render(<QuestionOrder question={fixturePriceQuestion} onAnswer={() => {}} rng={identityRng} {...syncProps} />);
+      fireEvent.click(screen.getByRole('button', { name: uiStrings.buttons.lockIn }));
+      expect(screen.queryAllByTestId('drag-handle').length).toBe(0);
+    });
+  });
+
   describe('timer expiry', () => {
     beforeEach(() => {
       vi.useFakeTimers();
