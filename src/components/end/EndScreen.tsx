@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from '../shared/Button';
 import { Confetti } from '../shared/Confetti';
 import { uiStrings } from '../../content/uiStrings';
 import { pickMessage } from '../../lib/picker';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema } from '../../lib/schemas/message.schema';
+import { useFitTextToLines } from '../../lib/useFitTextToLines';
 import rawStandardPool from '../../../data/messages/right-no-streak.json';
 import rawCelebratoryPool from '../../../data/messages/new-high-score.json';
 import styles from './EndScreen.module.css';
@@ -39,13 +40,21 @@ export function EndScreen({
   const messagesPool = isNewHighScore ? celebratoryMessages : standardMessages;
   const [message] = useState<string>(() => pickMessage(messagesPool, rng));
 
+  // Auto-shrink the celebrating header so the whole banner stays on one
+  // line at any viewport width. The hook measures after render and shrinks
+  // inline font-size until scrollHeight fits 1 line × line-height. Ref is
+  // only attached when the celebrating branch renders; the hook returns
+  // early if ref.current is null (standard variant case).
+  const celebrateHeaderRef = useRef<HTMLParagraphElement>(null);
+  useFitTextToLines(celebrateHeaderRef, 1, { minFontSizePx: 16 });
+
   if (isNewHighScore) {
     return (
       <div className={`${styles.container} ${styles.celebrating}`}>
         <Confetti />
-        {/* Non-breaking spaces ( ) flank the emojis so iOS Safari can't
-            wrap a lone emoji onto its own line at narrow viewport widths. */}
-        <p className={styles.celebrateHeader}>{'🎉 NEW HIGH SCORE! 🎉'}</p>
+        <p ref={celebrateHeaderRef} className={styles.celebrateHeader}>
+          🎉 NEW HIGH SCORE! 🎉
+        </p>
         <p className={`${styles.score} ${styles.scoreAccent}`}>{finalScore}</p>
         {previousPersonalBest !== null && (
           <p className={styles.wasLine}>Was: {previousPersonalBest}</p>
