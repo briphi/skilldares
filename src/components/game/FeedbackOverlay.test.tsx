@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FeedbackOverlay } from './FeedbackOverlay';
 import { uiStrings } from '../../content/uiStrings';
@@ -16,32 +16,32 @@ const baseProps = {
 describe('FeedbackOverlay', () => {
   describe('verdict + content', () => {
     it('renders ✓ when isCorrect=true', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect />);
       expect(screen.getByText('✓')).toBeTruthy();
     });
 
     it('renders ✗ when isCorrect=false', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect={false} revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect={false} />);
       expect(screen.getByText('✗')).toBeTruthy();
     });
 
     it('renders the message text from props', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect message="Custom voice line." revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect message="Custom voice line." />);
       expect(screen.getByText('Custom voice line.')).toBeTruthy();
     });
 
     it('renders the points indicator as "+{pointsAwarded}"', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect pointsAwarded={2} revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect pointsAwarded={2} />);
       expect(screen.getByText('+2')).toBeTruthy();
     });
 
     it('renders +0 for a wrong answer', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect={false} pointsAwarded={0} revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect={false} pointsAwarded={0} />);
       expect(screen.getByText('+0')).toBeTruthy();
     });
 
     it('marks the root with role="alert"', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect />);
       expect(screen.getByRole('alert')).toBeTruthy();
     });
   });
@@ -59,7 +59,7 @@ describe('FeedbackOverlay', () => {
     for (const pool of pools) {
       it(`marks the root with data-pool="${pool}" for pool=${pool}`, () => {
         const { container } = render(
-          <FeedbackOverlay {...baseProps} isCorrect pool={pool} revealDelayMs={0} />,
+          <FeedbackOverlay {...baseProps} isCorrect pool={pool} />,
         );
         const root = container.querySelector(`[data-pool="${pool}"]`);
         expect(root).toBeTruthy();
@@ -69,44 +69,26 @@ describe('FeedbackOverlay', () => {
 
   describe('Next/Finish button label', () => {
     it('shows "NEXT →" when isLastRound=false', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect isLastRound={false} revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect isLastRound={false} />);
       expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
     });
 
     it('shows "FINISH IT" when isLastRound=true', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect isLastRound revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect isLastRound />);
       expect(screen.getByRole('button', { name: uiStrings.buttons.finish })).toBeTruthy();
     });
 
     it('calls onAdvance exactly once when tapped', async () => {
       const onAdvance = vi.fn();
-      render(<FeedbackOverlay {...baseProps} isCorrect onAdvance={onAdvance} revealDelayMs={0} />);
+      render(<FeedbackOverlay {...baseProps} isCorrect onAdvance={onAdvance} />);
       await userEvent.click(screen.getByRole('button', { name: uiStrings.buttons.next }));
       expect(onAdvance).toHaveBeenCalledTimes(1);
     });
   });
 
-  describe('delayed reveal of the Next button', () => {
-    beforeEach(() => {
-      vi.useFakeTimers();
-    });
-
-    afterEach(() => {
-      vi.useRealTimers();
-    });
-
-    it('does not render the button immediately on mount with default delay', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect />);
-      expect(screen.queryByRole('button')).toBeNull();
-    });
-
-    it('reveals the button after revealDelayMs elapses', () => {
-      render(<FeedbackOverlay {...baseProps} isCorrect revealDelayMs={400} />);
-      expect(screen.queryByRole('button')).toBeNull();
-      act(() => {
-        vi.advanceTimersByTime(400);
-      });
-      expect(screen.getByRole('button')).toBeTruthy();
-    });
+  it('button is present immediately on mount (no delayed reveal)', () => {
+    render(<FeedbackOverlay {...baseProps} isCorrect />);
+    // No timers required — button renders with the rest of the overlay.
+    expect(screen.getByRole('button')).toBeTruthy();
   });
 });

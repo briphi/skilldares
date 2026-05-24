@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import type { MessagePoolId } from '../../lib/schemas/message.schema';
 import { Button } from '../shared/Button';
 import { uiStrings } from '../../content/uiStrings';
+import { fadeIn } from '../../lib/motionVariants';
 import styles from './FeedbackOverlay.module.css';
 
 export type FeedbackOverlayProps = {
@@ -11,8 +12,6 @@ export type FeedbackOverlayProps = {
   pool: MessagePoolId;
   isLastRound: boolean;
   onAdvance: () => void;
-  /** Override the Next/Finish reveal delay — used by tests. Defaults to 400ms (UX spec). */
-  revealDelayMs?: number;
 };
 
 function poolVariantKey(pool: MessagePoolId): string {
@@ -36,31 +35,27 @@ export function FeedbackOverlay({
   pool,
   isLastRound,
   onAdvance,
-  revealDelayMs = 400,
 }: FeedbackOverlayProps) {
-  const [buttonRevealed, setButtonRevealed] = useState<boolean>(revealDelayMs <= 0);
-
-  useEffect(() => {
-    if (revealDelayMs <= 0) return;
-    const id = setTimeout(() => setButtonRevealed(true), revealDelayMs);
-    return () => clearTimeout(id);
-  }, [revealDelayMs]);
-
   const variantClass = styles[poolVariantKey(pool)] ?? '';
   const containerClasses = [styles.container, variantClass].filter(Boolean).join(' ');
   const verdictIcon = isCorrect ? '✓' : '✗';
   const buttonLabel = isLastRound ? uiStrings.buttons.finish : uiStrings.buttons.next;
 
   return (
-    <div role="alert" className={containerClasses} data-pool={pool}>
+    <motion.div
+      role="alert"
+      className={containerClasses}
+      data-pool={pool}
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+    >
       <div className={styles.icon} aria-hidden="true">{verdictIcon}</div>
       <p className={styles.message}>{message}</p>
       <p className={styles.points}>+{pointsAwarded}</p>
-      {buttonRevealed && (
-        <Button variant="primary" onClick={onAdvance}>
-          {buttonLabel}
-        </Button>
-      )}
-    </div>
+      <Button variant="primary" onClick={onAdvance}>
+        {buttonLabel}
+      </Button>
+    </motion.div>
   );
 }
