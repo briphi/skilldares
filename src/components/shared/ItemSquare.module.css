@@ -37,27 +37,27 @@ div.container {
   /* base styling already set on .container */
 }
 
-/* Inset box-shadow (not outline) for the highlight border on selected/revealed
-   states. iOS Safari can leave outline paint layers visible after an element
-   unmounts (next-question remount), since outlines are composited separately
-   from the element box. box-shadow inset is part of the element's own paint
-   layer and tears down cleanly. Visually identical to outline + offset: -Npx. */
+/* Highlight border for selected/revealed states.
+   Uses inset box-shadow (not outline) for two reasons:
+     1. outline paint layers can persist on iOS Safari after the element unmounts
+     2. box-shadow is part of the element's own paint layer
+
+   transform + z-index are INTENTIONALLY OMITTED here. Those properties promote
+   the element to its own GPU compositing layer, and iOS Safari can leave the
+   orphaned layer in the GPU buffer when the parent component unmounts, causing
+   the colored border to "ghost" onto the next question's squares at the same
+   screen positions. The 4px inset border alone is a strong-enough visual cue
+   to mark these states; the prior 2% scale was polish, not load-bearing. */
 .selected {
   box-shadow: inset 0 0 0 4px var(--color-brand-primary);
-  transform: scale(1.02);
-  z-index: 1;
 }
 
 .revealedCorrect {
   box-shadow: inset 0 0 0 4px var(--color-state-success);
-  transform: scale(1.02);
-  z-index: 1;
 }
 
 .revealedWrong {
   box-shadow: inset 0 0 0 4px var(--color-state-error);
-  transform: scale(1.02);
-  z-index: 1;
 }
 
 .revealedMissed {
