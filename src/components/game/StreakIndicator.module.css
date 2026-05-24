@@ -1,0 +1,25 @@
+.container {
+  /* Sits as its own row in the GameScreen flow, between header and body.
+     Centered with a subtle accent-color halo around the text to feel
+     celebratory without competing with the question content. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  pointer-events: none;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-black);
+  color: var(--color-brand-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  /* Soft accent-color glow so the pulse feels alive even at small
+     scale — the glow brightens as scale grows and dims as it shrinks
+     since text-shadow renders relative to the text bounding box. */
+  text-shadow:
+    0 0 12px color-mix(in srgb, var(--color-brand-accent) 50%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-brand-accent) 25%, transparent);
+}

@@ -11,6 +11,7 @@ import { QuestionOrder } from './QuestionOrder';
 import { QuestionSelect } from './QuestionSelect';
 import { HintButton } from './HintButton';
 import { FeedbackOverlay } from './FeedbackOverlay';
+import { StreakIndicator } from './StreakIndicator';
 import styles from './GameScreen.module.css';
 
 // Pool imports — validated at module scope; failures throw → ErrorBoundary.
@@ -77,6 +78,8 @@ export function GameScreen({
         </span>
         <ScoreDisplay score={state.score} />
       </header>
+
+      <StreakIndicator streak={state.streak} />
 
       <main className={styles.body}>
         {state.phase === 'question' && currentQuestion.type === 'mc' && (
