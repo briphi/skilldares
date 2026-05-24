@@ -139,9 +139,6 @@ export function QuestionMC({
               data-quadrant-state={state}
             >
               <span className={styles.optionText}>{option}</span>
-              {state === 'correct' && (
-                <span className={styles.overlay} aria-hidden="true">✓</span>
-              )}
             </button>
           );
         })}

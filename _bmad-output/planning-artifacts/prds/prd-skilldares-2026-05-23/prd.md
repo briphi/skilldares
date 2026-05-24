@@ -55,7 +55,7 @@ Features are grouped by concern. FR IDs are globally numbered and stable.
 - **FR11** Selecting an option SHALL immediately lock the answer (no change after selection) and trigger the feedback flow (see F7). The transition to the feedback flow SHALL pass through a brief reveal sequence (FR11.1) so the player sees the correct answer before the verdict overlay appears.
 - **FR11.1** After an MC option is selected, the question SHALL transition through a two-stage reveal sequence (~1500ms total) before the feedback overlay appears:
   - **Lock phase (~400ms):** the tapped quadrant is visually highlighted; the other three remain at default appearance.
-  - **Reveal phase (~1100ms):** the correct answer is highlighted (full color + ✓ overlay); all three wrong options dim equally, including the user's pick if it was wrong. The player's wrong pick is NOT given a separate red/✗ treatment — the correct answer is the single visual focus.
+  - **Reveal phase (~1100ms):** the correct answer is highlighted via outline + brightness contrast (full color, thicker success-color outline, slight scale-up, subtle glow) — NOT a center overlay badge, which would obscure the option text; all three wrong options dim equally, including the user's pick if it was wrong. The player's wrong pick is NOT given a separate red/✗ treatment — the correct answer is the single visual focus.
   - At the end of the reveal phase, the app advances to the feedback overlay (F7) without further input.
 
 ### F3 — Speed Round Type A — Drag-to-Order
