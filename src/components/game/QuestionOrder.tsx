@@ -130,7 +130,11 @@ export function QuestionOrder({
   return (
     <div className={styles.container}>
       <h2 className={styles.prompt}>{question.prompt}</h2>
-      <TimerDisplay secondsRemaining={secondsRemaining} totalSeconds={durationSeconds} />
+      <TimerDisplay
+        secondsRemaining={secondsRemaining}
+        totalSeconds={durationSeconds}
+        active={phase === 'idle'}
+      />
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={order} strategy={verticalListSortingStrategy}>

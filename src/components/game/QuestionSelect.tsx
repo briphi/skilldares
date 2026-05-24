@@ -102,7 +102,11 @@ export function QuestionSelect({
   return (
     <div className={styles.container}>
       <h2 className={styles.prompt}>{question.prompt}</h2>
-      <TimerDisplay secondsRemaining={secondsRemaining} totalSeconds={durationSeconds} />
+      <TimerDisplay
+        secondsRemaining={secondsRemaining}
+        totalSeconds={durationSeconds}
+        active={phase === 'idle'}
+      />
 
       <div className={styles.grid}>
         {displayItems.map((name) => (

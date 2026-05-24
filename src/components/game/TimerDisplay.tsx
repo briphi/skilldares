@@ -5,13 +5,23 @@ import styles from './TimerDisplay.module.css';
 export type TimerDisplayProps = {
   secondsRemaining: number;
   totalSeconds?: number;
+  /**
+   * When false, the urgency cues (shake animation, low-time aria-live
+   * announcement) are silenced regardless of secondsRemaining. The bar
+   * width still reflects the frozen value. Defaults to true.
+   */
+  active?: boolean;
 };
 
 const LOW_TIME_THRESHOLD = 5;
 
-export function TimerDisplay({ secondsRemaining, totalSeconds = 15 }: TimerDisplayProps) {
+export function TimerDisplay({
+  secondsRemaining,
+  totalSeconds = 15,
+  active = true,
+}: TimerDisplayProps) {
   const reducedMotion = useReducedMotion();
-  const isLowTime = secondsRemaining <= LOW_TIME_THRESHOLD;
+  const isLowTime = active && secondsRemaining <= LOW_TIME_THRESHOLD;
   const widthPct = totalSeconds > 0 ? (secondsRemaining / totalSeconds) * 100 : 0;
 
   return (

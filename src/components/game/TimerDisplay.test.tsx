@@ -52,4 +52,30 @@ describe('TimerDisplay', () => {
     const live = container.querySelector('[aria-live="polite"]');
     expect(live?.textContent).toBe('3 seconds remaining');
   });
+
+  describe('active prop (silences urgency cues post-lock-in)', () => {
+    it('suppresses low-time data attribute when active=false even at low secondsRemaining', () => {
+      const { container } = render(<TimerDisplay secondsRemaining={3} active={false} />);
+      const root = container.querySelector('[data-low-time]');
+      expect(root?.getAttribute('data-low-time')).toBe('false');
+    });
+
+    it('suppresses the aria-live announcement when active=false', () => {
+      const { container } = render(<TimerDisplay secondsRemaining={3} active={false} />);
+      const live = container.querySelector('[aria-live="polite"]');
+      expect(live?.textContent).toBe('');
+    });
+
+    it('bar width still reflects secondsRemaining when active=false (frozen, not hidden)', () => {
+      render(<TimerDisplay secondsRemaining={3} totalSeconds={15} active={false} />);
+      const bar = screen.getByRole('progressbar');
+      expect(bar.getAttribute('style')).toContain('width: 20%');
+    });
+
+    it('default active=true preserves prior behavior at low time', () => {
+      const { container } = render(<TimerDisplay secondsRemaining={3} />);
+      const root = container.querySelector('[data-low-time]');
+      expect(root?.getAttribute('data-low-time')).toBe('true');
+    });
+  });
 });
