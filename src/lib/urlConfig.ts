@@ -50,3 +50,32 @@ function parseSingleCount(raw: string | null, fallback: number, max: number): nu
   if (!Number.isFinite(parsed) || parsed < 0) return Math.min(fallback, max);
   return Math.min(parsed, max);
 }
+
+/** Default finalScore when `?highScore` is present without a value. */
+export const DEFAULT_TEST_HIGH_SCORE = 100;
+
+/**
+ * Parse the optional `?highScore` URL parameter — a dev-test affordance
+ * that jumps straight to the celebrating End screen variant (skipping
+ * the start screen and the actual gameplay).
+ *
+ * Returns:
+ *   - the parsed score when `?highScore=N` is given with a non-negative N
+ *   - DEFAULT_TEST_HIGH_SCORE when the param is present without a value
+ *     (e.g. `?highScore` or `?highScore=`) or with an invalid value
+ *   - null when the param is absent (no jump)
+ *
+ * The End screen rendered in this mode does NOT write to localStorage,
+ * so testing the celebration doesn't pollute the player's real high
+ * score. Tapping "Play Again" leaves the test screen and starts a
+ * real game.
+ */
+export function parseTestHighScoreFromSearch(search: string): number | null {
+  const params = new URLSearchParams(search);
+  if (!params.has('highScore')) return null;
+  const raw = params.get('highScore');
+  if (raw === null || raw === '') return DEFAULT_TEST_HIGH_SCORE;
+  const parsed = parseInt(raw, 10);
+  if (!Number.isFinite(parsed) || parsed < 0) return DEFAULT_TEST_HIGH_SCORE;
+  return parsed;
+}

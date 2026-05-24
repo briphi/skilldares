@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import {
   parseGameConfigFromSearch,
+  parseTestHighScoreFromSearch,
   DEFAULT_MC_COUNT,
   DEFAULT_SPEED_COUNT,
+  DEFAULT_TEST_HIGH_SCORE,
 } from './urlConfig';
 
 const POOL_MAXES = { mc: 100, speed: 80 };
@@ -117,5 +119,40 @@ describe('parseGameConfigFromSearch', () => {
         speedCount: 1,
       });
     });
+  });
+});
+
+describe('parseTestHighScoreFromSearch', () => {
+  it('returns null when the param is absent', () => {
+    expect(parseTestHighScoreFromSearch('')).toBeNull();
+    expect(parseTestHighScoreFromSearch('?utm_source=x')).toBeNull();
+    expect(parseTestHighScoreFromSearch('?mc=5&speed=2')).toBeNull();
+  });
+
+  it('returns the parsed score when ?highScore=N is given', () => {
+    expect(parseTestHighScoreFromSearch('?highScore=42')).toBe(42);
+    expect(parseTestHighScoreFromSearch('?highScore=999')).toBe(999);
+  });
+
+  it('returns 0 when ?highScore=0 (valid non-negative integer)', () => {
+    expect(parseTestHighScoreFromSearch('?highScore=0')).toBe(0);
+  });
+
+  it('returns the default when ?highScore is present without a value', () => {
+    expect(parseTestHighScoreFromSearch('?highScore')).toBe(DEFAULT_TEST_HIGH_SCORE);
+    expect(parseTestHighScoreFromSearch('?highScore=')).toBe(DEFAULT_TEST_HIGH_SCORE);
+  });
+
+  it('returns the default for invalid values (non-numeric, negative)', () => {
+    expect(parseTestHighScoreFromSearch('?highScore=abc')).toBe(DEFAULT_TEST_HIGH_SCORE);
+    expect(parseTestHighScoreFromSearch('?highScore=-5')).toBe(DEFAULT_TEST_HIGH_SCORE);
+  });
+
+  it('parses an integer when given a decimal (parseInt truncation)', () => {
+    expect(parseTestHighScoreFromSearch('?highScore=42.9')).toBe(42);
+  });
+
+  it('co-exists with other params', () => {
+    expect(parseTestHighScoreFromSearch('?mc=3&highScore=77&speed=2')).toBe(77);
   });
 });
