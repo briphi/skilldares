@@ -19,17 +19,17 @@
   will-change: filter, transform;
 }
 
-/* Single pulse: scale up + bright + warm-yellow halo at the peak.
-   Scale (transform) reads to the eye more readily than color change alone,
-   especially against the small button context. transform doesn't affect
-   layout, so the surrounding "Hint" text stays put. */
+/* Single pulse: subtle scale + bright + warm-yellow halo at the peak.
+   Each pulse is fast (0.15s); the data-flash-count attribute (2, 3, or 4)
+   controls how many pulses fire back-to-back via animation-iteration-count.
+   Reads like a flickering bulb rather than a steady throb. */
 .bulb[data-flash-count] {
-  animation: bulbFlash 0.5s ease-out;
+  animation: bulbFlash 0.15s ease-out;
 }
 
-.bulb[data-flash-count="2"] {
-  animation-iteration-count: 2;
-}
+.bulb[data-flash-count="2"] { animation-iteration-count: 2; }
+.bulb[data-flash-count="3"] { animation-iteration-count: 3; }
+.bulb[data-flash-count="4"] { animation-iteration-count: 4; }
 
 @keyframes bulbFlash {
   0%, 100% {
@@ -44,6 +44,6 @@
       saturate(2)
       drop-shadow(0 0 8px #ffe066)
       drop-shadow(0 0 18px rgba(255, 213, 79, 0.7));
-    transform: scale(1.35);
+    transform: scale(1.12);
   }
 }

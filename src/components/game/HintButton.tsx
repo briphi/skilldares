@@ -12,7 +12,10 @@ export type HintButtonProps = {
 const MIN_FLASH_GAP_MS = 8000;
 const MAX_FLASH_GAP_MS = 15000;
 /** Matches the bulbFlash keyframes duration in HintButton.module.css. */
-const FLASH_PULSE_MS = 500;
+const FLASH_PULSE_MS = 150;
+/** Random pulse count per flash event — inclusive range 2..4. */
+const MIN_PULSES = 2;
+const MAX_PULSES = 4;
 
 export function HintButton({ onUse, disabled = false }: HintButtonProps) {
   const reducedMotion = useReducedMotion();
@@ -28,8 +31,9 @@ export function HintButton({ onUse, disabled = false }: HintButtonProps) {
     const scheduleNext = () => {
       const delay = MIN_FLASH_GAP_MS + Math.random() * (MAX_FLASH_GAP_MS - MIN_FLASH_GAP_MS);
       scheduleTimer = setTimeout(() => {
-        // 50/50 split between 1-pulse and 2-pulse flashes.
-        const count = Math.random() < 0.5 ? 1 : 2;
+        // Random pulse count in [MIN_PULSES, MAX_PULSES] inclusive — 2..4.
+        const count =
+          MIN_PULSES + Math.floor(Math.random() * (MAX_PULSES - MIN_PULSES + 1));
         setFlashCount(count);
         // Hold the data attribute long enough for the CSS animation to play,
         // then clear it so the next flash (with possibly the same count) will
