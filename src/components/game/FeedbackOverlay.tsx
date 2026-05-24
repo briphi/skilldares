@@ -1,8 +1,10 @@
+import { useRef } from 'react';
 import { motion } from 'motion/react';
 import type { MessagePoolId } from '../../lib/schemas/message.schema';
 import { Button } from '../shared/Button';
 import { uiStrings } from '../../content/uiStrings';
 import { fadeIn } from '../../lib/motionVariants';
+import { useFitTextToLines } from '../../lib/useFitTextToLines';
 import styles from './FeedbackOverlay.module.css';
 
 export type FeedbackOverlayProps = {
@@ -41,6 +43,12 @@ export function FeedbackOverlay({
   const verdictIcon = isCorrect ? '✓' : '✗';
   const buttonLabel = isLastRound ? uiStrings.buttons.finish : uiStrings.buttons.next;
 
+  // Long messages (some pools have lines >80 chars) would wrap to 3+ lines
+  // at the default --text-2xl size on narrow viewports. Auto-shrink to keep
+  // every message on at most 2 lines without truncating the punchline.
+  const messageRef = useRef<HTMLParagraphElement>(null);
+  useFitTextToLines(messageRef, 2, { minFontSizePx: 14 });
+
   return (
     <motion.div
       role="alert"
@@ -51,7 +59,7 @@ export function FeedbackOverlay({
       animate="animate"
     >
       <div className={styles.icon} aria-hidden="true">{verdictIcon}</div>
-      <p className={styles.message}>{message}</p>
+      <p ref={messageRef} className={styles.message}>{message}</p>
       <p className={styles.points}>+{pointsAwarded}</p>
       <Button variant="primary" onClick={onAdvance}>
         {buttonLabel}
