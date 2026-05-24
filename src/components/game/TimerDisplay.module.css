@@ -8,14 +8,34 @@
 }
 
 .bar {
+  /* The bar uses a CSS keyframe animation (not a width transition driven
+     by React state) so it reaches empty in lockstep with useTimer's expiry,
+     not one tick behind. Animation duration is set inline as
+     `animationDuration: ${totalSeconds}s` and play-state is toggled via
+     the inline `animationPlayState` prop. transform-origin: left ensures
+     the bar shrinks from right-to-left like a draining gauge. */
   height: 100%;
+  width: 100%;
   background-color: var(--color-brand-primary);
-  transition: width 1s linear, background-color var(--motion-base) var(--ease-snappy);
   border-radius: var(--radius-full);
+  transform-origin: left center;
+  animation-name: drain;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  transition: background-color var(--motion-base) var(--ease-snappy);
 }
 
 .bar[data-low-time="true"] {
   background-color: var(--color-state-warning);
+}
+
+@keyframes drain {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
 }
 
 .srOnly {

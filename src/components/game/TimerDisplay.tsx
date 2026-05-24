@@ -22,7 +22,6 @@ export function TimerDisplay({
 }: TimerDisplayProps) {
   const reducedMotion = useReducedMotion();
   const isLowTime = active && secondsRemaining <= LOW_TIME_THRESHOLD;
-  const widthPct = totalSeconds > 0 ? (secondsRemaining / totalSeconds) * 100 : 0;
 
   return (
     <motion.div
@@ -38,7 +37,13 @@ export function TimerDisplay({
         aria-valuenow={secondsRemaining}
         aria-valuemin={0}
         aria-valuemax={totalSeconds}
-        style={{ width: `${widthPct}%` }}
+        style={{
+          animationDuration: `${totalSeconds}s`,
+          // Pause the drain when active=false so the bar freezes alongside
+          // useTimer (which the parent pauses on lock-in). Without this the
+          // bar would keep draining visually after the player submitted.
+          animationPlayState: active ? 'running' : 'paused',
+        }}
         data-low-time={isLowTime}
       />
       {/* Polite aria-live announcement — only populates at low time so the

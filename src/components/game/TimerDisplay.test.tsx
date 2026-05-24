@@ -11,16 +11,22 @@ describe('TimerDisplay', () => {
     expect(bar.getAttribute('aria-valuemin')).toBe('0');
   });
 
-  it('bar width matches secondsRemaining / totalSeconds (100% at full)', () => {
+  it('drains over the full totalSeconds via CSS animation (defaults to 15s)', () => {
     render(<TimerDisplay secondsRemaining={15} />);
     const bar = screen.getByRole('progressbar');
-    expect(bar.getAttribute('style')).toContain('width: 100%');
+    expect(bar.getAttribute('style')).toContain('animation-duration: 15s');
   });
 
-  it('bar width at 50%', () => {
+  it('animation duration matches custom totalSeconds', () => {
     render(<TimerDisplay secondsRemaining={5} totalSeconds={10} />);
     const bar = screen.getByRole('progressbar');
-    expect(bar.getAttribute('style')).toContain('width: 50%');
+    expect(bar.getAttribute('style')).toContain('animation-duration: 10s');
+  });
+
+  it('animation runs by default (active=true)', () => {
+    render(<TimerDisplay secondsRemaining={10} />);
+    const bar = screen.getByRole('progressbar');
+    expect(bar.getAttribute('style')).toContain('animation-play-state: running');
   });
 
   it('marks data-low-time="false" above the 5s threshold', () => {
@@ -66,10 +72,10 @@ describe('TimerDisplay', () => {
       expect(live?.textContent).toBe('');
     });
 
-    it('bar width still reflects secondsRemaining when active=false (frozen, not hidden)', () => {
+    it('pauses the drain animation when active=false (bar freezes at current scale)', () => {
       render(<TimerDisplay secondsRemaining={3} totalSeconds={15} active={false} />);
       const bar = screen.getByRole('progressbar');
-      expect(bar.getAttribute('style')).toContain('width: 20%');
+      expect(bar.getAttribute('style')).toContain('animation-play-state: paused');
     });
 
     it('default active=true preserves prior behavior at low time', () => {
