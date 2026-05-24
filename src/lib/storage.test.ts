@@ -1,7 +1,14 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { hasStorage, getHighScore, setHighScore } from './storage';
+import {
+  hasStorage,
+  getHighScore,
+  setHighScore,
+  getLastShownMessages,
+  setLastShownMessage,
+} from './storage';
 
 const STORAGE_KEY = 'skilldares.highScore';
+const LAST_MESSAGES_KEY = 'skilldares.lastShownMessages';
 
 describe('storage', () => {
   beforeEach(() => {
@@ -87,6 +94,89 @@ describe('storage', () => {
 
       it('does not throw (silent no-op)', () => {
         expect(() => setHighScore(42)).not.toThrow();
+      });
+    });
+  });
+
+  describe('getLastShownMessages', () => {
+    it('returns an empty object when no value is stored', () => {
+      expect(getLastShownMessages()).toEqual({});
+    });
+
+    it('returns the parsed map when stored', () => {
+      localStorage.setItem(
+        LAST_MESSAGES_KEY,
+        JSON.stringify({ 'right-no-streak': 'Solid.', 'on-fire': 'By the saints.' }),
+      );
+      expect(getLastShownMessages()).toEqual({
+        'right-no-streak': 'Solid.',
+        'on-fire': 'By the saints.',
+      });
+    });
+
+    it('returns empty object when stored value is malformed JSON', () => {
+      localStorage.setItem(LAST_MESSAGES_KEY, '{not valid json');
+      expect(getLastShownMessages()).toEqual({});
+    });
+
+    it('returns empty object when stored value is a JSON primitive (not an object)', () => {
+      localStorage.setItem(LAST_MESSAGES_KEY, '"just a string"');
+      expect(getLastShownMessages()).toEqual({});
+    });
+
+    it('returns empty object when stored value is a JSON array', () => {
+      localStorage.setItem(LAST_MESSAGES_KEY, '[1, 2, 3]');
+      expect(getLastShownMessages()).toEqual({});
+    });
+
+    it('filters out non-string values defensively', () => {
+      localStorage.setItem(
+        LAST_MESSAGES_KEY,
+        JSON.stringify({ 'right-no-streak': 'ok', 'on-fire': 42, comeback: null }),
+      );
+      expect(getLastShownMessages()).toEqual({ 'right-no-streak': 'ok' });
+    });
+  });
+
+  describe('setLastShownMessage', () => {
+    it('writes the message under the pool key', () => {
+      setLastShownMessage('right-no-streak', 'Solid.');
+      expect(JSON.parse(localStorage.getItem(LAST_MESSAGES_KEY)!)).toEqual({
+        'right-no-streak': 'Solid.',
+      });
+    });
+
+    it('preserves prior entries when setting a new pool', () => {
+      setLastShownMessage('right-no-streak', 'Solid.');
+      setLastShownMessage('on-fire', 'By the saints.');
+      expect(JSON.parse(localStorage.getItem(LAST_MESSAGES_KEY)!)).toEqual({
+        'right-no-streak': 'Solid.',
+        'on-fire': 'By the saints.',
+      });
+    });
+
+    it('overwrites the message for the same pool', () => {
+      setLastShownMessage('right-no-streak', 'First.');
+      setLastShownMessage('right-no-streak', 'Second.');
+      expect(JSON.parse(localStorage.getItem(LAST_MESSAGES_KEY)!)).toEqual({
+        'right-no-streak': 'Second.',
+      });
+    });
+
+    describe('when localStorage.setItem throws', () => {
+      let original: typeof Storage.prototype.setItem;
+      beforeEach(() => {
+        original = Storage.prototype.setItem;
+        Storage.prototype.setItem = () => {
+          throw new Error('storage blocked');
+        };
+      });
+      afterEach(() => {
+        Storage.prototype.setItem = original;
+      });
+
+      it('does not throw (silent no-op)', () => {
+        expect(() => setLastShownMessage('on-fire', 'anything')).not.toThrow();
       });
     });
   });

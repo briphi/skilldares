@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useGameState } from '../../state/useGameState';
 import { computePoints, STREAK_BONUS_THRESHOLD } from '../../lib/scoring';
 import { pickMessage } from '../../lib/picker';
+import { getLastShownMessages, setLastShownMessage } from '../../lib/storage';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema, type MessagePoolId } from '../../lib/schemas/message.schema';
 import { uiStrings } from '../../content/uiStrings';
@@ -54,9 +55,23 @@ export function GameScreen({
     if (state.phase !== 'feedback' || !state.lastFeedback) return '';
     const pool = POOLS[state.lastFeedback.pool];
     if (!pool || pool.length === 0) return '';
-    return pickMessage(pool, rng);
+    // Read the last-shown message for this pool from localStorage and
+    // pass it as the exclude argument so we don't show it twice in a row.
+    // Per-pool tracking: showing an "on-fire" message doesn't constrain
+    // the next "right-no-streak" pick. Survives refresh/replay since
+    // it's stored, not in-memory.
+    const lastShown = getLastShownMessages()[state.lastFeedback.pool] ?? null;
+    return pickMessage(pool, rng, lastShown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.phase, state.roundIndex, state.lastFeedback]);
+
+  // Persist the freshly-picked message back to storage as "last shown"
+  // for this pool. Effect runs after the render that shows the message,
+  // so the next round's pick will exclude this one.
+  useEffect(() => {
+    if (state.phase !== 'feedback' || !state.lastFeedback || !feedbackMessage) return;
+    setLastShownMessage(state.lastFeedback.pool, feedbackMessage);
+  }, [feedbackMessage, state.phase, state.lastFeedback]);
 
   if (state.phase !== 'question' && state.phase !== 'feedback') return null;
 

@@ -44,10 +44,28 @@ export function pickPool(previousStreak: number, isCorrect: boolean): MessagePoo
   return 'wrong-no-streak';
 }
 
-export function pickMessage(messages: string[], rng: Rng): string {
+/**
+ * Uniform-random pick from a pool, optionally excluding one message
+ * (typically the one shown immediately before from this same pool, to
+ * avoid back-to-back repeats — see GameScreen + storage.ts).
+ *
+ * Falls back to the full pool if:
+ *   - `excludeMessage` is omitted, null, or not present in the pool
+ *   - excluding would leave 0 candidates (e.g. pool of size 1)
+ */
+export function pickMessage(
+  messages: string[],
+  rng: Rng,
+  excludeMessage?: string | null,
+): string {
   if (messages.length === 0) {
     throw new Error('pickMessage: pool is empty');
   }
-  const index = Math.floor(rng() * messages.length);
-  return messages[index]!;
+  let candidates = messages;
+  if (excludeMessage != null) {
+    const filtered = messages.filter((m) => m !== excludeMessage);
+    if (filtered.length > 0) candidates = filtered;
+  }
+  const index = Math.floor(rng() * candidates.length);
+  return candidates[index]!;
 }

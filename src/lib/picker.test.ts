@@ -103,4 +103,38 @@ describe('pickMessage', () => {
   it('throws when the pool is empty', () => {
     expect(() => pickMessage([], () => 0)).toThrow(/pool is empty/);
   });
+
+  describe('excludeMessage (avoid back-to-back repeats)', () => {
+    it('excludes the named message from the candidate set', () => {
+      // rng=0 would normally pick "first"; with "first" excluded, the
+      // candidates become ["second", "third", "fourth", "fifth"] and rng=0
+      // picks the first of those.
+      expect(pickMessage(pool, () => 0, 'first')).toBe('second');
+    });
+
+    it('returns the only-other message when one is excluded from a 2-item pool', () => {
+      expect(pickMessage(['a', 'b'], () => 0, 'a')).toBe('b');
+      expect(pickMessage(['a', 'b'], () => 0, 'b')).toBe('a');
+    });
+
+    it('falls back to the full pool when excluding would leave 0 candidates (single-item pool)', () => {
+      expect(pickMessage(['only'], () => 0, 'only')).toBe('only');
+    });
+
+    it('falls back to the full pool when excludeMessage is not in the pool', () => {
+      // "nope" isn't in the pool — exclusion is a no-op
+      expect(pickMessage(pool, () => 0, 'nope')).toBe('first');
+    });
+
+    it('ignores null exclude (same as omitted)', () => {
+      expect(pickMessage(pool, () => 0, null)).toBe('first');
+    });
+
+    it('excludes ALL copies if a pool somehow contains duplicates', () => {
+      const dupePool = ['a', 'b', 'a', 'c'];
+      // 'a' appears twice; both should be filtered. Candidates: ['b', 'c'].
+      expect(pickMessage(dupePool, () => 0, 'a')).toBe('b');
+      expect(pickMessage(dupePool, () => 0.99, 'a')).toBe('c');
+    });
+  });
 });
