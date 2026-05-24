@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.prompt {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.row {
+  /* Wrapper for the sortable surface — ItemSquare provides the visual. */
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: grab;
+  text-align: left;
+}
+
+.row:active {
+  cursor: grabbing;
+}
+
+.row:disabled {
+  cursor: default;
+}
+
+.dragging {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.submitRow {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+}
