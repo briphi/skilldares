@@ -105,9 +105,13 @@ export function QuestionOrder({
     paused: phase !== 'idle',
   });
 
+  // Distance-based activation (not the default delay) so iOS Safari starts
+  // dragging as soon as the finger moves ~8px, not after the 250ms long-press
+  // the TouchSensor uses by default. 8px is large enough to disambiguate
+  // intentional drag from finger jitter / mis-taps.
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(TouchSensor),
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, { activationConstraint: { distance: 8 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
 
