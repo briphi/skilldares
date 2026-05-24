@@ -43,3 +43,38 @@ export const shake: Variants = {
     transition: { duration: 0.35, repeat: Infinity, ease: 'linear' },
   },
 };
+
+/**
+ * Confetti particle (Story 3.2 / EndScreen celebrating variant).
+ *
+ * Each particle takes a `custom={{ angle, distance }}` prop for per-particle
+ * direction. Multiple particles compose the burst — see <Confetti /> in
+ * src/components/shared/Confetti.tsx for the layer that generates them.
+ *
+ * Animation: pop (scale 0→1), travel along the angle with gravity pull,
+ * rotate, fade out. Total duration ~2.5s.
+ */
+export const confettiParticle: Variants = {
+  initial: { x: 0, y: 0, scale: 0, opacity: 1, rotate: 0 },
+  burst: (custom: { angle: number; distance: number }) => ({
+    x: Math.cos((custom.angle * Math.PI) / 180) * custom.distance,
+    y: Math.sin((custom.angle * Math.PI) / 180) * custom.distance + 200,
+    scale: [0, 1, 1, 0],
+    opacity: [1, 1, 1, 0],
+    rotate: 360,
+    transition: { duration: 2.5, ease: 'easeOut' },
+  }),
+};
+
+/**
+ * Color palette for confetti particles — the 4 MC answer colors + the 2 brand colors.
+ * Centralized here so the celebration palette stays in sync with the visual design system.
+ */
+export const CONFETTI_COLORS = [
+  'var(--color-answer-1)',
+  'var(--color-answer-2)',
+  'var(--color-answer-3)',
+  'var(--color-answer-4)',
+  'var(--color-brand-primary)',
+  'var(--color-brand-accent)',
+] as const;
