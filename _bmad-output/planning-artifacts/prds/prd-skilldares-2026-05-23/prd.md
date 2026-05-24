@@ -2,7 +2,7 @@
 title: "Skilldares — Product Requirements Document"
 status: final
 created: 2026-05-23
-updated: 2026-05-24 (post-finalize: FR9.1 added — MC option order randomized per game, see decision log)
+updated: 2026-05-24 (post-finalize: FR9.1 + FR11.1 added — randomized option order + MC reveal sequence, see decision log)
 ---
 
 # Skilldares — Product Requirements Document
@@ -52,7 +52,11 @@ Features are grouped by concern. FR IDs are globally numbered and stable.
 - **FR9** Of the four options, exactly one SHALL be correct, exactly one SHALL be obviously-wrong-and-funny (e.g., "Rat Feces" in an ingredient list), and exactly two SHALL be close-distractors (plausible wrong answers from adjacent menu items or attributes). The four options describe the option *set*; their *displayed order* SHALL be randomized per question per game (see FR9.1).
 - **FR9.1** The four answer options SHALL be presented in a uniform-random order per question per game so that the correct answer (and the funny-wrong option) do not occupy a predictable quadrant. The authored `correctIndex` and `funnyWrongIndex` in the content JSON define the *identity* of the options, not their displayed positions. A given question replayed across multiple games MAY (and typically WILL) show its options in different orders.
 - **FR10** Question shapes SHALL include at minimum: ingredient listing ("Which ingredients come in the House Salad?"), pricing ("How much does the Street Corn Bowl cost?"), and attribute/category ("Which of the following is Gluten Free?"). The authoring brief encourages additional creative shapes.
-- **FR11** Selecting an option SHALL immediately lock the answer (no change after selection) and trigger the feedback flow (see F7).
+- **FR11** Selecting an option SHALL immediately lock the answer (no change after selection) and trigger the feedback flow (see F7). The transition to the feedback flow SHALL pass through a brief reveal sequence (FR11.1) so the player sees the correct answer before the verdict overlay appears.
+- **FR11.1** After an MC option is selected, the question SHALL transition through a two-stage reveal sequence (~1500ms total) before the feedback overlay appears:
+  - **Lock phase (~400ms):** the tapped quadrant is visually highlighted; the other three remain at default appearance.
+  - **Reveal phase (~1100ms):** the correct answer is highlighted (full color + ✓ overlay); all three wrong options dim equally, including the user's pick if it was wrong. The player's wrong pick is NOT given a separate red/✗ treatment — the correct answer is the single visual focus.
+  - At the end of the reveal phase, the app advances to the feedback overlay (F7) without further input.
 
 ### F3 — Speed Round Type A — Drag-to-Order
 

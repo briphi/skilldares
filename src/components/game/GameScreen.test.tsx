@@ -42,7 +42,8 @@ function setupGameScreen(questions: GameQuestion[]): RenderResult {
   return render(
     <GameProvider>
       <StartGameOnMount questions={questions} />
-      <GameScreen rng={() => 0} />
+      {/* Sync reveal in tests — production defaults give the 1500ms two-stage reveal. */}
+      <GameScreen rng={() => 0} mcRevealDurationMs={0} mcLockDurationMs={0} />
     </GameProvider>,
   );
 }

@@ -31,9 +31,17 @@ const POOLS: Partial<Record<MessagePoolId, string[]>> = {
 export type GameScreenProps = {
   /** Override randomness — used by tests. Defaults to Math.random(). */
   rng?: Rng;
+  /** Forward to QuestionMC's reveal-duration prop. Tests pass 0 for sync. */
+  mcRevealDurationMs?: number;
+  /** Forward to QuestionMC's lock-duration prop. Tests pass 0 for sync. */
+  mcLockDurationMs?: number;
 };
 
-export function GameScreen({ rng = defaultRng }: GameScreenProps = {}) {
+export function GameScreen({
+  rng = defaultRng,
+  mcRevealDurationMs,
+  mcLockDurationMs,
+}: GameScreenProps = {}) {
   const { state, helpers } = useGameState();
 
   const feedbackMessage = useMemo<string>(() => {
@@ -72,6 +80,8 @@ export function GameScreen({ rng = defaultRng }: GameScreenProps = {}) {
             question={currentQuestion.question}
             usedHint={state.usedHintThisQuestion}
             onAnswer={helpers.answerQuestion}
+            revealDurationMs={mcRevealDurationMs}
+            lockDurationMs={mcLockDurationMs}
           />
         )}
         {state.phase === 'question' && !isMC && (

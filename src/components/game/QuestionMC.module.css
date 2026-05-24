@@ -69,18 +69,23 @@
   opacity: 0.5;
 }
 
-.correct {
-  outline: 3px solid var(--color-state-success);
-  outline-offset: -3px;
+.locked {
+  /* Tap registered, awaiting reveal. Gold outline says "you picked this." */
+  outline: 4px solid var(--color-brand-primary);
+  outline-offset: -4px;
+  transform: scale(1.02);
+  z-index: 1;
 }
 
-.wrongSelected {
-  outline: 3px solid var(--color-state-error);
-  outline-offset: -3px;
+.correct {
+  outline: 4px solid var(--color-state-success);
+  outline-offset: -4px;
+  transform: scale(1.02);
+  z-index: 1;
 }
 
 .muted {
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 .optionText {

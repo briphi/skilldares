@@ -34,6 +34,9 @@ describe('App (integration)', () => {
     expect(answerButton).toBeTruthy();
     await userEvent.click(answerButton!);
 
+    // QuestionMC reveal phase runs for ~1500ms before dispatching to FeedbackOverlay.
+    // findByRole polls (default 1s timeout — bumped to cover the reveal).
+    await screen.findByRole('alert', {}, { timeout: 3000 });
     expect(screen.getByRole('alert')).toBeTruthy();
   });
 });
