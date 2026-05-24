@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import { GameProvider } from './state/GameProvider';
 import { useGameState } from './state/useGameState';
@@ -9,6 +9,7 @@ import { GameScreen } from './components/game/GameScreen';
 import { EndScreen } from './components/end/EndScreen';
 import { selectGameQuestions } from './lib/questionSelection';
 import { defaultRng } from './lib/rng';
+import { parseGameConfigFromSearch } from './lib/urlConfig';
 import {
   MultipleChoicePoolSchema,
   SpeedOrderPoolSchema,
@@ -44,13 +45,28 @@ function AppShell() {
     updateHighScore,
   );
 
+  // Parse ?mc=N&speed=N once per mount. Re-reading on every Start would be
+  // pointless: SPA, no navigation between games.
+  const roundCounts = useMemo(
+    () =>
+      parseGameConfigFromSearch(window.location.search, {
+        mc: mcPool.length,
+        speed: orderPool.length + selectPool.length,
+      }),
+    [],
+  );
+
   const handleStart = useCallback(() => {
-    helpers.startGame(selectGameQuestions(mcPool, orderPool, selectPool, defaultRng));
-  }, [helpers]);
+    helpers.startGame(
+      selectGameQuestions(mcPool, orderPool, selectPool, defaultRng, roundCounts),
+    );
+  }, [helpers, roundCounts]);
 
   const handlePlayAgain = useCallback(() => {
-    helpers.playAgain(selectGameQuestions(mcPool, orderPool, selectPool, defaultRng));
-  }, [helpers]);
+    helpers.playAgain(
+      selectGameQuestions(mcPool, orderPool, selectPool, defaultRng, roundCounts),
+    );
+  }, [helpers, roundCounts]);
 
   if (state.phase === 'start') {
     return <StartScreen onStart={handleStart} />;

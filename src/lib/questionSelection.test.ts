@@ -212,4 +212,78 @@ describe('selectGameQuestions', () => {
     const highSpeed = highRng.slice(15);
     expect(highSpeed.filter((g) => g.type === 'order').length).toBe(8);
   });
+
+  describe('custom round counts via options', () => {
+    it('honors options.mcCount and options.speedCount', () => {
+      const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5, {
+        mcCount: 3,
+        speedCount: 2,
+      });
+      expect(game).toHaveLength(5);
+      expect(game.slice(0, 3).every((g) => g.type === 'mc')).toBe(true);
+      expect(game.slice(3).every((g) => g.type === 'order' || g.type === 'select')).toBe(true);
+    });
+
+    it('mcCount=0 → speed-only game', () => {
+      const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5, {
+        mcCount: 0,
+        speedCount: 4,
+      });
+      expect(game).toHaveLength(4);
+      expect(game.every((g) => g.type === 'order' || g.type === 'select')).toBe(true);
+    });
+
+    it('speedCount=0 → MC-only game', () => {
+      const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5, {
+        mcCount: 5,
+        speedCount: 0,
+      });
+      expect(game).toHaveLength(5);
+      expect(game.every((g) => g.type === 'mc')).toBe(true);
+    });
+
+    it('clamps mcCount to allMC.length', () => {
+      const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5, {
+        mcCount: 9999,
+        speedCount: 0,
+      });
+      expect(game).toHaveLength(allMC.length);
+    });
+
+    it('preserves ~50/50 split for even speedCount', () => {
+      const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5, {
+        mcCount: 0,
+        speedCount: 4,
+      });
+      const aCount = game.filter((g) => g.type === 'order').length;
+      const bCount = game.filter((g) => g.type === 'select').length;
+      expect(aCount).toBe(2);
+      expect(bCount).toBe(2);
+    });
+
+    it('splits odd speedCount with the extra going to A or B randomly', () => {
+      // rng()=>0 (< 0.5) → extra goes to B, so A=2, B=3
+      const lowGame = selectGameQuestions(allMC, allOrder, allSelect, () => 0, {
+        mcCount: 0,
+        speedCount: 5,
+      });
+      expect(lowGame.filter((g) => g.type === 'order').length).toBe(2);
+      expect(lowGame.filter((g) => g.type === 'select').length).toBe(3);
+
+      // rng()=>0.9 (>= 0.5) → extra goes to A, so A=3, B=2
+      const highGame = selectGameQuestions(allMC, allOrder, allSelect, () => 0.9, {
+        mcCount: 0,
+        speedCount: 5,
+      });
+      expect(highGame.filter((g) => g.type === 'order').length).toBe(3);
+      expect(highGame.filter((g) => g.type === 'select').length).toBe(2);
+    });
+
+    it('options not provided → defaults to 15/15 (backward compat)', () => {
+      const gameWithoutOpts = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5);
+      const gameWithUndefined = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5, {});
+      expect(gameWithoutOpts).toHaveLength(30);
+      expect(gameWithUndefined).toHaveLength(30);
+    });
+  });
 });
