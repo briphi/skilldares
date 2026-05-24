@@ -37,7 +37,12 @@ function AppShell() {
   const { state, helpers } = useGameState();
   const { highScore, updateHighScore } = useHighScore();
 
-  useEndOfGameHighScorePersist(state.phase, state.score, highScore, updateHighScore);
+  const { previousHighScore } = useEndOfGameHighScorePersist(
+    state.phase,
+    state.score,
+    highScore,
+    updateHighScore,
+  );
 
   const handleStart = useCallback(() => {
     helpers.startGame(selectGameQuestions(mcPool, orderPool, selectPool, defaultRng));
@@ -58,6 +63,7 @@ function AppShell() {
       <EndScreen
         finalScore={state.score}
         personalBest={highScore}
+        previousPersonalBest={previousHighScore}
         onPlayAgain={handlePlayAgain}
       />
     );

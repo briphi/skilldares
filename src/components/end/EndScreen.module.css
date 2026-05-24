@@ -60,3 +60,32 @@
   margin: 0;
   max-width: 480px;
 }
+
+/* ---------- Celebrating variant (Story 3.3) ---------- */
+
+.celebrating {
+  /* Anchor for the absolutely-positioned Confetti overlay. */
+  position: relative;
+}
+
+.celebrateHeader {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-brand-accent);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.scoreAccent {
+  color: var(--color-brand-accent);
+}
+
+.wasLine {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
