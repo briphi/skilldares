@@ -2,281 +2,899 @@
   {
     "prompt": "Pick what's in the House Salad",
     "criteriaType": "items-in-dish",
-    "items": ["Cucumbers", "Tomatoes", "Carrots", "Red Onions", "Croutons"],
-    "correctSet": ["Cucumbers", "Tomatoes", "Carrots", "Red Onions", "Croutons"],
-    "menuRefs": ["menu_front.md:82"]
+    "items": [
+      "Cucumbers",
+      "Tomatoes",
+      "Carrots",
+      "Red Onions",
+      "Croutons",
+      "Pop Rocks"
+    ],
+    "correctSet": [
+      "Cucumbers",
+      "Tomatoes",
+      "Carrots",
+      "Red Onions",
+      "Croutons"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:82"
+    ]
   },
   {
     "prompt": "Pick what's in the House Salad",
     "criteriaType": "items-in-dish",
-    "items": ["Cucumbers", "Tomatoes", "Bacon", "Croutons", "Mashed Potatoes"],
-    "correctSet": ["Cucumbers", "Tomatoes", "Croutons"],
-    "menuRefs": ["menu_front.md:82"]
+    "items": [
+      "Cucumbers",
+      "Tomatoes",
+      "Bacon",
+      "Croutons",
+      "Mashed Potatoes",
+      "Cocoa Puffs"
+    ],
+    "correctSet": [
+      "Cucumbers",
+      "Tomatoes",
+      "Croutons"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:82"
+    ]
   },
   {
     "prompt": "Pick what's in the Caesar Salad",
     "criteriaType": "items-in-dish",
-    "items": ["Romaine Lettuce", "Croutons", "Parmesan Cheese", "Sauerkraut", "Coleslaw"],
-    "correctSet": ["Romaine Lettuce", "Croutons", "Parmesan Cheese"],
-    "menuRefs": ["menu_front.md:85"]
+    "items": [
+      "Romaine Lettuce",
+      "Croutons",
+      "Parmesan Cheese",
+      "Sauerkraut",
+      "Coleslaw",
+      "Whipped Cream"
+    ],
+    "correctSet": [
+      "Romaine Lettuce",
+      "Croutons",
+      "Parmesan Cheese"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:85"
+    ]
   },
   {
     "prompt": "Pick what's in the Reuben Spring Roll",
     "criteriaType": "items-in-dish",
-    "items": ["Corned Beef", "Sauerkraut", "Swiss Cheese", "Cheddar Cheese", "Pulled Pork"],
-    "correctSet": ["Corned Beef", "Sauerkraut", "Swiss Cheese"],
-    "menuRefs": ["menu_front.md:12"]
+    "items": [
+      "Corned Beef",
+      "Sauerkraut",
+      "Swiss Cheese",
+      "Cheddar Cheese",
+      "Pulled Pork",
+      "Marshmallow Fluff"
+    ],
+    "correctSet": [
+      "Corned Beef",
+      "Sauerkraut",
+      "Swiss Cheese"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:12"
+    ]
   },
   {
     "prompt": "Pick what's in the Nachos",
     "criteriaType": "items-in-dish",
-    "items": ["Black Beans", "Queso Fresco", "Lime Crema", "Pita", "Hot Honey"],
-    "correctSet": ["Black Beans", "Queso Fresco", "Lime Crema"],
-    "menuRefs": ["menu_front.md:15"]
+    "items": [
+      "Black Beans",
+      "Queso Fresco",
+      "Lime Crema",
+      "Pita",
+      "Hot Honey",
+      "Banana Slices"
+    ],
+    "correctSet": [
+      "Black Beans",
+      "Queso Fresco",
+      "Lime Crema"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:15"
+    ]
   },
   {
     "prompt": "Pick what's in the Stuffed Jalapenos",
     "criteriaType": "items-in-dish",
-    "items": ["Cheddar Cheese", "Bacon", "Hot Honey", "Marie Rose Sauce", "Swiss Cheese"],
-    "correctSet": ["Cheddar Cheese", "Bacon", "Hot Honey"],
-    "menuRefs": ["menu_front.md:19"]
+    "items": [
+      "Cheddar Cheese",
+      "Bacon",
+      "Hot Honey",
+      "Marie Rose Sauce",
+      "Swiss Cheese",
+      "Raisins"
+    ],
+    "correctSet": [
+      "Cheddar Cheese",
+      "Bacon",
+      "Hot Honey"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:19"
+    ]
   },
   {
     "prompt": "Pick what's in the Chipotle Lime Flatbread",
     "criteriaType": "items-in-dish",
-    "items": ["Chicken", "Cheddar Cheese", "Avocado", "Lime Crema", "Pickled Red Onion"],
-    "correctSet": ["Chicken", "Cheddar Cheese", "Avocado", "Lime Crema"],
-    "menuRefs": ["menu_front.md:31"]
+    "items": [
+      "Chicken",
+      "Cheddar Cheese",
+      "Avocado",
+      "Lime Crema",
+      "Pickled Red Onion",
+      "Chocolate Sauce"
+    ],
+    "correctSet": [
+      "Chicken",
+      "Cheddar Cheese",
+      "Avocado",
+      "Lime Crema"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:31"
+    ]
   },
   {
     "prompt": "Pick what's in the Hummus Board",
     "criteriaType": "items-in-dish",
-    "items": ["Roasted Red Peppers", "Halloumi Cheese", "Pita", "Bacon", "Croutons"],
-    "correctSet": ["Roasted Red Peppers", "Halloumi Cheese", "Pita"],
-    "menuRefs": ["menu_front.md:37"]
+    "items": [
+      "Roasted Red Peppers",
+      "Halloumi Cheese",
+      "Pita",
+      "Bacon",
+      "Croutons",
+      "Beef Jerky"
+    ],
+    "correctSet": [
+      "Roasted Red Peppers",
+      "Halloumi Cheese",
+      "Pita"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:37"
+    ]
   },
   {
     "prompt": "Pick what's in the Street Corn Bowl",
     "criteriaType": "items-in-dish",
-    "items": ["Grilled Chicken", "Avocado", "Roasted Corn", "Queso Fresco", "Brown Gravy"],
-    "correctSet": ["Grilled Chicken", "Avocado", "Roasted Corn", "Queso Fresco"],
-    "menuRefs": ["menu_front.md:101"]
+    "items": [
+      "Grilled Chicken",
+      "Avocado",
+      "Roasted Corn",
+      "Queso Fresco",
+      "Brown Gravy",
+      "Gummy Bears"
+    ],
+    "correctSet": [
+      "Grilled Chicken",
+      "Avocado",
+      "Roasted Corn",
+      "Queso Fresco"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:101"
+    ]
   },
   {
     "prompt": "Pick what's in the Chicken Power Bowl",
     "criteriaType": "items-in-dish",
-    "items": ["Grilled Chicken", "Chickpeas", "Avocado", "Peanut Vinaigrette", "Carrots"],
-    "correctSet": ["Grilled Chicken", "Chickpeas", "Avocado", "Peanut Vinaigrette"],
-    "menuRefs": ["menu_front.md:104"]
+    "items": [
+      "Grilled Chicken",
+      "Chickpeas",
+      "Avocado",
+      "Peanut Vinaigrette",
+      "Carrots",
+      "Frosted Flakes"
+    ],
+    "correctSet": [
+      "Grilled Chicken",
+      "Chickpeas",
+      "Avocado",
+      "Peanut Vinaigrette"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:104"
+    ]
   },
   {
     "prompt": "Pick what's in the Pork Tacos",
     "criteriaType": "items-in-dish",
-    "items": ["Pulled Pork", "Pineapple", "Queso Fresco", "Avocado", "Pico De Gallo"],
-    "correctSet": ["Pulled Pork", "Pineapple", "Queso Fresco"],
-    "menuRefs": ["menu_front.md:116"]
+    "items": [
+      "Pulled Pork",
+      "Pineapple",
+      "Queso Fresco",
+      "Avocado",
+      "Pico De Gallo",
+      "Cotton Candy"
+    ],
+    "correctSet": [
+      "Pulled Pork",
+      "Pineapple",
+      "Queso Fresco"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:116"
+    ]
   },
   {
     "prompt": "Pick what's in the Marinated Shrimp Tacos",
     "criteriaType": "items-in-dish",
-    "items": ["Pico De Gallo", "Lettuce", "Guacamole", "Queso Fresco", "Pineapple"],
-    "correctSet": ["Pico De Gallo", "Lettuce", "Guacamole", "Queso Fresco"],
-    "menuRefs": ["menu_front.md:119"]
+    "items": [
+      "Pico De Gallo",
+      "Lettuce",
+      "Guacamole",
+      "Queso Fresco",
+      "Pineapple",
+      "Peanut Butter"
+    ],
+    "correctSet": [
+      "Pico De Gallo",
+      "Lettuce",
+      "Guacamole",
+      "Queso Fresco"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:119"
+    ]
   },
   {
     "prompt": "Pick what's in the All American Burger",
     "criteriaType": "items-in-dish",
-    "items": ["Lettuce", "Tomato", "American Cheese", "Bacon", "Pickled Red Onion"],
-    "correctSet": ["Lettuce", "Tomato", "American Cheese", "Bacon"],
-    "menuRefs": ["menu_front.md:131"]
+    "items": [
+      "Lettuce",
+      "Tomato",
+      "American Cheese",
+      "Bacon",
+      "Pickled Red Onion",
+      "Glitter"
+    ],
+    "correctSet": [
+      "Lettuce",
+      "Tomato",
+      "American Cheese",
+      "Bacon"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:131"
+    ]
   },
   {
     "prompt": "Pick what's in the Steakhouse Burger",
     "criteriaType": "items-in-dish",
-    "items": ["Onion Ring", "Fresh Mozzarella", "BBQ Sauce", "Au Jus", "Provolone"],
-    "correctSet": ["Onion Ring", "Fresh Mozzarella", "BBQ Sauce"],
-    "menuRefs": ["menu_front.md:134"]
+    "items": [
+      "Onion Ring",
+      "Fresh Mozzarella",
+      "BBQ Sauce",
+      "Au Jus",
+      "Provolone",
+      "Cool Whip"
+    ],
+    "correctSet": [
+      "Onion Ring",
+      "Fresh Mozzarella",
+      "BBQ Sauce"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:134"
+    ]
   },
   {
     "prompt": "Pick what's in the Bacon and Egg Burger",
     "criteriaType": "items-in-dish",
-    "items": ["Cheddar Cheese", "Bacon", "Sunny Side Up Egg", "Lettuce", "Tomato Jam"],
-    "correctSet": ["Cheddar Cheese", "Bacon", "Sunny Side Up Egg", "Lettuce"],
-    "menuRefs": ["menu_front.md:140"]
+    "items": [
+      "Cheddar Cheese",
+      "Bacon",
+      "Sunny Side Up Egg",
+      "Lettuce",
+      "Tomato Jam",
+      "Rainbow Sprinkles"
+    ],
+    "correctSet": [
+      "Cheddar Cheese",
+      "Bacon",
+      "Sunny Side Up Egg",
+      "Lettuce"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:140"
+    ]
   },
   {
     "prompt": "Pick what's in the Dubliner Burger",
     "criteriaType": "items-in-dish",
-    "items": ["Cheddar Cheese", "Rasher", "Tomato Jam", "Onion Ring", "Avocado"],
-    "correctSet": ["Cheddar Cheese", "Rasher", "Tomato Jam"],
-    "menuRefs": ["menu_front.md:143"]
+    "items": [
+      "Cheddar Cheese",
+      "Rasher",
+      "Tomato Jam",
+      "Onion Ring",
+      "Avocado",
+      "Peeps"
+    ],
+    "correctSet": [
+      "Cheddar Cheese",
+      "Rasher",
+      "Tomato Jam"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:143"
+    ]
   },
   {
     "prompt": "Pick what's in the Salmon BLT Wrap",
     "criteriaType": "items-in-dish",
-    "items": ["Grilled Salmon", "Bacon", "Romaine", "Chipotle Mayo", "Couscous"],
-    "correctSet": ["Grilled Salmon", "Bacon", "Romaine", "Chipotle Mayo"],
-    "menuRefs": ["menu_front.md:154"]
+    "items": [
+      "Grilled Salmon",
+      "Bacon",
+      "Romaine",
+      "Chipotle Mayo",
+      "Couscous",
+      "Skittles"
+    ],
+    "correctSet": [
+      "Grilled Salmon",
+      "Bacon",
+      "Romaine",
+      "Chipotle Mayo"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:154"
+    ]
   },
   {
     "prompt": "Pick what's in the Shepherd's Pie",
     "criteriaType": "items-in-dish",
-    "items": ["Beef", "Carrots", "Brown Gravy", "Peas", "Couscous"],
-    "correctSet": ["Beef", "Carrots", "Brown Gravy", "Peas"],
-    "menuRefs": ["menu_back.md:10"]
+    "items": [
+      "Beef",
+      "Carrots",
+      "Brown Gravy",
+      "Peas",
+      "Couscous",
+      "Birthday Cake"
+    ],
+    "correctSet": [
+      "Beef",
+      "Carrots",
+      "Brown Gravy",
+      "Peas"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:10"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Deviled Eggs", "Stuffed Jalapenos", "Nachos", "Reuben Spring Roll", "Mixed Greens Salad"],
-    "correctSet": ["Deviled Eggs", "Stuffed Jalapenos", "Mixed Greens Salad"],
-    "menuRefs": ["menu_front.md:9", "menu_front.md:19", "menu_front.md:88"]
+    "items": [
+      "Deviled Eggs",
+      "Stuffed Jalapenos",
+      "Nachos",
+      "Reuben Spring Roll",
+      "Mixed Greens Salad",
+      "Garlic Bread"
+    ],
+    "correctSet": [
+      "Deviled Eggs",
+      "Stuffed Jalapenos",
+      "Mixed Greens Salad"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:9",
+      "menu_front.md:19",
+      "menu_front.md:88"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Street Corn Bowl", "Pork Tacos", "Fish Tacos", "Marinated Shrimp Tacos", "Chicken Power Bowl"],
-    "correctSet": ["Street Corn Bowl", "Pork Tacos", "Marinated Shrimp Tacos"],
-    "menuRefs": ["menu_front.md:101", "menu_front.md:116", "menu_front.md:119"]
+    "items": [
+      "Street Corn Bowl",
+      "Pork Tacos",
+      "Fish Tacos",
+      "Marinated Shrimp Tacos",
+      "Chicken Power Bowl",
+      "Pizza Crust"
+    ],
+    "correctSet": [
+      "Street Corn Bowl",
+      "Pork Tacos",
+      "Marinated Shrimp Tacos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:101",
+      "menu_front.md:116",
+      "menu_front.md:119"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Flourless Chocolate Cake", "New York Cheesecake", "S'mores Dip", "Deviled Eggs", "Buffalo Chicken Dip"],
-    "correctSet": ["Flourless Chocolate Cake", "Deviled Eggs"],
-    "menuRefs": ["menu_back.md:29", "menu_front.md:9"]
+    "items": [
+      "Flourless Chocolate Cake",
+      "New York Cheesecake",
+      "S'mores Dip",
+      "Deviled Eggs",
+      "Buffalo Chicken Dip",
+      "Croissants"
+    ],
+    "correctSet": [
+      "Flourless Chocolate Cake",
+      "Deviled Eggs"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:29",
+      "menu_front.md:9"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["House Salad", "Caesar Salad", "Mixed Greens Salad", "Southwest Salad", "Pork Tacos"],
-    "correctSet": ["Mixed Greens Salad", "Pork Tacos"],
-    "menuRefs": ["menu_front.md:88", "menu_front.md:116"]
+    "items": [
+      "House Salad",
+      "Caesar Salad",
+      "Mixed Greens Salad",
+      "Southwest Salad",
+      "Pork Tacos",
+      "Bagel"
+    ],
+    "correctSet": [
+      "Mixed Greens Salad",
+      "Pork Tacos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:88",
+      "menu_front.md:116"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Stuffed Jalapenos", "Chicken Tenders", "BBQ Chicken Flatbread", "Chipotle Lime Flatbread", "Marinated Shrimp Tacos"],
-    "correctSet": ["Stuffed Jalapenos", "Marinated Shrimp Tacos"],
-    "menuRefs": ["menu_front.md:19", "menu_front.md:119"]
+    "items": [
+      "Stuffed Jalapenos",
+      "Chicken Tenders",
+      "BBQ Chicken Flatbread",
+      "Chipotle Lime Flatbread",
+      "Marinated Shrimp Tacos",
+      "Wonder Bread"
+    ],
+    "correctSet": [
+      "Stuffed Jalapenos",
+      "Marinated Shrimp Tacos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:19",
+      "menu_front.md:119"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Deviled Eggs", "Stuffed Jalapenos", "Mixed Greens Salad", "Street Corn Bowl", "Pork Tacos"],
-    "correctSet": ["Deviled Eggs", "Stuffed Jalapenos", "Mixed Greens Salad", "Street Corn Bowl", "Pork Tacos"],
-    "menuRefs": ["menu_front.md:9", "menu_front.md:19", "menu_front.md:88", "menu_front.md:101", "menu_front.md:116"]
+    "items": [
+      "Deviled Eggs",
+      "Stuffed Jalapenos",
+      "Mixed Greens Salad",
+      "Street Corn Bowl",
+      "Pork Tacos",
+      "Soft Pretzel"
+    ],
+    "correctSet": [
+      "Deviled Eggs",
+      "Stuffed Jalapenos",
+      "Mixed Greens Salad",
+      "Street Corn Bowl",
+      "Pork Tacos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:9",
+      "menu_front.md:19",
+      "menu_front.md:88",
+      "menu_front.md:101",
+      "menu_front.md:116"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Chicken Power Bowl", "Grilled Salmon Bowl", "Street Corn Bowl", "Fish Tacos", "Pork Tacos"],
-    "correctSet": ["Street Corn Bowl", "Pork Tacos"],
-    "menuRefs": ["menu_front.md:101", "menu_front.md:116"]
+    "items": [
+      "Chicken Power Bowl",
+      "Grilled Salmon Bowl",
+      "Street Corn Bowl",
+      "Fish Tacos",
+      "Pork Tacos",
+      "Beer-Battered Anything"
+    ],
+    "correctSet": [
+      "Street Corn Bowl",
+      "Pork Tacos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:101",
+      "menu_front.md:116"
+    ]
   },
   {
     "prompt": "Pick what's gluten-free",
     "criteriaType": "items-gf",
-    "items": ["Buffalo Chicken Dip", "Nachos", "Reuben Spring Roll", "Baked Pretzel Bites", "Stuffed Jalapenos"],
-    "correctSet": ["Stuffed Jalapenos"],
-    "menuRefs": ["menu_front.md:19"]
+    "items": [
+      "Buffalo Chicken Dip",
+      "Nachos",
+      "Reuben Spring Roll",
+      "Baked Pretzel Bites",
+      "Stuffed Jalapenos",
+      "A Loaf of Bread"
+    ],
+    "correctSet": [
+      "Stuffed Jalapenos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:19"
+    ]
   },
   {
     "prompt": "Pick the tacos",
     "criteriaType": "items-in-section",
-    "items": ["Pork Tacos", "Marinated Shrimp Tacos", "Fish Tacos", "Salmon BLT Wrap", "Cheesesteak"],
-    "correctSet": ["Pork Tacos", "Marinated Shrimp Tacos", "Fish Tacos"],
-    "menuRefs": ["menu_front.md:116", "menu_front.md:119", "menu_front.md:122"]
+    "items": [
+      "Pork Tacos",
+      "Marinated Shrimp Tacos",
+      "Fish Tacos",
+      "Salmon BLT Wrap",
+      "Cheesesteak",
+      "A Taco Bell Order"
+    ],
+    "correctSet": [
+      "Pork Tacos",
+      "Marinated Shrimp Tacos",
+      "Fish Tacos"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:116",
+      "menu_front.md:119",
+      "menu_front.md:122"
+    ]
   },
   {
     "prompt": "Pick the burgers",
     "criteriaType": "items-in-section",
-    "items": ["All American Burger", "The Steakhouse", "Kildares Pub Burger", "Bacon and Egg", "The Dubliner"],
-    "correctSet": ["All American Burger", "The Steakhouse", "Kildares Pub Burger", "Bacon and Egg", "The Dubliner"],
-    "menuRefs": ["menu_front.md:131", "menu_front.md:134", "menu_front.md:137", "menu_front.md:140", "menu_front.md:143"]
+    "items": [
+      "All American Burger",
+      "The Steakhouse",
+      "Kildares Pub Burger",
+      "Bacon and Egg",
+      "The Dubliner",
+      "Lasagna"
+    ],
+    "correctSet": [
+      "All American Burger",
+      "The Steakhouse",
+      "Kildares Pub Burger",
+      "Bacon and Egg",
+      "The Dubliner"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:131",
+      "menu_front.md:134",
+      "menu_front.md:137",
+      "menu_front.md:140",
+      "menu_front.md:143"
+    ]
   },
   {
     "prompt": "Pick the desserts",
     "criteriaType": "items-in-section",
-    "items": ["Flourless Chocolate Cake", "New York Cheesecake", "S'mores Dip", "Mac & Cheese", "Baked Pretzel Bites"],
-    "correctSet": ["Flourless Chocolate Cake", "New York Cheesecake", "S'mores Dip"],
-    "menuRefs": ["menu_back.md:29", "menu_back.md:32", "menu_back.md:35"]
+    "items": [
+      "Flourless Chocolate Cake",
+      "New York Cheesecake",
+      "S'mores Dip",
+      "Mac & Cheese",
+      "Baked Pretzel Bites",
+      "Brussels Sprouts"
+    ],
+    "correctSet": [
+      "Flourless Chocolate Cake",
+      "New York Cheesecake",
+      "S'mores Dip"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:29",
+      "menu_back.md:32",
+      "menu_back.md:35"
+    ]
   },
   {
     "prompt": "Pick the fry baskets",
     "criteriaType": "items-in-section",
-    "items": ["Basket of Fries", "Loaded Fries", "Old Bay Fries", "Sweet Potato Fries", "Brisket Fries"],
-    "correctSet": ["Basket of Fries", "Loaded Fries", "Old Bay Fries", "Sweet Potato Fries", "Brisket Fries"],
-    "menuRefs": ["menu_front.md:61", "menu_front.md:64", "menu_front.md:67", "menu_front.md:70", "menu_front.md:73"]
+    "items": [
+      "Basket of Fries",
+      "Loaded Fries",
+      "Old Bay Fries",
+      "Sweet Potato Fries",
+      "Brisket Fries",
+      "Mozzarella Sticks"
+    ],
+    "correctSet": [
+      "Basket of Fries",
+      "Loaded Fries",
+      "Old Bay Fries",
+      "Sweet Potato Fries",
+      "Brisket Fries"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:61",
+      "menu_front.md:64",
+      "menu_front.md:67",
+      "menu_front.md:70",
+      "menu_front.md:73"
+    ]
   },
   {
     "prompt": "Pick the salads",
     "criteriaType": "items-in-section",
-    "items": ["House Salad", "Caesar Salad", "Mixed Greens Salad", "Southwest Salad", "Hummus Board"],
-    "correctSet": ["House Salad", "Caesar Salad", "Mixed Greens Salad", "Southwest Salad"],
-    "menuRefs": ["menu_front.md:82", "menu_front.md:85", "menu_front.md:88", "menu_front.md:91"]
+    "items": [
+      "House Salad",
+      "Caesar Salad",
+      "Mixed Greens Salad",
+      "Southwest Salad",
+      "Hummus Board",
+      "Cheeseburger"
+    ],
+    "correctSet": [
+      "House Salad",
+      "Caesar Salad",
+      "Mixed Greens Salad",
+      "Southwest Salad"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:82",
+      "menu_front.md:85",
+      "menu_front.md:88",
+      "menu_front.md:91"
+    ]
   },
   {
     "prompt": "Pick the bowls",
     "criteriaType": "items-in-section",
-    "items": ["Street Corn Bowl", "Chicken Power Bowl", "Grilled Salmon Bowl", "Fish Tacos", "Bangers and Mash"],
-    "correctSet": ["Street Corn Bowl", "Chicken Power Bowl", "Grilled Salmon Bowl"],
-    "menuRefs": ["menu_front.md:101", "menu_front.md:104", "menu_front.md:107"]
+    "items": [
+      "Street Corn Bowl",
+      "Chicken Power Bowl",
+      "Grilled Salmon Bowl",
+      "Fish Tacos",
+      "Bangers and Mash",
+      "Cereal"
+    ],
+    "correctSet": [
+      "Street Corn Bowl",
+      "Chicken Power Bowl",
+      "Grilled Salmon Bowl"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:101",
+      "menu_front.md:104",
+      "menu_front.md:107"
+    ]
   },
   {
     "prompt": "Pick the entrees",
     "criteriaType": "items-in-section",
-    "items": ["Steak Frites", "Shepherd's Pie", "Bangers and Mash", "Reuben Handheld", "Chicken Power Bowl"],
-    "correctSet": ["Steak Frites", "Shepherd's Pie", "Bangers and Mash"],
-    "menuRefs": ["menu_back.md:7", "menu_back.md:10", "menu_back.md:22"]
+    "items": [
+      "Steak Frites",
+      "Shepherd's Pie",
+      "Bangers and Mash",
+      "Reuben Handheld",
+      "Chicken Power Bowl",
+      "A Mint"
+    ],
+    "correctSet": [
+      "Steak Frites",
+      "Shepherd's Pie",
+      "Bangers and Mash"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:7",
+      "menu_back.md:10",
+      "menu_back.md:22"
+    ]
   },
   {
     "prompt": "Pick the handhelds",
     "criteriaType": "items-in-section",
-    "items": ["Salmon BLT Wrap", "Reuben Handheld", "BBQ Pork Handheld", "Grilled Chicken Handheld", "Steak Frites"],
-    "correctSet": ["Salmon BLT Wrap", "Reuben Handheld", "BBQ Pork Handheld", "Grilled Chicken Handheld"],
-    "menuRefs": ["menu_front.md:154", "menu_front.md:157", "menu_front.md:160", "menu_front.md:163"]
+    "items": [
+      "Salmon BLT Wrap",
+      "Reuben Handheld",
+      "BBQ Pork Handheld",
+      "Grilled Chicken Handheld",
+      "Steak Frites",
+      "A Bowling Ball"
+    ],
+    "correctSet": [
+      "Salmon BLT Wrap",
+      "Reuben Handheld",
+      "BBQ Pork Handheld",
+      "Grilled Chicken Handheld"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:154",
+      "menu_front.md:157",
+      "menu_front.md:160",
+      "menu_front.md:163"
+    ]
   },
   {
     "prompt": "Pick the shareables",
     "criteriaType": "items-in-section",
-    "items": ["Deviled Eggs", "Reuben Spring Roll", "Nachos", "Buffalo Chicken Dip", "Pork Tacos"],
-    "correctSet": ["Deviled Eggs", "Reuben Spring Roll", "Nachos", "Buffalo Chicken Dip"],
-    "menuRefs": ["menu_front.md:9", "menu_front.md:12", "menu_front.md:15", "menu_front.md:25"]
+    "items": [
+      "Deviled Eggs",
+      "Reuben Spring Roll",
+      "Nachos",
+      "Buffalo Chicken Dip",
+      "Pork Tacos",
+      "An IOU"
+    ],
+    "correctSet": [
+      "Deviled Eggs",
+      "Reuben Spring Roll",
+      "Nachos",
+      "Buffalo Chicken Dip"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:9",
+      "menu_front.md:12",
+      "menu_front.md:15",
+      "menu_front.md:25"
+    ]
   },
   {
     "prompt": "Pick the sides",
     "criteriaType": "items-in-section",
-    "items": ["Mac & Cheese", "Coleslaw", "Mashed Potatoes", "Sauteed Mushrooms", "Pork Tacos"],
-    "correctSet": ["Mac & Cheese", "Coleslaw", "Mashed Potatoes", "Sauteed Mushrooms"],
-    "menuRefs": ["menu_back.md:42", "menu_back.md:44", "menu_back.md:45", "menu_back.md:46"]
+    "items": [
+      "Mac & Cheese",
+      "Coleslaw",
+      "Mashed Potatoes",
+      "Sauteed Mushrooms",
+      "Pork Tacos",
+      "A Lecture"
+    ],
+    "correctSet": [
+      "Mac & Cheese",
+      "Coleslaw",
+      "Mashed Potatoes",
+      "Sauteed Mushrooms"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:42",
+      "menu_back.md:44",
+      "menu_back.md:45",
+      "menu_back.md:46"
+    ]
   },
   {
     "prompt": "Pick the signature cocktails",
     "criteriaType": "items-in-section",
-    "items": ["Espresso Martini", "Gin Hibiscus Spritz", "Kildares Old Fashioned", "Dragonfruit Mojito", "Pinot Noir"],
-    "correctSet": ["Espresso Martini", "Gin Hibiscus Spritz", "Kildares Old Fashioned", "Dragonfruit Mojito"],
-    "menuRefs": ["menu_back.md:56", "menu_back.md:59", "menu_back.md:62", "menu_back.md:68"]
+    "items": [
+      "Espresso Martini",
+      "Gin Hibiscus Spritz",
+      "Kildares Old Fashioned",
+      "Dragonfruit Mojito",
+      "Pinot Noir",
+      "Tap Water"
+    ],
+    "correctSet": [
+      "Espresso Martini",
+      "Gin Hibiscus Spritz",
+      "Kildares Old Fashioned",
+      "Dragonfruit Mojito"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:56",
+      "menu_back.md:59",
+      "menu_back.md:62",
+      "menu_back.md:68"
+    ]
   },
   {
     "prompt": "Pick the soups",
     "criteriaType": "items-in-section",
-    "items": ["French Onion Soup", "Beef and Chorizo Chili", "Hummus Board", "BBQ Chicken Flatbread", "Sweet Potato Fries"],
-    "correctSet": ["French Onion Soup", "Beef and Chorizo Chili"],
-    "menuRefs": ["menu_front.md:54", "menu_front.md:55"]
+    "items": [
+      "French Onion Soup",
+      "Beef and Chorizo Chili",
+      "Hummus Board",
+      "BBQ Chicken Flatbread",
+      "Sweet Potato Fries",
+      "Tom Kha Soup"
+    ],
+    "correctSet": [
+      "French Onion Soup",
+      "Beef and Chorizo Chili"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:54",
+      "menu_front.md:55"
+    ]
   },
   {
     "prompt": "Pick the burgers",
     "criteriaType": "items-in-section",
-    "items": ["All American Burger", "The Dubliner", "Reuben Handheld", "BBQ Pork Handheld", "Grilled Chicken Handheld"],
-    "correctSet": ["All American Burger", "The Dubliner"],
-    "menuRefs": ["menu_front.md:131", "menu_front.md:143"]
+    "items": [
+      "All American Burger",
+      "The Dubliner",
+      "Reuben Handheld",
+      "BBQ Pork Handheld",
+      "Grilled Chicken Handheld",
+      "Sushi Roll"
+    ],
+    "correctSet": [
+      "All American Burger",
+      "The Dubliner"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_front.md:131",
+      "menu_front.md:143"
+    ]
   },
   {
     "prompt": "Pick the desserts",
     "criteriaType": "items-in-section",
-    "items": ["New York Cheesecake", "S'mores Dip", "Mac & Cheese", "Sweet Potato Fries", "Pork Tacos"],
-    "correctSet": ["New York Cheesecake", "S'mores Dip"],
-    "menuRefs": ["menu_back.md:32", "menu_back.md:35"]
+    "items": [
+      "New York Cheesecake",
+      "S'mores Dip",
+      "Mac & Cheese",
+      "Sweet Potato Fries",
+      "Pork Tacos",
+      "A Side of Ranch"
+    ],
+    "correctSet": [
+      "New York Cheesecake",
+      "S'mores Dip"
+    ],
+    "funnyWrongIndex": 5,
+    "menuRefs": [
+      "menu_back.md:32",
+      "menu_back.md:35"
+    ]
   }
 ]

@@ -78,13 +78,21 @@ export const SpeedSelectQuestionSchema = z
   .object({
     prompt: z.string().min(1),
     criteriaType: SpeedSelectCriteriaTypeSchema,
-    /** Exactly 5 items shown in the grid (FR19). */
-    items: z.array(z.string().min(1)).length(5),
+    /** Exactly 6 items shown in the grid (FR19 updated 2026-05-24 from 5 → 6). */
+    items: z.array(z.string().min(1)).length(6),
     /**
-     * Subset of `items` that satisfies the criteria. At least 1, up to all 5 (FR21).
-     * Each entry MUST be one of the strings in `items` (enforced via refine).
+     * Subset of `items` that satisfies the criteria. At least 1, up to 5 — the
+     * remaining slot is reserved for an obviously-wrong joke item (see
+     * funnyWrongIndex). Each entry MUST be one of the strings in `items`.
      */
     correctSet: z.array(z.string().min(1)).min(1).max(5),
+    /**
+     * Index (0-5) of the obviously-wrong joke item — analogous to MC's
+     * funnyWrongIndex. Not used by runtime (speed rounds have no hint
+     * mechanic); preserved for content-authoring traceability and any
+     * future hint/highlight feature.
+     */
+    funnyWrongIndex: z.number().int().min(0).max(5),
     menuRefs: z.array(z.string().min(1)),
   })
   .refine((q) => q.correctSet.every((c) => q.items.includes(c)), {
@@ -94,6 +102,10 @@ export const SpeedSelectQuestionSchema = z
   .refine((q) => new Set(q.correctSet).size === q.correctSet.length, {
     message: 'correctSet must not contain duplicates',
     path: ['correctSet'],
+  })
+  .refine((q) => !q.correctSet.includes(q.items[q.funnyWrongIndex]!), {
+    message: 'funnyWrongIndex must point to an item NOT in correctSet',
+    path: ['funnyWrongIndex'],
   });
 
 export type SpeedSelectQuestion = z.infer<typeof SpeedSelectQuestionSchema>;

@@ -147,8 +147,9 @@ function makeSelectFixture(i: number): SpeedSelectQuestion {
   return {
     prompt: `Select ${i}`,
     criteriaType: 'items-in-dish',
-    items: ['a', 'b', 'c', 'd', 'e'],
+    items: ['a', 'b', 'c', 'd', 'e', 'f'],
     correctSet: ['a'],
+    funnyWrongIndex: 5,
     menuRefs: [],
   };
 }

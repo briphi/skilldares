@@ -8,8 +8,12 @@ import { uiStrings } from '../../content/uiStrings';
 const fixtureQuestion: SpeedSelectQuestion = {
   prompt: 'Pick what is correct',
   criteriaType: 'items-in-dish',
-  items: ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'],
+  // 6 items: Foxtrot is the obvious-joke item at index 5 (per FR19 update —
+  // speed-select now has 6 items, the 6th is a funny-wrong analog of MC's
+  // funnyWrongIndex). Foxtrot is not in correctSet.
+  items: ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot'],
   correctSet: ['Alpha', 'Charlie', 'Echo'],
+  funnyWrongIndex: 5,
   menuRefs: [],
 };
 
