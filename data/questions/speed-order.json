@@ -1,0 +1,426 @@
+[
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Carrots & Celery", "factorValue": 3 },
+      { "name": "Mac & Cheese", "factorValue": 8 },
+      { "name": "Sweet Potato Fries", "factorValue": 10.99 }
+    ],
+    "menuRefs": ["menu_back.md:50", "menu_back.md:42", "menu_front.md:73"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Coleslaw", "factorValue": 4 },
+      { "name": "French Onion Soup", "factorValue": 7.99 },
+      { "name": "Basket of Fries", "factorValue": 8.99 }
+    ],
+    "menuRefs": ["menu_back.md:44", "menu_front.md:54", "menu_front.md:61"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Carrots & Celery", "factorValue": 3 },
+      { "name": "Roasted Broccoli & Cauliflower", "factorValue": 5 },
+      { "name": "Flourless Chocolate Cake", "factorValue": 7 },
+      { "name": "New York Cheesecake", "factorValue": 8 }
+    ],
+    "menuRefs": ["menu_back.md:50", "menu_back.md:47", "menu_back.md:29", "menu_back.md:32"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Mashed Potatoes", "factorValue": 4 },
+      { "name": "Bacon Mac & Cheese", "factorValue": 9 },
+      { "name": "Loaded Fries", "factorValue": 12.99 },
+      { "name": "Steak Frites", "factorValue": 23.99 }
+    ],
+    "menuRefs": ["menu_back.md:45", "menu_back.md:43", "menu_front.md:64", "menu_back.md:7"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Coleslaw", "factorValue": 4 },
+      { "name": "Flourless Chocolate Cake", "factorValue": 7 },
+      { "name": "Mac & Cheese", "factorValue": 8 },
+      { "name": "Bacon Mac & Cheese", "factorValue": 9 },
+      { "name": "S'mores Dip", "factorValue": 12 }
+    ],
+    "menuRefs": ["menu_back.md:44", "menu_back.md:29", "menu_back.md:42", "menu_back.md:43", "menu_back.md:35"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Side House Salad", "factorValue": 4 },
+      { "name": "Roasted Broccoli & Cauliflower", "factorValue": 5 },
+      { "name": "French Onion Soup", "factorValue": 7.99 }
+    ],
+    "menuRefs": ["menu_back.md:48", "menu_back.md:47", "menu_front.md:54"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Beef and Chorizo Chili", "factorValue": 7.99 },
+      { "name": "Old Bay Fries", "factorValue": 9.99 },
+      { "name": "Reuben Spring Roll", "factorValue": 10.99 }
+    ],
+    "menuRefs": ["menu_front.md:55", "menu_front.md:67", "menu_front.md:12"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Sweet Potato Fries", "factorValue": 10.99 },
+      { "name": "Buffalo Chicken Dip", "factorValue": 12.99 },
+      { "name": "Hummus Board", "factorValue": 13.99 }
+    ],
+    "menuRefs": ["menu_front.md:73", "menu_front.md:25", "menu_front.md:37"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Old Bay Fries", "factorValue": 9.99 },
+      { "name": "Stuffed Jalapenos", "factorValue": 10.99 },
+      { "name": "Chicken Tenders", "factorValue": 11.99 },
+      { "name": "Nachos", "factorValue": 13.99 }
+    ],
+    "menuRefs": ["menu_front.md:67", "menu_front.md:19", "menu_front.md:22", "menu_front.md:15"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Chipotle Lime Flatbread", "factorValue": 11.99 },
+      { "name": "Loaded Fries", "factorValue": 12.99 },
+      { "name": "Hummus Board", "factorValue": 13.99 }
+    ],
+    "menuRefs": ["menu_front.md:31", "menu_front.md:64", "menu_front.md:37"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Chicken Power Bowl", "factorValue": 14.99 },
+      { "name": "Street Corn Bowl", "factorValue": 15.99 },
+      { "name": "Kildares Pub Burger", "factorValue": 16.99 }
+    ],
+    "menuRefs": ["menu_front.md:104", "menu_front.md:101", "menu_front.md:137"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Pork Tacos", "factorValue": 13.99 },
+      { "name": "Grilled Chicken Handheld", "factorValue": 14.99 },
+      { "name": "Reuben Handheld", "factorValue": 15.99 }
+    ],
+    "menuRefs": ["menu_front.md:116", "menu_front.md:163", "menu_front.md:157"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "BBQ Pork Handheld", "factorValue": 13.99 },
+      { "name": "Hot Roast Beef", "factorValue": 14.99 },
+      { "name": "Reuben Handheld", "factorValue": 15.99 },
+      { "name": "Salmon BLT Wrap", "factorValue": 16.99 }
+    ],
+    "menuRefs": ["menu_front.md:160", "menu_front.md:166", "menu_front.md:157", "menu_front.md:154"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Fish and Chips", "factorValue": 17.99 },
+      { "name": "Irish Breakfast", "factorValue": 19.99 },
+      { "name": "Steak Frites", "factorValue": 23.99 }
+    ],
+    "menuRefs": ["menu_back.md:19", "menu_back.md:16", "menu_back.md:7"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Reuben Handheld", "factorValue": 15.99 },
+      { "name": "Salmon BLT Wrap", "factorValue": 16.99 },
+      { "name": "Bangers and Mash", "factorValue": 17.99 },
+      { "name": "Steak Frites", "factorValue": 23.99 }
+    ],
+    "menuRefs": ["menu_front.md:157", "menu_front.md:154", "menu_back.md:22", "menu_back.md:7"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "French Onion Soup", "factorValue": 7.99 },
+      { "name": "Basket of Fries", "factorValue": 8.99 },
+      { "name": "Old Bay Fries", "factorValue": 9.99 },
+      { "name": "Chicken Tenders", "factorValue": 11.99 },
+      { "name": "Nachos", "factorValue": 13.99 }
+    ],
+    "menuRefs": ["menu_front.md:54", "menu_front.md:61", "menu_front.md:67", "menu_front.md:22", "menu_front.md:15"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Coleslaw", "factorValue": 4 },
+      { "name": "Mac & Cheese", "factorValue": 8 },
+      { "name": "Sweet Potato Fries", "factorValue": 10.99 },
+      { "name": "Chicken Power Bowl", "factorValue": 14.99 },
+      { "name": "Steak Frites", "factorValue": 23.99 }
+    ],
+    "menuRefs": ["menu_back.md:44", "menu_back.md:42", "menu_front.md:73", "menu_front.md:104", "menu_back.md:7"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "10 Kildares Wings", "factorValue": 15.99 },
+      { "name": "Kildares Pub Burger", "factorValue": 16.99 },
+      { "name": "Bangers and Mash", "factorValue": 17.99 }
+    ],
+    "menuRefs": ["menu_front.md:47", "menu_front.md:137", "menu_back.md:22"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "New York Cheesecake", "factorValue": 8 },
+      { "name": "S'mores Dip", "factorValue": 12 },
+      { "name": "Pork Tacos", "factorValue": 13.99 },
+      { "name": "Chicken Power Bowl", "factorValue": 14.99 }
+    ],
+    "menuRefs": ["menu_back.md:32", "menu_back.md:35", "menu_front.md:116", "menu_front.md:104"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Carrots & Celery", "factorValue": 3 },
+      { "name": "Roasted Broccoli & Cauliflower", "factorValue": 5 },
+      { "name": "Mac & Cheese", "factorValue": 8 }
+    ],
+    "menuRefs": ["menu_back.md:50", "menu_back.md:47", "menu_back.md:42"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Flourless Chocolate Cake", "factorValue": 7 },
+      { "name": "Mac & Cheese", "factorValue": 8 },
+      { "name": "Bacon Mac & Cheese", "factorValue": 9 }
+    ],
+    "menuRefs": ["menu_back.md:29", "menu_back.md:42", "menu_back.md:43"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Side House Salad", "factorValue": 4 },
+      { "name": "Flourless Chocolate Cake", "factorValue": 7 },
+      { "name": "New York Cheesecake", "factorValue": 8 },
+      { "name": "S'mores Dip", "factorValue": 12 }
+    ],
+    "menuRefs": ["menu_back.md:48", "menu_back.md:29", "menu_back.md:32", "menu_back.md:35"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Coleslaw", "factorValue": 4 },
+      { "name": "French Onion Soup", "factorValue": 7.99 },
+      { "name": "Caesar Salad", "factorValue": 8.99 }
+    ],
+    "menuRefs": ["menu_back.md:44", "menu_front.md:54", "menu_front.md:85"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Coleslaw", "factorValue": 4 },
+      { "name": "Mac & Cheese", "factorValue": 8 },
+      { "name": "Old Bay Fries", "factorValue": 9.99 },
+      { "name": "Pork Tacos", "factorValue": 13.99 },
+      { "name": "Irish Breakfast", "factorValue": 19.99 }
+    ],
+    "menuRefs": ["menu_back.md:44", "menu_back.md:42", "menu_front.md:67", "menu_front.md:116", "menu_back.md:16"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Sweet Potato Fries", "factorValue": 10.99 },
+      { "name": "Marinated Shrimp Tacos", "factorValue": 14.99 },
+      { "name": "Salmon BLT Wrap", "factorValue": 16.99 }
+    ],
+    "menuRefs": ["menu_front.md:73", "menu_front.md:119", "menu_front.md:154"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "French Onion Soup", "factorValue": 7.99 },
+      { "name": "Caesar Salad", "factorValue": 8.99 },
+      { "name": "Old Bay Fries", "factorValue": 9.99 },
+      { "name": "Stuffed Jalapenos", "factorValue": 10.99 }
+    ],
+    "menuRefs": ["menu_front.md:54", "menu_front.md:85", "menu_front.md:67", "menu_front.md:19"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Gin Hibiscus Spritz", "factorValue": 11 },
+      { "name": "Dragonfruit Mojito", "factorValue": 12 },
+      { "name": "Espresso Martini", "factorValue": 14 }
+    ],
+    "menuRefs": ["menu_back.md:59", "menu_back.md:68", "menu_back.md:56"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Brut (5oz)", "factorValue": 8 },
+      { "name": "Cabernet Sauvignon (5oz)", "factorValue": 10 },
+      { "name": "Pinot Noir (5oz)", "factorValue": 11 }
+    ],
+    "menuRefs": ["menu_back.md:182", "menu_back.md:171", "menu_back.md:173"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Brut (bottle)", "factorValue": 24 },
+      { "name": "Cabernet Sauvignon (bottle)", "factorValue": 30 },
+      { "name": "Pinot Noir (bottle)", "factorValue": 33 }
+    ],
+    "menuRefs": ["menu_back.md:182", "menu_back.md:171", "menu_back.md:173"]
+  },
+  {
+    "prompt": "Order from cheapest to most expensive",
+    "factor": "price",
+    "items": [
+      { "name": "Cucumber Cool", "factorValue": 11 },
+      { "name": "Strawberry Pineapple Martini", "factorValue": 12 },
+      { "name": "Sweet and Spicy Margarita", "factorValue": 14 }
+    ],
+    "menuRefs": ["menu_back.md:71", "menu_back.md:74", "menu_back.md:65"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Guinness", "factorValue": 4.2 },
+      { "name": "Bitburger", "factorValue": 4.8 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:102", "menu_back.md:108", "menu_back.md:105"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Harp", "factorValue": 4.2 },
+      { "name": "Stella", "factorValue": 5.0 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:103", "menu_back.md:106", "menu_back.md:105"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Smithwicks", "factorValue": 4.2 },
+      { "name": "Kona Big Wave", "factorValue": 4.4 },
+      { "name": "Bitburger", "factorValue": 4.8 }
+    ],
+    "menuRefs": ["menu_back.md:109", "menu_back.md:107", "menu_back.md:108"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Guinness", "factorValue": 4.2 },
+      { "name": "Kona Big Wave", "factorValue": 4.4 },
+      { "name": "Bitburger", "factorValue": 4.8 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:102", "menu_back.md:107", "menu_back.md:108", "menu_back.md:105"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Michelob Ultra", "factorValue": 4.2 },
+      { "name": "Stella", "factorValue": 5.0 },
+      { "name": "Downeast Cider", "factorValue": 5.1 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:115", "menu_back.md:106", "menu_back.md:113", "menu_back.md:105"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Harp", "factorValue": 4.2 },
+      { "name": "Bitburger", "factorValue": 4.8 },
+      { "name": "Kronenbourg", "factorValue": 5.0 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:103", "menu_back.md:108", "menu_back.md:104", "menu_back.md:105"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Guinness", "factorValue": 4.2 },
+      { "name": "Kona Big Wave", "factorValue": 4.4 },
+      { "name": "Bitburger", "factorValue": 4.8 },
+      { "name": "Carlsberg", "factorValue": 5.0 },
+      { "name": "Downeast Cider", "factorValue": 5.1 }
+    ],
+    "menuRefs": ["menu_back.md:102", "menu_back.md:107", "menu_back.md:108", "menu_back.md:110", "menu_back.md:113"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Smithwicks", "factorValue": 4.2 },
+      { "name": "Kona Big Wave", "factorValue": 4.4 },
+      { "name": "Bitburger", "factorValue": 4.8 },
+      { "name": "Levante Cloudy", "factorValue": 5.0 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:109", "menu_back.md:107", "menu_back.md:108", "menu_back.md:111", "menu_back.md:105"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Kilkenny Nitro", "factorValue": 4.2 },
+      { "name": "Kona Big Wave", "factorValue": 4.4 },
+      { "name": "Stella", "factorValue": 5.0 },
+      { "name": "Downeast Cider", "factorValue": 5.1 }
+    ],
+    "menuRefs": ["menu_back.md:112", "menu_back.md:107", "menu_back.md:106", "menu_back.md:113"]
+  },
+  {
+    "prompt": "Order from lowest ABV to highest ABV",
+    "factor": "ABV",
+    "items": [
+      { "name": "Bitburger", "factorValue": 4.8 },
+      { "name": "Carlsberg", "factorValue": 5.0 },
+      { "name": "Fiddlehead", "factorValue": 6.5 }
+    ],
+    "menuRefs": ["menu_back.md:108", "menu_back.md:110", "menu_back.md:105"]
+  }
+]
