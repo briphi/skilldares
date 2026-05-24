@@ -16,22 +16,22 @@
  * GameProvider is its ONLY caller.
  */
 
-import type {
-  MultipleChoiceQuestion,
-  SpeedOrderQuestion,
-  SpeedSelectQuestion,
-} from './schemas/question.schema';
+import type { GameQuestion } from './schemas/question.schema';
 import type { MessagePoolId } from './schemas/message.schema';
 import { computePoints } from './scoring';
 import { nextStreak } from './streak';
 import { pickPool } from './picker';
 
+/**
+ * Documentary constant for the full-game round count (Epic 2 production game).
+ * The reducer's round-advance / finish guards use `state.questions.length`
+ * instead — supports both the Epic 1 milestone (15-question games) and full
+ * 30-round games without code change.
+ */
 export const TOTAL_ROUNDS = 30;
 
-export type GameQuestion =
-  | { type: 'mc'; question: MultipleChoiceQuestion }
-  | { type: 'order'; question: SpeedOrderQuestion }
-  | { type: 'select'; question: SpeedSelectQuestion };
+// Re-export so existing import sites (useGameState, gameSetup, tests) keep working.
+export type { GameQuestion } from './schemas/question.schema';
 
 export type GamePhase = 'start' | 'question' | 'feedback' | 'end';
 
@@ -106,7 +106,9 @@ export function gameReducer(state: GameState, action: Action): GameState {
 
     case 'ADVANCE_TO_NEXT': {
       if (state.phase !== 'feedback') return state;
-      if (state.roundIndex >= TOTAL_ROUNDS - 1) return state;
+      // Use state.questions.length so the guard works for both Epic 1's
+      // 15-question milestone games AND full 30-round games.
+      if (state.roundIndex >= state.questions.length - 1) return state;
       return {
         ...state,
         phase: 'question',
@@ -118,7 +120,8 @@ export function gameReducer(state: GameState, action: Action): GameState {
 
     case 'FINISH_GAME': {
       if (state.phase !== 'feedback') return state;
-      if (state.roundIndex !== TOTAL_ROUNDS - 1) return state;
+      // Use state.questions.length (see ADVANCE_TO_NEXT comment).
+      if (state.roundIndex !== state.questions.length - 1) return state;
       return { ...state, phase: 'end' };
     }
 

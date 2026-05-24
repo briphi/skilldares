@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { selectEpic1Game, shuffleMCQuestion } from './gameSetup';
+import { selectEpic1Game } from './gameSetup';
 import type { MultipleChoiceQuestion } from './schemas/question.schema';
 
 function makeMCPool(count: number): MultipleChoiceQuestion[] {
@@ -40,49 +40,8 @@ describe('selectEpic1Game', () => {
   });
 });
 
-describe('shuffleMCQuestion', () => {
-  const canonical: MultipleChoiceQuestion = {
-    prompt: 'Test',
-    options: ['Correct', 'DistA', 'Funny', 'DistB'],
-    correctIndex: 0,
-    funnyWrongIndex: 2,
-    menuRefs: [],
-  };
-
-  it('preserves the option set (no losses, no dupes)', () => {
-    const shuffled = shuffleMCQuestion(canonical, () => 0.5);
-    expect([...shuffled.options].sort()).toEqual([...canonical.options].sort());
-  });
-
-  it('remaps correctIndex to the new position of "Correct"', () => {
-    const shuffled = shuffleMCQuestion(canonical, () => 0.5);
-    expect(shuffled.options[shuffled.correctIndex]).toBe('Correct');
-  });
-
-  it('remaps funnyWrongIndex to the new position of "Funny"', () => {
-    const shuffled = shuffleMCQuestion(canonical, () => 0.5);
-    expect(shuffled.options[shuffled.funnyWrongIndex]).toBe('Funny');
-  });
-
-  it('moves the correct answer off position 0 for a typical rng (rng=()=>0 reverses 4-element arrays)', () => {
-    // With rng()=>0, Fisher-Yates swaps element-3↔0, then 2↔0, then 1↔0.
-    // [Correct, DistA, Funny, DistB] → [DistA, Funny, DistB, Correct]
-    const shuffled = shuffleMCQuestion(canonical, () => 0);
-    expect(shuffled.correctIndex).not.toBe(0);
-  });
-
-  it('preserves prompt and menuRefs', () => {
-    const shuffled = shuffleMCQuestion(canonical, () => 0.5);
-    expect(shuffled.prompt).toBe(canonical.prompt);
-    expect(shuffled.menuRefs).toEqual(canonical.menuRefs);
-  });
-
-  it('produces different positions across different rng sequences', () => {
-    const a = shuffleMCQuestion(canonical, () => 0);
-    const b = shuffleMCQuestion(canonical, () => 0.999);
-    expect(a.options).not.toEqual(b.options);
-  });
-});
+// shuffleMCQuestion's unit tests moved to questionSelection.test.ts in Story 2.3
+// (the function moved with them — gameSetup.ts re-exports for back-compat).
 
 describe('selectEpic1Game — options shuffling integration', () => {
   it('does not leave correctIndex at 0 for every question', () => {

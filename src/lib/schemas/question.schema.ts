@@ -100,3 +100,25 @@ export type SpeedSelectQuestion = z.infer<typeof SpeedSelectQuestionSchema>;
 
 export const SpeedSelectPoolSchema = z.array(SpeedSelectQuestionSchema).min(1);
 export type SpeedSelectPool = z.infer<typeof SpeedSelectPoolSchema>;
+
+// ---------- Game-level discriminated union (in-memory game state) ----------
+
+/**
+ * Wrapper schema matching the in-game representation of a question.
+ *
+ * Content JSON files are flat single-type pools (multiple-choice.json,
+ * speed-order.json, speed-select.json); this schema describes how those
+ * questions appear in the reducer's GameState.questions array — wrapped
+ * with a `type` discriminator so the UI can route to QuestionMC /
+ * QuestionOrder / QuestionSelect at render time.
+ *
+ * Source of truth for the GameQuestion type — gameReducer.ts re-exports
+ * it for backward compat with existing import sites.
+ */
+export const GameQuestionSchema = z.discriminatedUnion('type', [
+  z.object({ type: z.literal('mc'), question: MultipleChoiceQuestionSchema }),
+  z.object({ type: z.literal('order'), question: SpeedOrderQuestionSchema }),
+  z.object({ type: z.literal('select'), question: SpeedSelectQuestionSchema }),
+]);
+
+export type GameQuestion = z.infer<typeof GameQuestionSchema>;

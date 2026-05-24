@@ -350,3 +350,40 @@ describe('gameReducer: short mini-game flow', () => {
     expect(state.phase).toBe('end');
   });
 });
+
+// ---------- Variable round count (regression guard for Story 1.17 latent bug) ----------
+
+describe('gameReducer: variable round count uses state.questions.length, not TOTAL_ROUNDS', () => {
+  it('Epic-1-style 5-question game advances through all rounds and FINISH_GAME fires on the last', () => {
+    const qs = makeQuestions(5);
+    let state = gameReducer(initialGameState, { type: 'START_GAME', payload: { questions: qs } });
+    expect(state.phase).toBe('question');
+
+    // Walk through 4 rounds: answer + advance.
+    for (let r = 0; r < 4; r++) {
+      state = gameReducer(state, { type: 'ANSWER_QUESTION', payload: { isCorrect: true } });
+      state = gameReducer(state, { type: 'ADVANCE_TO_NEXT' });
+    }
+    // Now on round 5 (roundIndex=4, last round); answer it.
+    expect(state.roundIndex).toBe(4);
+    state = gameReducer(state, { type: 'ANSWER_QUESTION', payload: { isCorrect: true } });
+    expect(state.phase).toBe('feedback');
+
+    // ADVANCE_TO_NEXT on last round is a no-op (uses questions.length, not TOTAL_ROUNDS).
+    const noOpAdvance = gameReducer(state, { type: 'ADVANCE_TO_NEXT' });
+    expect(noOpAdvance).toBe(state);
+
+    // FINISH_GAME works on the last round.
+    state = gameReducer(state, { type: 'FINISH_GAME' });
+    expect(state.phase).toBe('end');
+  });
+
+  it('FINISH_GAME is a no-op when roundIndex !== questions.length - 1 (mid-game)', () => {
+    const qs = makeQuestions(5);
+    let state = gameReducer(initialGameState, { type: 'START_GAME', payload: { questions: qs } });
+    state = gameReducer(state, { type: 'ANSWER_QUESTION', payload: { isCorrect: true } });
+    // roundIndex=0, questions.length=5; FINISH_GAME should not fire.
+    const noOp = gameReducer(state, { type: 'FINISH_GAME' });
+    expect(noOp).toBe(state);
+  });
+});
