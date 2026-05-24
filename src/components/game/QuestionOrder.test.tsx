@@ -81,12 +81,17 @@ describe('QuestionOrder', () => {
       expect(onAnswer).toHaveBeenCalledWith(false);
     });
 
-    it('subsequent LOCK IT IN attempts after submission are ignored (button unmounts)', () => {
+    it('LOCK IT IN button stays mounted but is disabled after submission (no layout shift)', () => {
       const onAnswer = vi.fn();
       render(<QuestionOrder question={fixturePriceQuestion} onAnswer={onAnswer} rng={identityRng} {...syncProps} />);
-      fireEvent.click(screen.getByRole('button', { name: uiStrings.buttons.lockIn }));
-      // LOCK IT IN button disappears after submission.
-      expect(screen.queryByRole('button', { name: uiStrings.buttons.lockIn })).toBeNull();
+      const button = screen.getByRole('button', { name: uiStrings.buttons.lockIn });
+      fireEvent.click(button);
+      // Button stays mounted to preserve layout — re-query to get the post-render reference.
+      const buttonAfter = screen.getByRole('button', { name: uiStrings.buttons.lockIn });
+      expect(buttonAfter).toBeTruthy();
+      expect(buttonAfter).toHaveProperty('disabled', true);
+      // Subsequent clicks are no-ops (browser ignores clicks on disabled buttons, but assert intent).
+      fireEvent.click(buttonAfter);
       expect(onAnswer).toHaveBeenCalledTimes(1);
     });
   });

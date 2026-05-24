@@ -117,13 +117,11 @@ export function QuestionSelect({
         ))}
       </div>
 
-      {phase === 'idle' && (
-        <div className={styles.submitRow}>
-          <Button variant="primary" onClick={handleSubmit}>
-            {uiStrings.buttons.lockIn}
-          </Button>
-        </div>
-      )}
+      <div className={styles.submitRow}>
+        <Button variant="primary" onClick={handleSubmit} disabled={phase !== 'idle'}>
+          {uiStrings.buttons.lockIn}
+        </Button>
+      </div>
     </div>
   );
 }

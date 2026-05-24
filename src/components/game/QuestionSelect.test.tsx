@@ -141,14 +141,17 @@ describe('QuestionSelect', () => {
       expect(variantByName.get('Delta')).toBe('default');              // ¬selected ∧ ¬correct
     });
 
-    it('subsequent LOCK IT IN attempts after submission are ignored (button unmounts)', async () => {
+    it('LOCK IT IN button stays mounted but is disabled after submission (no layout shift)', async () => {
       const onAnswer = vi.fn();
       render(<QuestionSelect question={fixtureQuestion} onAnswer={onAnswer} rng={identityRng} {...syncProps} />);
       await userEvent.click(screen.getByRole('button', { name: 'Alpha' }));
       await userEvent.click(screen.getByRole('button', { name: 'Charlie' }));
       await userEvent.click(screen.getByRole('button', { name: 'Echo' }));
       fireEvent.click(screen.getByRole('button', { name: uiStrings.buttons.lockIn }));
-      expect(screen.queryByRole('button', { name: uiStrings.buttons.lockIn })).toBeNull();
+      const buttonAfter = screen.getByRole('button', { name: uiStrings.buttons.lockIn });
+      expect(buttonAfter).toBeTruthy();
+      expect(buttonAfter).toHaveProperty('disabled', true);
+      fireEvent.click(buttonAfter);
       expect(onAnswer).toHaveBeenCalledTimes(1);
     });
   });
