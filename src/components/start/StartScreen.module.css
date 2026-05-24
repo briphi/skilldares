@@ -22,15 +22,20 @@
 }
 
 .kildaresLogo {
-  /* Parent-brand mark sitting above the SKILLDARES wordmark. Constrained
-     to ~260px on a phone, scaling slightly larger on wider viewports.
-     The logo's own black background blends into the page bg-default. */
+  /* Parent-brand mark sitting above the SKILLDARES wordmark. The clamp
+     scales from phone to desktop without dominating. The logo's own
+     black background blends into the page bg-default. */
   display: block;
-  width: clamp(180px, 60vw, 320px);
+  width: clamp(270px, 90vw, 480px);
   height: auto;
   /* A bit of breathing room below before the wordmark — the .header gap
      of --space-1 (4px) is right for wordmark↔tagline but too tight here. */
   margin-bottom: var(--space-3);
+  /* Optical-center nudge — the mark's decorative scrollwork (apostrophe +
+     flourishes) extends further to the right than the left in the source
+     image, so the geometric center sits a few pixels right of the visual
+     center. Small translate left compensates. */
+  transform: translateX(-5px);
 }
 
 .wordmark {
