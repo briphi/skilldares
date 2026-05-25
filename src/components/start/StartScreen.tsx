@@ -37,6 +37,8 @@ export function StartScreen({ onStart, messages = defaultPool, rng = defaultRng 
           className={styles.kildaresLogo}
           src={kildaresLogo}
           alt="Kildares — It's not a bar, it's a pub — West Chester"
+          width={1600}
+          height={900}
         />
         <h1 className={styles.wordmark}>{uiStrings.appTitle}</h1>
         <p className={styles.tagline}>{uiStrings.tagline}</p>

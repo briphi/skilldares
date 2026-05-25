@@ -32,6 +32,12 @@
      black background blends into the page bg-default. */
   display: block;
   width: clamp(270px, 90vw, 480px);
+  /* aspect-ratio + width/height attributes on the <img> reserve the
+     image's slot at first paint, before the bytes arrive — without this
+     the rendered height is 0 until the image loads and the rest of the
+     screen shifts down when it pops in. 16:9 matches the source asset
+     (8000x4500). */
+  aspect-ratio: 16 / 9;
   height: auto;
   /* A bit of breathing room below before the wordmark — the .header gap
      of --space-1 (4px) is right for wordmark↔tagline but too tight here. */
