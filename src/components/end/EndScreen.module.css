@@ -83,6 +83,24 @@
   color: var(--color-brand-accent);
 }
 
+/* Tighter font + horizontal padding for the Play Again button so the
+   longest pool label ("GLUTTON FOR PUNISHMENT", 22 chars) fits one
+   line on iPhone SE without overflowing the container. The shared
+   Button uses --text-lg + --space-6 padding; this wrapper targets the
+   nested button via descendant selector to override both. The override
+   only applies to the End screen's Play Again button — primary buttons
+   elsewhere (START, NEXT, LOCK IT IN) keep the original sizing. */
+.playAgainButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.playAgainButton > button {
+  font-size: var(--text-md);
+  padding: var(--space-3) var(--space-4);
+}
+
 .wasLine {
   font-family: var(--font-body);
   font-size: var(--text-md);

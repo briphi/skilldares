@@ -1,17 +1,23 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '../shared/Button';
 import { Confetti } from '../shared/Confetti';
 import { uiStrings } from '../../content/uiStrings';
+import { PLAY_AGAIN_LABELS } from '../../content/playAgainLabels';
 import { pickMessage } from '../../lib/picker';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema } from '../../lib/schemas/message.schema';
 import { useFitTextToLines } from '../../lib/useFitTextToLines';
+import { getLastShownMessages, setLastShownMessage } from '../../lib/storage';
 import rawStandardPool from '../../../data/messages/right-no-streak.json';
 import rawCelebratoryPool from '../../../data/messages/new-high-score.json';
 import styles from './EndScreen.module.css';
 
 const defaultStandardPool = MessagePoolSchema.parse(rawStandardPool);
 const defaultCelebratoryPool = MessagePoolSchema.parse(rawCelebratoryPool);
+const defaultPlayAgainPool = [...PLAY_AGAIN_LABELS];
+/** Storage key for last-shown play-again label — kept separate from the
+    per-pool message keys used by FeedbackOverlay so they don't collide. */
+const PLAY_AGAIN_STORAGE_KEY = 'play-again';
 
 export type EndScreenProps = {
   finalScore: number;
@@ -23,6 +29,8 @@ export type EndScreenProps = {
   standardMessages?: string[];
   /** Override celebrating-variant pool — used by tests. Defaults to new-high-score. */
   celebratoryMessages?: string[];
+  /** Override play-again label pool — used by tests. Defaults to PLAY_AGAIN_LABELS. */
+  playAgainLabels?: string[];
   /** Override randomness — used by tests. Defaults to Math.random(). */
   rng?: Rng;
 };
@@ -34,11 +42,23 @@ export function EndScreen({
   onPlayAgain,
   standardMessages = defaultStandardPool,
   celebratoryMessages = defaultCelebratoryPool,
+  playAgainLabels = defaultPlayAgainPool,
   rng = defaultRng,
 }: EndScreenProps) {
   const isNewHighScore = finalScore > (previousPersonalBest ?? -1);
   const messagesPool = isNewHighScore ? celebratoryMessages : standardMessages;
   const [message] = useState<string>(() => pickMessage(messagesPool, rng));
+
+  // Pick a Play Again label from the pool, avoiding the most-recently-shown
+  // one (tracked via localStorage so it survives across games + refreshes).
+  // Persist back after mount so the next end screen excludes this one.
+  const [playAgainLabel] = useState<string>(() => {
+    const lastShown = getLastShownMessages()[PLAY_AGAIN_STORAGE_KEY] ?? null;
+    return pickMessage(playAgainLabels, rng, lastShown);
+  });
+  useEffect(() => {
+    setLastShownMessage(PLAY_AGAIN_STORAGE_KEY, playAgainLabel);
+  }, [playAgainLabel]);
 
   // Auto-shrink the celebrating header so the whole banner stays on one
   // line at any viewport width. The hook measures after render and shrinks
@@ -60,9 +80,11 @@ export function EndScreen({
           <p className={styles.wasLine}>Was: {previousPersonalBest}</p>
         )}
         <p className={styles.message}>{message}</p>
-        <Button variant="primary" onClick={onPlayAgain}>
-          {uiStrings.buttons.playAgain}
-        </Button>
+        <div className={styles.playAgainButton}>
+          <Button variant="primary" onClick={onPlayAgain}>
+            {playAgainLabel}
+          </Button>
+        </div>
       </div>
     );
   }
