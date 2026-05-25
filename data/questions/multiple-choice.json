@@ -872,7 +872,7 @@
     "options": [
       "$5",
       "$10",
-      "Your firstborn",
+      "Five clucks of approval",
       "$9"
     ],
     "correctIndex": 0,
@@ -914,7 +914,7 @@
     "options": [
       "$14",
       "$10",
-      "$1000 if you ask nicely",
+      "A moo and a wink",
       "$5"
     ],
     "correctIndex": 0,
@@ -928,7 +928,7 @@
     "options": [
       "$1",
       "$5",
-      "$1, Despair",
+      "Trust me, dude",
       "$3"
     ],
     "correctIndex": 0,
@@ -956,7 +956,7 @@
     "options": [
       "$14.99",
       "$15.99",
-      "$3.50",
+      "$0.99 (Black Friday only)",
       "$17.99"
     ],
     "correctIndex": 0,
@@ -984,7 +984,7 @@
     "options": [
       "$13.99",
       "$14.99",
-      "$420.69",
+      "$69 (the funny number)",
       "$15.99"
     ],
     "correctIndex": 0,
@@ -998,7 +998,7 @@
     "options": [
       "$14.99",
       "$13.99",
-      "Free for the brave",
+      "Pay in seashells",
       "$15.99"
     ],
     "correctIndex": 0,
@@ -1012,7 +1012,7 @@
     "options": [
       "$14.99",
       "$13.99",
-      "Three fish secrets",
+      "Free if you catch it yourself",
       "$15.99"
     ],
     "correctIndex": 0,
@@ -1082,7 +1082,7 @@
     "options": [
       "$15.99",
       "$16.99",
-      "Your weight in onion rings",
+      "A medium-rare smile",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1096,7 +1096,7 @@
     "options": [
       "$10.99",
       "$11.99",
-      "$3.50 and a wink",
+      "Eleven cabbage leaves",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1110,7 +1110,7 @@
     "options": [
       "$13.99",
       "$12.99",
-      "Free with despair",
+      "A mariachi serenade",
       "$10.99"
     ],
     "correctIndex": 0,
@@ -1124,7 +1124,7 @@
     "options": [
       "$10.99",
       "$11.99",
-      "Pay with a high five",
+      "Just take them, please",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1138,7 +1138,7 @@
     "options": [
       "$11.99",
       "$10.99",
-      "$420.69",
+      "$99.99 (premium chicken)",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1152,7 +1152,7 @@
     "options": [
       "$12.99",
       "$11.99",
-      "Two compliments",
+      "It's complimentary",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1180,7 +1180,7 @@
     "options": [
       "$11.99",
       "$10.99",
-      "Five thousand high fives",
+      "A 5-star Yelp (no photo)",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1208,7 +1208,7 @@
     "options": [
       "$13.99",
       "$12.99",
-      "Pay in hummus",
+      "An Instagram check-in",
       "$11.99"
     ],
     "correctIndex": 0,
@@ -1222,7 +1222,7 @@
     "options": [
       "$10.99",
       "$11.99",
-      "A pretzel-shaped IOU",
+      "Knot for sale",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1236,7 +1236,7 @@
     "options": [
       "$8.99",
       "$9.99",
-      "Three potatoes",
+      "Fry-day special: $1.99",
       "$10.99"
     ],
     "correctIndex": 0,
@@ -1250,7 +1250,7 @@
     "options": [
       "$12.99",
       "$10.99",
-      "Your gym membership",
+      "Cheaper than your gym membership",
       "$8.99"
     ],
     "correctIndex": 0,
@@ -1264,7 +1264,7 @@
     "options": [
       "$9.99",
       "$8.99",
-      "Two seashells",
+      "Bay-yond your budget",
       "$10.99"
     ],
     "correctIndex": 0,
@@ -1278,7 +1278,7 @@
     "options": [
       "$12.99",
       "$11.99",
-      "Free with brisket lore",
+      "Ask and you shall brisket",
       "$15.99"
     ],
     "correctIndex": 0,
