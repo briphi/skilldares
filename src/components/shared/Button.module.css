@@ -11,6 +11,11 @@
     opacity var(--motion-fast) var(--ease-snappy);
   letter-spacing: 0.02em;
   text-align: center;
+  /* All button labels are short ("Hint", "NEXT →", "← REVIEW", etc.) — never
+     let any of them wrap to a second line, especially on narrow viewports
+     where flex-shared rows like Review+Next on FeedbackOverlay leave each
+     button less than half the container width. */
+  white-space: nowrap;
 }
 
 .base:active:not(:disabled) {
@@ -42,12 +47,15 @@
 }
 
 .tertiary {
-  /* Same geometry as .primary (size, padding, radius, font-size) so a
-     tertiary button visually pairs with a primary in a side-by-side row.
-     Distinct color (brand-secondary green) on cream text for contrast —
-     readable on the dark page background and clearly NOT the main CTA. */
+  /* Same height/font/shape as .primary so a tertiary button visually pairs
+     with a primary in a side-by-side row. Horizontal padding is tighter
+     than primary (--space-4 vs --space-6) so the longer Review label
+     ("← REVIEW") still fits without wrapping when the button only gets
+     half of a narrow viewport's width. Distinct color: brand-secondary
+     green on cream text — readable on the dark page bg and clearly not
+     the main CTA. */
   min-height: 56px;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--space-4);
   font-size: var(--text-lg);
   background-color: var(--color-brand-secondary);
   color: var(--color-text-primary);
