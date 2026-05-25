@@ -5,6 +5,7 @@ import {
   DEFAULT_MC_COUNT,
   DEFAULT_SPEED_COUNT,
   DEFAULT_TEST_HIGH_SCORE,
+  DEFAULT_TEST_END_SCORE,
   DEFAULT_TEST_CORRECT,
   DEFAULT_TEST_TOTAL,
 } from './urlConfig';
@@ -125,11 +126,21 @@ describe('parseGameConfigFromSearch', () => {
 });
 
 describe('parseTestEndScreenFromSearch', () => {
-  describe('finalScore (driven by ?highScore)', () => {
-    it('returns null when the ?highScore param is absent', () => {
+  describe('null (no activator)', () => {
+    it('returns null when neither ?highScore nor ?endScreen is present', () => {
       expect(parseTestEndScreenFromSearch('')).toBeNull();
       expect(parseTestEndScreenFromSearch('?utm_source=x')).toBeNull();
       expect(parseTestEndScreenFromSearch('?mc=5&speed=2')).toBeNull();
+    });
+
+    it('returns null when only ?correct + ?total are given (no activator)', () => {
+      expect(parseTestEndScreenFromSearch('?correct=10&total=20')).toBeNull();
+    });
+  });
+
+  describe('?highScore → celebrating variant', () => {
+    it('returns variant: "celebrating"', () => {
+      expect(parseTestEndScreenFromSearch('?highScore=42')?.variant).toBe('celebrating');
     });
 
     it('returns config with parsed score when ?highScore=N is given', () => {
@@ -160,6 +171,43 @@ describe('parseTestEndScreenFromSearch', () => {
     });
   });
 
+  describe('?endScreen → standard variant', () => {
+    it('returns variant: "standard"', () => {
+      expect(parseTestEndScreenFromSearch('?endScreen=42')?.variant).toBe('standard');
+    });
+
+    it('returns config with parsed score when ?endScreen=N is given', () => {
+      expect(parseTestEndScreenFromSearch('?endScreen=42')?.finalScore).toBe(42);
+      expect(parseTestEndScreenFromSearch('?endScreen=999')?.finalScore).toBe(999);
+    });
+
+    it('returns config with finalScore=0 when ?endScreen=0', () => {
+      expect(parseTestEndScreenFromSearch('?endScreen=0')?.finalScore).toBe(0);
+    });
+
+    it('uses the default score when ?endScreen is present without a value', () => {
+      expect(parseTestEndScreenFromSearch('?endScreen')?.finalScore).toBe(DEFAULT_TEST_END_SCORE);
+      expect(parseTestEndScreenFromSearch('?endScreen=')?.finalScore).toBe(DEFAULT_TEST_END_SCORE);
+    });
+
+    it('uses the default for invalid score values (non-numeric, negative)', () => {
+      expect(parseTestEndScreenFromSearch('?endScreen=abc')?.finalScore).toBe(DEFAULT_TEST_END_SCORE);
+      expect(parseTestEndScreenFromSearch('?endScreen=-5')?.finalScore).toBe(DEFAULT_TEST_END_SCORE);
+    });
+
+    it('co-exists with other params', () => {
+      expect(parseTestEndScreenFromSearch('?mc=3&endScreen=77&speed=2')?.finalScore).toBe(77);
+    });
+  });
+
+  describe('precedence', () => {
+    it('?highScore wins when both ?highScore and ?endScreen are present', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=80&endScreen=20');
+      expect(cfg?.variant).toBe('celebrating');
+      expect(cfg?.finalScore).toBe(80);
+    });
+  });
+
   describe('correctCount + totalQuestions (override the grade display)', () => {
     it('uses the defaults when only ?highScore is given', () => {
       const cfg = parseTestEndScreenFromSearch('?highScore=42');
@@ -167,8 +215,20 @@ describe('parseTestEndScreenFromSearch', () => {
       expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
     });
 
-    it('reads ?correct=N override', () => {
+    it('uses the defaults when only ?endScreen is given', () => {
+      const cfg = parseTestEndScreenFromSearch('?endScreen=42');
+      expect(cfg?.correctCount).toBe(DEFAULT_TEST_CORRECT);
+      expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
+    });
+
+    it('reads ?correct=N override (highScore)', () => {
       const cfg = parseTestEndScreenFromSearch('?highScore=42&correct=21');
+      expect(cfg?.correctCount).toBe(21);
+      expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
+    });
+
+    it('reads ?correct=N override (endScreen)', () => {
+      const cfg = parseTestEndScreenFromSearch('?endScreen=42&correct=21');
       expect(cfg?.correctCount).toBe(21);
       expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
     });
@@ -195,10 +255,6 @@ describe('parseTestEndScreenFromSearch', () => {
       const cfg = parseTestEndScreenFromSearch('?highScore=42&correct=abc&total=-5');
       expect(cfg?.correctCount).toBe(DEFAULT_TEST_CORRECT);
       expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
-    });
-
-    it('ignores ?correct + ?total when ?highScore is absent (test mode off)', () => {
-      expect(parseTestEndScreenFromSearch('?correct=10&total=20')).toBeNull();
     });
   });
 });

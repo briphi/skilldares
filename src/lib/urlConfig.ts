@@ -53,46 +53,73 @@ function parseSingleCount(raw: string | null, fallback: number, max: number): nu
 
 /** Defaults when the matching ?param is absent / empty / invalid. */
 export const DEFAULT_TEST_HIGH_SCORE = 100;
+export const DEFAULT_TEST_END_SCORE = 50;
 export const DEFAULT_TEST_CORRECT = 28;
 export const DEFAULT_TEST_TOTAL = 30;
 
-export type TestEndScreenConfig = {
-  finalScore: number;
-  correctCount: number;
-  totalQuestions: number;
-};
+/**
+ * Tagged union — the parser picks which variant to render based on
+ * which param is present. `?highScore` wins if both are given.
+ */
+export type TestEndScreenConfig =
+  | {
+      variant: 'celebrating';
+      finalScore: number;
+      correctCount: number;
+      totalQuestions: number;
+    }
+  | {
+      variant: 'standard';
+      finalScore: number;
+      correctCount: number;
+      totalQuestions: number;
+    };
 
 /**
- * Parse the optional `?highScore[&correct=&total=]` URL parameters — a
- * dev-test affordance that jumps straight to the celebrating End screen
- * variant (skipping the start screen and the actual gameplay).
+ * Parse the optional dev-test End-screen jump params:
  *
- * Returns a full TestEndScreenConfig when `?highScore` is present, or
- * null when it's absent (no jump).
+ *   ?highScore[=N]   → CELEBRATING variant (new-high-score path)
+ *   ?endScreen[=N]   → STANDARD variant (didn't beat your PB)
  *
- * The presence of `?highScore` is what activates the test mode; `?correct`
- * and `?total` are optional overrides for the count + grade display so
- * the player can preview any tier:
+ * Either activates a short-circuit in App.tsx that renders EndScreen
+ * directly from the Start phase, skipping gameplay entirely. Both
+ * also accept the optional shared overrides:
  *
- *   ?highScore                   → 100 score, 28/30 correct (grade A)
- *   ?highScore=87                → 87 score,  28/30 correct (grade A)
- *   ?highScore=87&correct=21&total=30  → 87 score, 21/30 (grade C-)
- *   ?highScore&correct=0&total=30      → 100 score, 0/30  (grade F)
+ *   &correct=N   → override correctCount   (default 28)
+ *   &total=M     → override totalQuestions (default 30)
  *
- * The End screen rendered in this mode does NOT write to localStorage,
- * so testing doesn't pollute the player's real high score. Tapping
- * "Play Again" leaves the test screen and starts a real game.
+ * Returns null when neither activator param is present. When both
+ * `highScore` and `endScreen` are given, `highScore` wins.
+ *
+ * The End screen rendered in either test mode does NOT write to
+ * localStorage, so testing doesn't pollute the player's real high
+ * score. Tapping "Play Again" leaves the test screen and starts a
+ * real game.
  */
 export function parseTestEndScreenFromSearch(
   search: string,
 ): TestEndScreenConfig | null {
   const params = new URLSearchParams(search);
-  if (!params.has('highScore')) return null;
-  return {
-    finalScore: parsePositiveInt(params.get('highScore'), DEFAULT_TEST_HIGH_SCORE),
-    correctCount: parsePositiveInt(params.get('correct'), DEFAULT_TEST_CORRECT),
-    totalQuestions: parsePositiveInt(params.get('total'), DEFAULT_TEST_TOTAL),
-  };
+  const correctCount = parsePositiveInt(params.get('correct'), DEFAULT_TEST_CORRECT);
+  const totalQuestions = parsePositiveInt(params.get('total'), DEFAULT_TEST_TOTAL);
+
+  if (params.has('highScore')) {
+    return {
+      variant: 'celebrating',
+      finalScore: parsePositiveInt(params.get('highScore'), DEFAULT_TEST_HIGH_SCORE),
+      correctCount,
+      totalQuestions,
+    };
+  }
+  if (params.has('endScreen')) {
+    return {
+      variant: 'standard',
+      finalScore: parsePositiveInt(params.get('endScreen'), DEFAULT_TEST_END_SCORE),
+      correctCount,
+      totalQuestions,
+    };
+  }
+  return null;
 }
 
 function parsePositiveInt(raw: string | null, fallback: number): number {

@@ -59,11 +59,11 @@ function AppShell() {
     [],
   );
 
-  // Parse ?highScore[&correct=&total=] once per mount. When set AND the
-  // player hasn't started a real game yet, we short-circuit to the
-  // celebrating EndScreen below. Doesn't touch the persist hook so it
-  // can't pollute the player's real high score. correct/total drive the
-  // grade badge + correct-count display so any tier is previewable.
+  // Parse ?highScore / ?endScreen (+ optional &correct &total) once per
+  // mount. When set AND the player hasn't started a real game yet, we
+  // short-circuit to the appropriate EndScreen variant below. Doesn't
+  // touch the persist hook so it can't pollute the player's real high
+  // score. correct/total drive the grade badge so any tier is previewable.
   const testEndScreen = useMemo(
     () => parseTestEndScreenFromSearch(window.location.search),
     [],
@@ -100,17 +100,28 @@ function AppShell() {
           scale-in + fade-in entrance. */}
       <AnimatePresence mode="wait">
         {state.phase === 'start' && testEndScreen !== null && (
-          // ?highScore[&correct=&total=] test mode — render the celebrating
-          // EndScreen directly. previousPersonalBest=null guarantees the
-          // celebrating variant fires regardless of stored PB; correct +
-          // total drive the grade badge + count display so the player can
-          // preview any grade tier. Tapping Play Again starts a real game
-          // and the test mode is left behind (state.phase != 'start').
+          // ?highScore / ?endScreen test mode — render EndScreen directly,
+          // bypassing gameplay. Tapping Play Again starts a real game and
+          // leaves the test mode behind (state.phase != 'start').
+          //
+          // Celebrating: previousPersonalBest=null forces the celebrating
+          //   variant regardless of stored PB.
+          // Standard: synthesize a personalBest that's > finalScore so
+          //   finalScore > previousPersonalBest is false → standard variant.
+          //   Bumps by 30 so the ALL-TIME BEST row shows a believable PB.
           <EndScreen
-            key="test-high-score"
+            key="test-end-screen"
             finalScore={testEndScreen.finalScore}
-            personalBest={testEndScreen.finalScore}
-            previousPersonalBest={null}
+            personalBest={
+              testEndScreen.variant === 'celebrating'
+                ? testEndScreen.finalScore
+                : testEndScreen.finalScore + 30
+            }
+            previousPersonalBest={
+              testEndScreen.variant === 'celebrating'
+                ? null
+                : testEndScreen.finalScore + 30
+            }
             correctCount={testEndScreen.correctCount}
             totalQuestions={testEndScreen.totalQuestions}
             onPlayAgain={handleStart}
