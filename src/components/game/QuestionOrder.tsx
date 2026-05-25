@@ -280,8 +280,14 @@ function SortableRow({
       {...attributes}
       {...listeners}
     >
-      <ItemSquare text={id} variant={variant} subtext={subtext} />
-      {!disabled && <DragHandleIcon />}
+      {/* .rowInner wraps the visual content so the slide-in entrance
+          animation can run on the inner element. Keeps .row clean for
+          dnd-kit's drag/drop transform + transition — see
+          QuestionOrder.module.css for the rationale. */}
+      <span className={styles.rowInner}>
+        <ItemSquare text={id} variant={variant} subtext={subtext} />
+        {!disabled && <DragHandleIcon />}
+      </span>
     </button>
   );
 }
