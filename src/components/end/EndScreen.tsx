@@ -7,6 +7,7 @@ import { pickMessage } from '../../lib/picker';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema } from '../../lib/schemas/message.schema';
 import { useFitTextToLines } from '../../lib/useFitTextToLines';
+import { useCountUp } from '../../lib/useCountUp';
 import { getLastShownMessages, setLastShownMessage } from '../../lib/storage';
 import { computeGrade, gradeTier } from '../../lib/grade';
 import rawStandardPool from '../../../data/messages/right-no-streak.json';
@@ -174,6 +175,28 @@ function Scorecard({
   correctCount: number;
   totalQuestions: number;
 }) {
+  // Count-up animation: roll each headline number from 0 to its
+  // final value on mount, staggered so the reveal cascades down the
+  // card. easeOutCubic inside the hook makes each one race up and
+  // settle. Reduced-motion + zero targets snap silently.
+  const animatedPoints = useCountUp(finalScore, { durationMs: 900 });
+
+  // Animate the PB row only when pbValue is a real number; "—" (no
+  // PB yet) renders as-is. The hook is still called unconditionally
+  // so the hook count stays stable across renders.
+  const pbNumber = pbValue !== null ? Number.parseInt(pbValue, 10) : null;
+  const isPbAnimatable = pbNumber !== null && Number.isFinite(pbNumber);
+  const animatedPb = useCountUp(isPbAnimatable ? pbNumber : 0, {
+    durationMs: 900,
+    delayMs: 250,
+    disabled: !isPbAnimatable,
+  });
+
+  const animatedCorrect = useCountUp(correctCount, {
+    durationMs: 900,
+    delayMs: 500,
+  });
+
   return (
     <div className={styles.scorecard} role="group" aria-label="Game results">
       <div className={styles.scorecardRow}>
@@ -183,19 +206,21 @@ function Scorecard({
             finalScoreAccent ? styles.scorecardValueAccent : ''
           }`}
         >
-          {finalScore}
+          {animatedPoints}
         </span>
       </div>
       {pbValue !== null && (
         <div className={styles.scorecardRow}>
           <span className={styles.scorecardLabel}>{pbLabel}</span>
-          <span className={styles.scorecardValue}>{pbValue}</span>
+          <span className={styles.scorecardValue}>
+            {isPbAnimatable ? animatedPb : pbValue}
+          </span>
         </div>
       )}
       <div className={styles.scorecardRow}>
         <span className={styles.scorecardLabel}>Correct</span>
         <span className={styles.scorecardValue}>
-          {correctCount} / {totalQuestions}
+          {animatedCorrect} / {totalQuestions}
         </span>
       </div>
     </div>

@@ -17,6 +17,29 @@ if (jsdomGlobal?.window) {
   });
 }
 
+// jsdom doesn't implement matchMedia. Stub it to always report
+// prefers-reduced-motion: reduce so animation hooks (useCountUp,
+// future motion hooks) snap to their final values in tests instead
+// of running rAF loops. Individual tests can override via
+// vi.stubGlobal('matchMedia', ...) when they need to exercise the
+// animation path.
+if (typeof window !== 'undefined' && !window.matchMedia) {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    configurable: true,
+    value: (query: string) => ({
+      matches: query.includes('prefers-reduced-motion: reduce'),
+      media: query,
+      onchange: null,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    }),
+  });
+}
+
 // RTL's auto-cleanup only fires when `globals: true`. We run with explicit
 // globals off, so unmount each render between tests manually.
 afterEach(() => {
