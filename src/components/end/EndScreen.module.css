@@ -103,16 +103,35 @@
 
 /* ---------- Letter-grade + correct-count display ---------- */
 
+.gradeLine {
+  /* "Grade: X" — the literal "Grade:" sits in the cream body color;
+     the letter is a styled inline span (.grade) with its own size,
+     color, and pulse animation. */
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
 .grade {
-  /* Big bold letter centered between the score and the PB line.
-     data-tier (a/b/c/d/f) drives the color so the visual rewards the
-     player without making us write 13 separate rules. */
+  /* Big bold letter rendered inline after "Grade:". data-tier (a/b/c/d/f)
+     drives the color so the visual rewards the player without writing 13
+     separate rules. Pulse animation grabs attention without dominating;
+     transform-origin keeps the scale anchored to the baseline so it
+     doesn't push the surrounding line height around. */
+  display: inline-block;
   font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: var(--font-weight-black);
-  margin: 0;
   line-height: 1;
   letter-spacing: 0.02em;
+  transform-origin: center;
+  animation: gradePulse 1.4s ease-in-out infinite;
 }
 
 .grade[data-tier="a"] { color: var(--color-state-success); }
@@ -120,6 +139,17 @@
 .grade[data-tier="c"] { color: var(--color-state-warning); }
 .grade[data-tier="d"] { color: var(--color-brand-accent); }
 .grade[data-tier="f"] { color: var(--color-state-error); }
+
+@keyframes gradePulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grade {
+    animation: none;
+  }
+}
 
 .correctCount {
   font-family: var(--font-body);

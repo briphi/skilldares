@@ -31,7 +31,7 @@ describe('EndScreen', () => {
         />,
       );
       expect(screen.getByText(uiStrings.endScreen.finalScoreLabel)).toBeTruthy();
-      expect(screen.getByText('42')).toBeTruthy();
+      expect(screen.getByText('42 Points')).toBeTruthy();
     });
 
     it('renders the ALL-TIME BEST line with the PB value when present', () => {
@@ -239,7 +239,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('100')).toBeTruthy();
+      expect(screen.getByText('100 Points')).toBeTruthy();
     });
 
     it('renders the "Was: {previousPersonalBest}" line when previousPersonalBest is non-null', () => {
@@ -361,7 +361,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('11 / 15 correct')).toBeTruthy();
+      expect(screen.getByText('11 / 15 Correct')).toBeTruthy();
     });
 
     it('renders the "N / M correct" line in the celebrating variant', () => {
@@ -378,7 +378,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('14 / 15 correct')).toBeTruthy();
+      expect(screen.getByText('14 / 15 Correct')).toBeTruthy();
     });
 
     it('renders A+ grade with tier="a" for perfect score', () => {

@@ -85,13 +85,15 @@ export function EndScreen({
         <p ref={celebrateHeaderRef} className={styles.celebrateHeader}>
           🎉 NEW HIGH SCORE! 🎉
         </p>
-        <p className={`${styles.score} ${styles.scoreAccent}`}>{finalScore}</p>
+        <p className={`${styles.score} ${styles.scoreAccent}`}>{finalScore} Points</p>
         {previousPersonalBest !== null && (
           <p className={styles.wasLine}>Was: {previousPersonalBest}</p>
         )}
-        <p className={styles.grade} data-tier={tier}>{grade}</p>
         <p className={styles.correctCount}>
-          {correctCount} / {totalQuestions} correct
+          {correctCount} / {totalQuestions} Correct
+        </p>
+        <p className={styles.gradeLine}>
+          Grade: <span className={styles.grade} data-tier={tier}>{grade}</span>
         </p>
         <p className={styles.message}>{message}</p>
         <div className={styles.playAgainButton}>
@@ -108,14 +110,16 @@ export function EndScreen({
   return (
     <div className={styles.container}>
       <p className={styles.scoreLabel}>{uiStrings.endScreen.finalScoreLabel}</p>
-      <p className={styles.score}>{finalScore}</p>
-      <p className={styles.grade} data-tier={tier}>{grade}</p>
-      <p className={styles.correctCount}>
-        {correctCount} / {totalQuestions} correct
-      </p>
+      <p className={styles.score}>{finalScore} Points</p>
       <p className={styles.pbLine}>
         <span className={styles.pbLabel}>{uiStrings.endScreen.personalBestLabel}:</span>{' '}
         <span className={styles.pbValue}>{pbDisplay}</span>
+      </p>
+      <p className={styles.correctCount}>
+        {correctCount} / {totalQuestions} Correct
+      </p>
+      <p className={styles.gradeLine}>
+        Grade: <span className={styles.grade} data-tier={tier}>{grade}</span>
       </p>
       <p className={styles.message}>{message}</p>
       <div className={styles.playAgainButton}>
