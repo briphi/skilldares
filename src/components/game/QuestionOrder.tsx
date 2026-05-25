@@ -25,8 +25,11 @@ import { useTimer } from '../../state/useTimer';
 import { Button } from '../shared/Button';
 import { ItemSquare, type ItemSquareVariant } from '../shared/ItemSquare';
 import { TimerDisplay } from './TimerDisplay';
+import { ReadyIndicator } from './ReadyIndicator';
 import { uiStrings } from '../../content/uiStrings';
 import styles from './QuestionOrder.module.css';
+
+const DEFAULT_READY_DURATION_MS = 1200;
 
 /**
  * Review-mode payload (see QuestionMCReview for context). Causes the
@@ -51,11 +54,18 @@ export type QuestionOrderProps = {
   durationSeconds?: number;
   correctRevealMs?: number;
   wrongRevealMs?: number;
+  /**
+   * Duration of the pre-countdown "Ready?" cue. The component starts in a
+   * 'ready' phase (timer paused, interactions disabled) for this many ms
+   * before transitioning to 'idle' (timer running). Default 1200ms; tests
+   * pass 0 to skip ready entirely.
+   */
+  readyDurationMs?: number;
   /** Review-mode payload — present iff this is the review re-mount. */
   review?: QuestionOrderReview;
 };
 
-type Phase = 'idle' | 'revealed';
+type Phase = 'ready' | 'idle' | 'revealed';
 
 function isOrderCorrect(
   submittedNames: string[],
@@ -73,6 +83,7 @@ export function QuestionOrder({
   durationSeconds = 15,
   correctRevealMs = 1500,
   wrongRevealMs = 3000,
+  readyDurationMs = DEFAULT_READY_DURATION_MS,
   review,
 }: QuestionOrderProps) {
   // In review mode, use the player's submitted order verbatim — otherwise
@@ -83,8 +94,24 @@ export function QuestionOrder({
     return pickRandomFromPool(names, names.length, rng);
   });
 
-  const [phase, setPhase] = useState<Phase>(review ? 'revealed' : 'idle');
+  // Boot order:
+  //   review mode → 'revealed'           (skip ready, show reveal)
+  //   readyDurationMs > 0 → 'ready'      (production: brief Ready? cue)
+  //   readyDurationMs <= 0 → 'idle'      (tests: timer starts immediately)
+  const [phase, setPhase] = useState<Phase>(
+    review ? 'revealed' : readyDurationMs > 0 ? 'ready' : 'idle',
+  );
   const dispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const readyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // After the ready window, transition to idle so the timer starts ticking.
+  useEffect(() => {
+    if (phase !== 'ready') return;
+    readyTimerRef.current = setTimeout(() => setPhase('idle'), readyDurationMs);
+    return () => {
+      if (readyTimerRef.current !== null) clearTimeout(readyTimerRef.current);
+    };
+  }, [phase, readyDurationMs]);
 
   // Lookup: item name → factorValue for reveal subtext.
   const factorByName = useMemo(() => {
@@ -157,9 +184,12 @@ export function QuestionOrder({
   return (
     <div className={styles.container}>
       <h2 className={styles.prompt}>{question.prompt}</h2>
-      {/* Timer hidden in review mode — the round is over; countdown
-          context is irrelevant on the look-back screen. */}
-      {!review && (
+      {/* Three render branches for the bar slot:
+          - review mode → render nothing (round is over, no countdown context)
+          - ready phase → show pulsing "Ready?" green cue
+          - idle / revealed → show the timer bar */}
+      {!review && phase === 'ready' && <ReadyIndicator />}
+      {!review && phase !== 'ready' && (
         <TimerDisplay
           secondsRemaining={secondsRemaining}
           totalSeconds={durationSeconds}

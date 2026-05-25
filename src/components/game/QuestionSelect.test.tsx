@@ -21,7 +21,7 @@ const fixtureQuestion: SpeedSelectQuestion = {
 const identityRng = () => 0.999;
 
 // Sync-zero props for fast tests (skip the reveal-delay timers).
-const syncProps = { correctRevealMs: 0, wrongRevealMs: 0 };
+const syncProps = { correctRevealMs: 0, wrongRevealMs: 0, readyDurationMs: 0 };
 
 describe('QuestionSelect', () => {
   describe('default render', () => {
@@ -179,6 +179,7 @@ describe('QuestionSelect', () => {
           durationSeconds={2}
           correctRevealMs={0}
           wrongRevealMs={0}
+          readyDurationMs={0}
         />,
       );
       act(() => { vi.advanceTimersByTime(2000); });

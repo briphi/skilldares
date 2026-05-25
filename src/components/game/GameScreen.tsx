@@ -52,6 +52,11 @@ export type GameScreenProps = {
   mcWrongRevealMs?: number;
   /** Forward to QuestionMC's lock-duration prop. Tests pass 0 for sync. */
   mcLockDurationMs?: number;
+  /**
+   * Forward to QuestionOrder + QuestionSelect's ready-duration prop. Tests
+   * pass 0 to skip the pre-countdown Ready? cue.
+   */
+  speedReadyDurationMs?: number;
 };
 
 export function GameScreen({
@@ -59,6 +64,7 @@ export function GameScreen({
   mcCorrectRevealMs,
   mcWrongRevealMs,
   mcLockDurationMs,
+  speedReadyDurationMs,
 }: GameScreenProps = {}) {
   const { state, helpers } = useGameState();
 
@@ -155,6 +161,7 @@ export function GameScreen({
             question={currentQuestion.question}
             onAnswer={helpers.answerQuestion}
             onSelectionCaptured={captureOrder}
+            readyDurationMs={speedReadyDurationMs}
           />
         )}
         {state.phase === 'question' && currentQuestion.type === 'select' && (
@@ -163,6 +170,7 @@ export function GameScreen({
             question={currentQuestion.question}
             onAnswer={helpers.answerQuestion}
             onSelectionCaptured={captureSelect}
+            readyDurationMs={speedReadyDurationMs}
           />
         )}
         {state.phase === 'feedback' && state.lastFeedback && (

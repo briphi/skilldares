@@ -6,8 +6,11 @@ import { useTimer } from '../../state/useTimer';
 import { Button } from '../shared/Button';
 import { ItemSquare, type ItemSquareVariant } from '../shared/ItemSquare';
 import { TimerDisplay } from './TimerDisplay';
+import { ReadyIndicator } from './ReadyIndicator';
 import { uiStrings } from '../../content/uiStrings';
 import styles from './QuestionSelect.module.css';
+
+const DEFAULT_READY_DURATION_MS = 1200;
 
 /**
  * Review-mode payload (see QuestionMCReview for context). Causes the
@@ -33,11 +36,17 @@ export type QuestionSelectProps = {
   durationSeconds?: number;
   correctRevealMs?: number;
   wrongRevealMs?: number;
+  /**
+   * Duration of the pre-countdown "Ready?" cue. Component starts in 'ready'
+   * for this many ms (timer paused, interactions disabled) before flipping
+   * to 'idle'. Default 1200ms; tests pass 0 to skip.
+   */
+  readyDurationMs?: number;
   /** Review-mode payload — present iff this is the review re-mount. */
   review?: QuestionSelectReview;
 };
 
-type Phase = 'idle' | 'revealed';
+type Phase = 'ready' | 'idle' | 'revealed';
 
 function isSelectionCorrect(selected: Set<string>, correctSet: Set<string>): boolean {
   if (selected.size !== correctSet.size) return false;
@@ -55,6 +64,7 @@ export function QuestionSelect({
   durationSeconds = 15,
   correctRevealMs = 1500,
   wrongRevealMs = 3000,
+  readyDurationMs = DEFAULT_READY_DURATION_MS,
   review,
 }: QuestionSelectProps) {
   // Display order shuffled per mount (prevents position-memorization across plays).
@@ -65,8 +75,22 @@ export function QuestionSelect({
   const [selected, setSelected] = useState<Set<string>>(() =>
     review ? new Set(review.selectedSet) : new Set(),
   );
-  const [phase, setPhase] = useState<Phase>(review ? 'revealed' : 'idle');
+  // Boot order (see QuestionOrder for the same logic):
+  //   review → revealed; readyDurationMs > 0 → ready; else → idle.
+  const [phase, setPhase] = useState<Phase>(
+    review ? 'revealed' : readyDurationMs > 0 ? 'ready' : 'idle',
+  );
   const dispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const readyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // After the ready window, transition to idle so the timer starts.
+  useEffect(() => {
+    if (phase !== 'ready') return;
+    readyTimerRef.current = setTimeout(() => setPhase('idle'), readyDurationMs);
+    return () => {
+      if (readyTimerRef.current !== null) clearTimeout(readyTimerRef.current);
+    };
+  }, [phase, readyDurationMs]);
 
   const correctSet = useMemo(() => new Set(question.correctSet), [question]);
 
@@ -126,8 +150,10 @@ export function QuestionSelect({
   return (
     <div className={styles.container}>
       <h2 className={styles.prompt}>{question.prompt}</h2>
-      {/* Timer hidden in review mode (see QuestionOrder for the same logic). */}
-      {!review && (
+      {/* Ready cue replaces TimerDisplay during the pre-countdown phase.
+          Review skips both. See QuestionOrder for the same branching. */}
+      {!review && phase === 'ready' && <ReadyIndicator />}
+      {!review && phase !== 'ready' && (
         <TimerDisplay
           secondsRemaining={secondsRemaining}
           totalSeconds={durationSeconds}

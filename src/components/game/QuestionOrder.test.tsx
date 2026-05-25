@@ -27,7 +27,7 @@ const fixtureABVQuestion: SpeedOrderQuestion = {
 };
 
 // Sync-zero props for fast tests (skip the reveal-delay timers).
-const syncProps = { correctRevealMs: 0, wrongRevealMs: 0 };
+const syncProps = { correctRevealMs: 0, wrongRevealMs: 0, readyDurationMs: 0 };
 
 // rng=()=>0.999 with Fisher-Yates on a 3-item array produces no swaps (canonical order).
 // Useful for testing the "correct submit" path without dragging.
@@ -151,6 +151,7 @@ describe('QuestionOrder', () => {
           durationSeconds={2}
           correctRevealMs={0}
           wrongRevealMs={0}
+          readyDurationMs={0}
         />,
       );
       act(() => { vi.advanceTimersByTime(2000); });
