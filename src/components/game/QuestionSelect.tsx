@@ -149,10 +149,10 @@ export function QuestionSelect({
 
   return (
     <div className={styles.container}>
-      {/* Ready? cue lives ABOVE the prompt during the ready phase (uses the
-          empty space at the top) rather than in the timer-bar slot below.
-          See QuestionOrder for the same arrangement. */}
-      {!review && phase === 'ready' && <ReadyIndicator />}
+      {/* Ready? cue always mounted (visibility-toggled via hidden prop) so
+          the cluster below doesn't shift when it disappears. See
+          QuestionOrder for the same arrangement. */}
+      {!review && <ReadyIndicator hidden={phase !== 'ready'} />}
       <h2 className={styles.prompt}>{question.prompt}</h2>
       {!review && phase !== 'ready' && (
         <TimerDisplay

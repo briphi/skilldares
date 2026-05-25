@@ -183,11 +183,11 @@ export function QuestionOrder({
 
   return (
     <div className={styles.container}>
-      {/* Ready? cue lives ABOVE the prompt during the ready phase so it
-          uses the empty space at the top of the screen rather than the
-          timer-bar slot below. When the cue disappears, the bar slot
-          below the prompt becomes the timer. */}
-      {!review && phase === 'ready' && <ReadyIndicator />}
+      {/* Ready? cue lives ABOVE the prompt and stays mounted at all times
+          (hidden prop drives visibility) so the cluster below doesn't
+          shift when it disappears. Suppressed entirely in review mode —
+          no ready cycle there. */}
+      {!review && <ReadyIndicator hidden={phase !== 'ready'} />}
       <h2 className={styles.prompt}>{question.prompt}</h2>
       {/* Timer hidden in review mode (round is over) and during ready
           (no countdown yet — Ready? is the cue). */}

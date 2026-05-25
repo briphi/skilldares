@@ -1,8 +1,7 @@
 .text {
-  /* Sits in place of the TimerDisplay during the ready phase. Same
-     position in the column flow so the layout shift between ready and
-     idle is minimal (TimerDisplay's bar is 8px tall; this text is
-     bigger but the centered grid below absorbs the shift). */
+  /* Lives above the question prompt during the ready phase. Stays
+     mounted at all times (just toggled visible/hidden via data-hidden)
+     so the prompt + grid + Lock-In don't shift when the cue disappears. */
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: var(--font-weight-black);
@@ -14,6 +13,14 @@
      becoming visual noise. */
   text-shadow: 0 0 12px color-mix(in srgb, var(--color-state-success) 40%, transparent);
   animation: readyPulse 0.6s ease-in-out infinite alternate;
+}
+
+/* Hidden state — element keeps its layout space, just invisible. The
+   pulse animation halts (perf + AT-friendly, since visibility:hidden
+   also removes the element from accessibility tree). */
+.text[data-hidden="true"] {
+  visibility: hidden;
+  animation: none;
 }
 
 @keyframes readyPulse {
