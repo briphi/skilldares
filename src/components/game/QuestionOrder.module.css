@@ -60,7 +60,14 @@
 }
 
 .list[data-phase="idle"] .row {
-  animation: orderItemSlideIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  /* fill-mode: backwards (not both) so the 0% keyframe applies during
+     the animation-delay (no pre-animation flash at the final position),
+     but the animation RELEASES the transform property after it ends.
+     With `both`, the end-state translateY(0) would persist on the row
+     and CSS-animation transforms override inline styles — which would
+     mean dnd-kit's drag transform never takes effect (rows wouldn't
+     visually follow the cursor during drag). */
+  animation: orderItemSlideIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
 
 /* Up to 5 items per schema (SpeedOrderQuestion.items max 5). 90ms stagger
