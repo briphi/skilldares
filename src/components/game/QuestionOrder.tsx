@@ -270,6 +270,14 @@ function SortableRow({
   };
   const wrapperClass = [styles.row, isDragging ? styles.dragging : ''].filter(Boolean).join(' ');
 
+  // One-shot entrance: the slide-in animation is declared in CSS only
+  // while .rowInner does NOT have .entered. Adding .entered after the
+  // animation completes removes the animation rule entirely, so future
+  // reorders (which change :nth-child position) can't re-trigger it and
+  // flash the row through the 0%-opacity keyframe.
+  const [hasEntered, setHasEntered] = useState(false);
+  const rowInnerClass = [styles.rowInner, hasEntered ? styles.entered : ''].filter(Boolean).join(' ');
+
   return (
     <button
       ref={setNodeRef}
@@ -284,7 +292,10 @@ function SortableRow({
           animation can run on the inner element. Keeps .row clean for
           dnd-kit's drag/drop transform + transition — see
           QuestionOrder.module.css for the rationale. */}
-      <span className={styles.rowInner}>
+      <span
+        className={rowInnerClass}
+        onAnimationEnd={() => setHasEntered(true)}
+      >
         <ItemSquare text={id} variant={variant} subtext={subtext} />
         {!disabled && <DragHandleIcon />}
       </span>

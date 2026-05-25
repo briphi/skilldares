@@ -63,20 +63,26 @@
   visibility: hidden;
 }
 
-.list[data-phase="idle"] .rowInner {
-  /* fill-mode: backwards = 0% keyframe pre-applies during the
-     animation-delay (no flash at the final position) but the animation
-     releases its property holds after it ends. */
+/* `:not(.entered)` is the key piece — the slide-in animation is declared
+   ONLY while the row is in its pre-entered state. Once SortableRow's
+   onAnimationEnd handler adds the `.entered` class, this rule stops
+   matching and the .rowInner has no animation declared at all.
+   Without that, dropping a row to a new position changes its
+   :nth-child() value → some browsers treat the animation-delay change
+   as a trigger to restart the animation, which flashes the row through
+   the 0% keyframe (opacity 0) → the drop-flicker the player was seeing. */
+.list[data-phase="idle"] .rowInner:not(.entered) {
   animation: orderItemSlideIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
 
 /* Up to 5 items per schema (SpeedOrderQuestion.items max 5). 90ms stagger
-   keeps the whole cascade under ~0.55s + 4*0.09 = ~0.91s. */
-.list[data-phase="idle"] .row:nth-child(1) .rowInner { animation-delay: 0s; }
-.list[data-phase="idle"] .row:nth-child(2) .rowInner { animation-delay: 0.09s; }
-.list[data-phase="idle"] .row:nth-child(3) .rowInner { animation-delay: 0.18s; }
-.list[data-phase="idle"] .row:nth-child(4) .rowInner { animation-delay: 0.27s; }
-.list[data-phase="idle"] .row:nth-child(5) .rowInner { animation-delay: 0.36s; }
+   keeps the whole cascade under ~0.55s + 4*0.09 = ~0.91s. Only applies
+   pre-entered (see comment above). */
+.list[data-phase="idle"] .row:nth-child(1) .rowInner:not(.entered) { animation-delay: 0s; }
+.list[data-phase="idle"] .row:nth-child(2) .rowInner:not(.entered) { animation-delay: 0.09s; }
+.list[data-phase="idle"] .row:nth-child(3) .rowInner:not(.entered) { animation-delay: 0.18s; }
+.list[data-phase="idle"] .row:nth-child(4) .rowInner:not(.entered) { animation-delay: 0.27s; }
+.list[data-phase="idle"] .row:nth-child(5) .rowInner:not(.entered) { animation-delay: 0.36s; }
 
 .rowInner {
   /* Plain block wrapper — no transforms of its own outside the entrance
@@ -98,7 +104,7 @@
 
 /* Reduced motion: skip the slide, just appear in place. */
 @media (prefers-reduced-motion: reduce) {
-  .list[data-phase="idle"] .rowInner {
+  .list[data-phase="idle"] .rowInner:not(.entered) {
     animation: none;
   }
 }
