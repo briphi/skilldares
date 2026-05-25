@@ -407,7 +407,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      const grade = container.querySelector('[data-tier]');
+      const grade = container.querySelector('[role="img"][data-tier]');
       expect(grade?.textContent).toBe('A+');
       expect(grade?.getAttribute('data-tier')).toBe('a');
     });
@@ -425,7 +425,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      const grade = container.querySelector('[data-tier]');
+      const grade = container.querySelector('[role="img"][data-tier]');
       expect(grade?.textContent).toBe('C-');
       expect(grade?.getAttribute('data-tier')).toBe('c');
     });
@@ -443,7 +443,7 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      const grade = container.querySelector('[data-tier]');
+      const grade = container.querySelector('[role="img"][data-tier]');
       expect(grade?.textContent).toBe('F');
       expect(grade?.getAttribute('data-tier')).toBe('f');
     });

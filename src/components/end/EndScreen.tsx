@@ -108,6 +108,11 @@ export function EndScreen({
   if (isNewHighScore) {
     return (
       <div className={`${styles.container} ${styles.celebrating}`}>
+        <div
+          className={styles.backgroundFlair}
+          data-tier={tier}
+          aria-hidden="true"
+        />
         {confettiReady && <Confetti />}
         <p ref={celebrateHeaderRef} className={styles.celebrateHeader}>
           🎉 NEW HIGH SCORE! 🎉
@@ -147,6 +152,11 @@ export function EndScreen({
   const pbDisplay = personalBest === null ? uiStrings.endScreen.noPbValue : String(personalBest);
   return (
     <div className={styles.container}>
+      <div
+        className={styles.backgroundFlair}
+        data-tier={tier}
+        aria-hidden="true"
+      />
       <p className={styles.scoreLabel}>{uiStrings.endScreen.finalScoreLabel}</p>
       <Scorecard
         finalScore={finalScore}

@@ -127,6 +127,41 @@
   padding: var(--space-3) var(--space-4);
 }
 
+/* ---------- Background flair (tier-tinted edge wash) ---------- */
+
+.backgroundFlair {
+  /* Viewport-wide vignette that tints the screen edges in the
+     grade's tier color so the whole environment reacts to the
+     verdict. Transparent at center so the scorecard + badge stay
+     visually clean; tier color washes inward from the edges.
+     pointer-events: none — purely decorative.
+
+     Fades in at the same 1400ms mark as the grade-row reveal so
+     the wash lands as part of the verdict beat, not on mount. */
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    color-mix(in srgb, var(--grade-tier-color, transparent) 22%, transparent) 100%
+  );
+  opacity: 0;
+  animation: backgroundFlairReveal 0.9s ease-out 1400ms forwards;
+}
+
+.backgroundFlair[data-tier="a"] { --grade-tier-color: var(--color-state-success); }
+.backgroundFlair[data-tier="b"] { --grade-tier-color: var(--color-brand-primary); }
+.backgroundFlair[data-tier="c"] { --grade-tier-color: var(--color-state-warning); }
+.backgroundFlair[data-tier="d"] { --grade-tier-color: var(--color-brand-accent); }
+.backgroundFlair[data-tier="f"] { --grade-tier-color: var(--color-state-error); }
+
+@keyframes backgroundFlairReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ---------- Grade badge ---------- */
 
 .gradeRow {
@@ -227,6 +262,10 @@
     animation: none;
   }
   .gradeRow {
+    animation: none;
+    opacity: 1;
+  }
+  .backgroundFlair {
     animation: none;
     opacity: 1;
   }
