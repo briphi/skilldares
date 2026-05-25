@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SpeedSelectQuestion } from '../../lib/schemas/question.schema';
 import { defaultRng, type Rng } from '../../lib/rng';
 import { pickRandomFromPool } from '../../lib/questionSelection';
@@ -9,6 +9,27 @@ import { TimerDisplay } from './TimerDisplay';
 import { ReadyIndicator } from './ReadyIndicator';
 import { uiStrings } from '../../content/uiStrings';
 import styles from './QuestionSelect.module.css';
+
+/**
+ * Per-cell wrapper that tracks whether the entrance pop-in animation has
+ * finished. Once it has, the .entered class is added and the CSS rule
+ * (which is gated by :not(.entered)) stops matching — the cell ends up
+ * with no `animation` property at all, so subsequent React re-renders
+ * (e.g. when the user taps to toggle selection) can't accidentally
+ * re-trigger the pop-in animation and flash the cell through the
+ * 0%-opacity / scale(0.6) keyframe.
+ */
+function GridCell({ children }: { children: ReactNode }) {
+  const [hasEntered, setHasEntered] = useState(false);
+  const className = hasEntered
+    ? `${styles.gridCell} ${styles.entered}`
+    : styles.gridCell;
+  return (
+    <div className={className} onAnimationEnd={() => setHasEntered(true)}>
+      {children}
+    </div>
+  );
+}
 
 const DEFAULT_READY_DURATION_MS = 1200;
 
@@ -172,19 +193,21 @@ export function QuestionSelect({
         />
       )}
 
-      {/* data-phase drives the pop-in cascade (CSS module): items are
-          visibility:hidden during 'ready' so the grid reserves layout
-          space, then animate in when phase flips to 'idle'. */}
+      {/* data-phase drives the pop-in cascade (CSS module). Each ItemSquare
+          is wrapped in a GridCell that owns the entered-state tracking so
+          the entrance animation is a one-shot — see GridCell comment for
+          why the wrapper is necessary. */}
       <div className={styles.grid} data-phase={phase}>
         {displayItems.map((name) => (
-          <ItemSquare
-            key={name}
-            text={name}
-            variant={variantFor(name)}
-            onClick={() => toggleItem(name)}
-            disabled={phase !== 'idle' ? false : false /* always interactive in idle */}
-            ariaPressed={selected.has(name)}
-          />
+          <GridCell key={name}>
+            <ItemSquare
+              text={name}
+              variant={variantFor(name)}
+              onClick={() => toggleItem(name)}
+              disabled={phase !== 'idle' ? false : false /* always interactive in idle */}
+              ariaPressed={selected.has(name)}
+            />
+          </GridCell>
         ))}
       </div>
 

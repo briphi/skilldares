@@ -44,31 +44,46 @@
   width: 100%;
 }
 
-/* Pop-in animation for the grid items as the ready phase ends.
-   - During 'ready': items render in their normal grid cells but are
-     visibility:hidden, so the grid reserves its final height and the
-     Lock-In button below doesn't jump when items appear.
-   - On phase flip to 'idle': data-phase changes → the animation rule
-     below fires. nth-child stagger gives a quick cascade across the
-     6 cells. Same bouncy ease (cubic-bezier 0.34, 1.56, 0.64, 1) as
-     the MC quadrant slide-in and the Order item cascade. */
-.grid[data-phase="ready"] > * {
+/* Pop-in entrance for the grid cells as the ready phase ends.
+   Each cell is wrapped in a .gridCell div (see GridCell in
+   QuestionSelect.tsx) so the entrance can be a one-shot via
+   :not(.entered). Without that, any subsequent re-render (tap to
+   toggle selection, etc.) could re-trigger the pop animation and
+   flash the cell through the 0%-opacity / scale(0.6) keyframe —
+   that was the perceived flicker on initial mount too. */
+.gridCell {
+  /* The wrapper participates in the grid (auto-fit layout already
+     sizes it). Flex + the ItemSquare button stretches to fill so the
+     visual is identical to before-wrapper. */
+  display: flex;
+}
+
+.gridCell > * {
+  flex: 1;
+}
+
+.grid[data-phase="ready"] .gridCell {
   visibility: hidden;
 }
 
-.grid[data-phase="idle"] > * {
-  animation: selectItemPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+/* fill-mode: backwards (not both) — the 0% keyframe pre-applies during
+   the animation-delay window (no flash at the final state), but the
+   animation releases its property holds when it ends. Combined with
+   :not(.entered) below, the cell has zero animation property post-
+   entrance — completely immune to re-triggers from React re-renders. */
+.grid[data-phase="idle"] .gridCell:not(.entered) {
+  animation: selectItemPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
 }
 
 /* Schema caps items at 6 (SpeedSelectQuestion.items length 6). 60ms
    stagger between cells keeps the whole cascade under ~0.45 + 5*0.06
    = 0.75s total. */
-.grid[data-phase="idle"] > *:nth-child(1) { animation-delay: 0s; }
-.grid[data-phase="idle"] > *:nth-child(2) { animation-delay: 0.06s; }
-.grid[data-phase="idle"] > *:nth-child(3) { animation-delay: 0.12s; }
-.grid[data-phase="idle"] > *:nth-child(4) { animation-delay: 0.18s; }
-.grid[data-phase="idle"] > *:nth-child(5) { animation-delay: 0.24s; }
-.grid[data-phase="idle"] > *:nth-child(6) { animation-delay: 0.30s; }
+.grid[data-phase="idle"] .gridCell:nth-child(1):not(.entered) { animation-delay: 0s; }
+.grid[data-phase="idle"] .gridCell:nth-child(2):not(.entered) { animation-delay: 0.06s; }
+.grid[data-phase="idle"] .gridCell:nth-child(3):not(.entered) { animation-delay: 0.12s; }
+.grid[data-phase="idle"] .gridCell:nth-child(4):not(.entered) { animation-delay: 0.18s; }
+.grid[data-phase="idle"] .gridCell:nth-child(5):not(.entered) { animation-delay: 0.24s; }
+.grid[data-phase="idle"] .gridCell:nth-child(6):not(.entered) { animation-delay: 0.30s; }
 
 @keyframes selectItemPop {
   from {
@@ -83,7 +98,7 @@
 
 /* Reduced motion: skip the pop, just appear in place. */
 @media (prefers-reduced-motion: reduce) {
-  .grid[data-phase="idle"] > * {
+  .grid[data-phase="idle"] .gridCell:not(.entered) {
     animation: none;
   }
 }
