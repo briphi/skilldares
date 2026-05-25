@@ -149,10 +149,11 @@ export function QuestionSelect({
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.prompt}>{question.prompt}</h2>
-      {/* Ready cue replaces TimerDisplay during the pre-countdown phase.
-          Review skips both. See QuestionOrder for the same branching. */}
+      {/* Ready? cue lives ABOVE the prompt during the ready phase (uses the
+          empty space at the top) rather than in the timer-bar slot below.
+          See QuestionOrder for the same arrangement. */}
       {!review && phase === 'ready' && <ReadyIndicator />}
+      <h2 className={styles.prompt}>{question.prompt}</h2>
       {!review && phase !== 'ready' && (
         <TimerDisplay
           secondsRemaining={secondsRemaining}

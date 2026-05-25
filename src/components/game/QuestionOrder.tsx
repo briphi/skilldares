@@ -183,12 +183,14 @@ export function QuestionOrder({
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.prompt}>{question.prompt}</h2>
-      {/* Three render branches for the bar slot:
-          - review mode → render nothing (round is over, no countdown context)
-          - ready phase → show pulsing "Ready?" green cue
-          - idle / revealed → show the timer bar */}
+      {/* Ready? cue lives ABOVE the prompt during the ready phase so it
+          uses the empty space at the top of the screen rather than the
+          timer-bar slot below. When the cue disappears, the bar slot
+          below the prompt becomes the timer. */}
       {!review && phase === 'ready' && <ReadyIndicator />}
+      <h2 className={styles.prompt}>{question.prompt}</h2>
+      {/* Timer hidden in review mode (round is over) and during ready
+          (no countdown yet — Ready? is the cue). */}
       {!review && phase !== 'ready' && (
         <TimerDisplay
           secondsRemaining={secondsRemaining}
