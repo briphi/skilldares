@@ -40,3 +40,17 @@
   color: var(--color-text-primary);
   border-radius: var(--radius-full);
 }
+
+.tertiary {
+  /* Same geometry as .primary (size, padding, radius, font-size) so a
+     tertiary button visually pairs with a primary in a side-by-side row.
+     Distinct color (brand-secondary green) on cream text for contrast —
+     readable on the dark page background and clearly NOT the main CTA. */
+  min-height: 56px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-lg);
+  background-color: var(--color-brand-secondary);
+  color: var(--color-text-primary);
+  width: 100%;
+  max-width: 480px;
+}

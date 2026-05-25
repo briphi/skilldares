@@ -83,8 +83,8 @@ export function FeedbackOverlay({
       {!isCorrect && onReview ? (
         <div className={styles.buttonRow}>
           <div className={styles.buttonRowSlot}>
-            <Button variant="secondary" onClick={onReview}>
-              Review
+            <Button variant="tertiary" onClick={onReview}>
+              {uiStrings.buttons.review}
             </Button>
           </div>
           <div className={styles.buttonRowSlot}>

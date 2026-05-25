@@ -20,6 +20,10 @@ export const uiStrings = {
         so HintButton can animate it (occasional yellow flash glitch). */
     hintBulb: '💡',
     next: 'NEXT →',
+    /** Wrong-answer FeedbackOverlay's left-side button. Arrow before the
+        word mirrors the Next button's trailing arrow — together they read
+        as direction ("back" vs "forward"). */
+    review: '← REVIEW',
     finish: 'FINISH IT',
     playAgain: 'RUN IT BACK',
   },

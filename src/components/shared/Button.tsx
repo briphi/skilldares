@@ -1,7 +1,15 @@
 import { type ReactNode, type MouseEventHandler } from 'react';
 import styles from './Button.module.css';
 
-export type ButtonVariant = 'primary' | 'secondary';
+/**
+ * Button variants:
+ *  - 'primary'   — main CTA: gold fill, large pill, used for START / NEXT / etc.
+ *  - 'secondary' — small utility: rounded pill, used for the Hint button
+ *  - 'tertiary'  — same size/shape as primary but a distinct color, used when
+ *                  two equal-weight actions share a row (e.g. Review + Next on
+ *                  the wrong-answer FeedbackOverlay)
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 
 export type ButtonProps = {
   variant: ButtonVariant;
@@ -12,6 +20,12 @@ export type ButtonProps = {
   'aria-label'?: string;
 };
 
+const VARIANT_CLASS: Record<ButtonVariant, string> = {
+  primary: styles.primary!,
+  secondary: styles.secondary!,
+  tertiary: styles.tertiary!,
+};
+
 export function Button({
   variant,
   children,
@@ -20,10 +34,7 @@ export function Button({
   type = 'button',
   'aria-label': ariaLabel,
 }: ButtonProps) {
-  const className =
-    variant === 'primary'
-      ? `${styles.base} ${styles.primary}`
-      : `${styles.base} ${styles.secondary}`;
+  const className = `${styles.base} ${VARIANT_CLASS[variant]}`;
 
   return (
     <button

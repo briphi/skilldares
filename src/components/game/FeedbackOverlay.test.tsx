@@ -65,27 +65,27 @@ describe('FeedbackOverlay', () => {
           onReview={() => {}}
         />,
       );
-      expect(screen.getByRole('button', { name: 'Review' })).toBeTruthy();
+      expect(screen.getByRole('button', { name: /review/i })).toBeTruthy();
       expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
     });
 
     it('does NOT render Review button when answer was correct (nothing to review)', () => {
       render(<FeedbackOverlay {...baseProps} isCorrect onReview={() => {}} />);
-      expect(screen.queryByRole('button', { name: 'Review' })).toBeNull();
+      expect(screen.queryByRole('button', { name: /review/i })).toBeNull();
       // Still has Next/Finish.
       expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
     });
 
     it('does NOT render Review button when onReview is not provided (wrong answer, no selection captured)', () => {
       render(<FeedbackOverlay {...baseProps} isCorrect={false} />);
-      expect(screen.queryByRole('button', { name: 'Review' })).toBeNull();
+      expect(screen.queryByRole('button', { name: /review/i })).toBeNull();
       expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
     });
 
     it('calls onReview exactly once when the Review button is tapped', async () => {
       const onReview = vi.fn();
       render(<FeedbackOverlay {...baseProps} isCorrect={false} onReview={onReview} />);
-      await userEvent.click(screen.getByRole('button', { name: 'Review' }));
+      await userEvent.click(screen.getByRole('button', { name: /review/i }));
       expect(onReview).toHaveBeenCalledOnce();
     });
 
@@ -98,7 +98,7 @@ describe('FeedbackOverlay', () => {
           onReview={() => {}}
         />,
       );
-      expect(screen.getByRole('button', { name: 'Review' })).toBeTruthy();
+      expect(screen.getByRole('button', { name: /review/i })).toBeTruthy();
       expect(screen.getByRole('button', { name: uiStrings.buttons.finish })).toBeTruthy();
     });
   });
