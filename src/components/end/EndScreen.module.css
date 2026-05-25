@@ -151,7 +151,8 @@
      with a thick tier-colored ring and a soft outer glow. Reads as a
      verdict landing on the player rather than just a stat. data-tier
      drives both ring + tint via currentColor + color-mix so we only
-     write one rule for color (not three: border, bg, text). */
+     write one rule for color (not three: border, bg, text).
+     Settles at a slight CCW tilt for a playful, hand-stamped feel. */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -159,7 +160,10 @@
   height: 120px;
   border-radius: 50%;
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  /* Bigger than --text-3xl so the letter dominates the disc. Custom
+     clamp so it scales with viewport without being constrained by the
+     standard scale's 4rem cap. */
+  font-size: clamp(3rem, 12vw, 4.5rem);
   font-weight: var(--font-weight-black);
   line-height: 1;
   letter-spacing: 0.02em;
@@ -171,9 +175,9 @@
   box-shadow:
     0 6px 18px color-mix(in srgb, currentColor 30%, transparent),
     inset 0 -3px 8px color-mix(in srgb, currentColor 12%, transparent);
-  /* Stamp-down on mount: starts off-screen-scale + slightly rotated +
-     transparent, overshoots to 1.15× before settling. Reads as a
-     verdict landing. */
+  /* Stamp-down on mount: scales in with a brief overshoot then
+     settles at a slight counter-clockwise tilt. Reads as a verdict
+     landing crooked, like a hand-stamped grade on a paper. */
   animation: gradeBadgeStamp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
@@ -185,15 +189,17 @@
 
 @keyframes gradeBadgeStamp {
   0% {
-    transform: scale(0) rotate(-18deg);
+    transform: scale(0) rotate(-30deg);
     opacity: 0;
   }
   60% {
-    transform: scale(1.15) rotate(4deg);
+    transform: scale(1.15) rotate(-5deg);
     opacity: 1;
   }
   100% {
-    transform: scale(1) rotate(0);
+    /* Settles at -12° — a playful CCW tilt so the badge feels
+       hand-stamped rather than mechanically centered. */
+    transform: scale(1) rotate(-12deg);
     opacity: 1;
   }
 }
