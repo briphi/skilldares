@@ -31,7 +31,10 @@ describe('EndScreen', () => {
         />,
       );
       expect(screen.getByText(uiStrings.endScreen.finalScoreLabel)).toBeTruthy();
-      expect(screen.getByText('42 Points')).toBeTruthy();
+      // Score is rendered inside the scorecard as just the number; the
+      // word "Points" is the row label.
+      expect(screen.getByText('42')).toBeTruthy();
+      expect(screen.getByText('Points')).toBeTruthy();
     });
 
     it('renders the ALL-TIME BEST line with the PB value when present', () => {
@@ -47,7 +50,8 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText(`${uiStrings.endScreen.personalBestLabel}:`)).toBeTruthy();
+      // Scorecard renders the PB label without the trailing colon now.
+      expect(screen.getByText(uiStrings.endScreen.personalBestLabel)).toBeTruthy();
       expect(screen.getByText('87')).toBeTruthy();
     });
 
@@ -239,7 +243,10 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('100 Points')).toBeTruthy();
+      // Celebrating-variant score is rendered in the scorecard as just
+      // the number (in accent color); "Points" is the row label.
+      expect(screen.getByText('100')).toBeTruthy();
+      expect(screen.getByText('Points')).toBeTruthy();
     });
 
     it('renders the "Was: {previousPersonalBest}" line when previousPersonalBest is non-null', () => {
@@ -256,7 +263,10 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('Was: 80')).toBeTruthy();
+      // In the scorecard the PB cell uses "Was" as the label and the
+      // raw number as the value (no inline "Was: 80" string anymore).
+      expect(screen.getByText('Was')).toBeTruthy();
+      expect(screen.getByText('80')).toBeTruthy();
     });
 
     it('does NOT render the "Was:" line when previousPersonalBest is null (first-game case)', () => {
@@ -361,7 +371,9 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('11 / 15 Correct')).toBeTruthy();
+      // Scorecard splits the count into label "Correct" and value "11 / 15".
+      expect(screen.getByText('Correct')).toBeTruthy();
+      expect(screen.getByText('11 / 15')).toBeTruthy();
     });
 
     it('renders the "N / M correct" line in the celebrating variant', () => {
@@ -378,7 +390,8 @@ describe('EndScreen', () => {
           rng={() => 0}
         />,
       );
-      expect(screen.getByText('14 / 15 Correct')).toBeTruthy();
+      expect(screen.getByText('Correct')).toBeTruthy();
+      expect(screen.getByText('14 / 15')).toBeTruthy();
     });
 
     it('renders A+ grade with tier="a" for perfect score', () => {

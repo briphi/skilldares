@@ -85,13 +85,16 @@ export function EndScreen({
         <p ref={celebrateHeaderRef} className={styles.celebrateHeader}>
           🎉 NEW HIGH SCORE! 🎉
         </p>
-        <p className={`${styles.score} ${styles.scoreAccent}`}>{finalScore} Points</p>
-        {previousPersonalBest !== null && (
-          <p className={styles.wasLine}>Was: {previousPersonalBest}</p>
-        )}
-        <p className={styles.correctCount}>
-          {correctCount} / {totalQuestions} Correct
-        </p>
+        <Scorecard
+          finalScore={finalScore}
+          finalScoreAccent
+          pbLabel="Was"
+          pbValue={
+            previousPersonalBest !== null ? String(previousPersonalBest) : null
+          }
+          correctCount={correctCount}
+          totalQuestions={totalQuestions}
+        />
         <p className={styles.gradeLine}>
           Grade: <span className={styles.grade} data-tier={tier}>{grade}</span>
         </p>
@@ -105,19 +108,18 @@ export function EndScreen({
     );
   }
 
-  // Standard variant (Story 1.16 — unchanged behavior).
+  // Standard variant.
   const pbDisplay = personalBest === null ? uiStrings.endScreen.noPbValue : String(personalBest);
   return (
     <div className={styles.container}>
       <p className={styles.scoreLabel}>{uiStrings.endScreen.finalScoreLabel}</p>
-      <p className={styles.score}>{finalScore} Points</p>
-      <p className={styles.pbLine}>
-        <span className={styles.pbLabel}>{uiStrings.endScreen.personalBestLabel}:</span>{' '}
-        <span className={styles.pbValue}>{pbDisplay}</span>
-      </p>
-      <p className={styles.correctCount}>
-        {correctCount} / {totalQuestions} Correct
-      </p>
+      <Scorecard
+        finalScore={finalScore}
+        pbLabel={uiStrings.endScreen.personalBestLabel}
+        pbValue={pbDisplay}
+        correctCount={correctCount}
+        totalQuestions={totalQuestions}
+      />
       <p className={styles.gradeLine}>
         Grade: <span className={styles.grade} data-tier={tier}>{grade}</span>
       </p>
@@ -126,6 +128,59 @@ export function EndScreen({
         <Button variant="primary" onClick={onPlayAgain}>
           {playAgainLabel}
         </Button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Three-row scorecard used by both EndScreen variants. Groups POINTS,
+ * PB (or "Was" in the celebrating variant), and CORRECT into a single
+ * styled card so the stats read as one scannable block instead of three
+ * floating paragraphs.
+ *
+ * The PB row is omitted entirely when pbValue is null — happens in the
+ * celebrating variant when the player has no prior PB to compare to
+ * (first game ever).
+ */
+function Scorecard({
+  finalScore,
+  finalScoreAccent = false,
+  pbLabel,
+  pbValue,
+  correctCount,
+  totalQuestions,
+}: {
+  finalScore: number;
+  finalScoreAccent?: boolean;
+  pbLabel: string;
+  pbValue: string | null;
+  correctCount: number;
+  totalQuestions: number;
+}) {
+  return (
+    <div className={styles.scorecard} role="group" aria-label="Game results">
+      <div className={styles.scorecardRow}>
+        <span className={styles.scorecardLabel}>Points</span>
+        <span
+          className={`${styles.scorecardValue} ${
+            finalScoreAccent ? styles.scorecardValueAccent : ''
+          }`}
+        >
+          {finalScore}
+        </span>
+      </div>
+      {pbValue !== null && (
+        <div className={styles.scorecardRow}>
+          <span className={styles.scorecardLabel}>{pbLabel}</span>
+          <span className={styles.scorecardValue}>{pbValue}</span>
+        </div>
+      )}
+      <div className={styles.scorecardRow}>
+        <span className={styles.scorecardLabel}>Correct</span>
+        <span className={styles.scorecardValue}>
+          {correctCount} / {totalQuestions}
+        </span>
       </div>
     </div>
   );
