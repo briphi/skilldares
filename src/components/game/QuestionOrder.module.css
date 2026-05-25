@@ -23,6 +23,48 @@
   gap: var(--space-3);
 }
 
+/* Slide-in animation for the items as the ready phase ends.
+   - During 'ready': rows render in their natural layout positions but with
+     visibility: hidden, so the list reserves its final height and nothing
+     below (Lock-In button) jumps when the items appear.
+   - When phase flips to 'idle': data-phase changes → the animation rule
+     below kicks in. Per-item delays via :nth-child stagger the cascade so
+     the rows bounce in one after another, top to bottom. Bouncy ease
+     (cubic-bezier 0.34, 1.56, 0.64, 1) gives a tiny overshoot on landing. */
+.list[data-phase="ready"] .row {
+  visibility: hidden;
+}
+
+.list[data-phase="idle"] .row {
+  animation: orderItemSlideIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Up to 5 items per schema (SpeedOrderQuestion.items max 5). 90ms stagger
+   between each row keeps the whole cascade under ~0.55s + 4*0.09 = ~0.91s. */
+.list[data-phase="idle"] .row:nth-child(1) { animation-delay: 0s; }
+.list[data-phase="idle"] .row:nth-child(2) { animation-delay: 0.09s; }
+.list[data-phase="idle"] .row:nth-child(3) { animation-delay: 0.18s; }
+.list[data-phase="idle"] .row:nth-child(4) { animation-delay: 0.27s; }
+.list[data-phase="idle"] .row:nth-child(5) { animation-delay: 0.36s; }
+
+@keyframes orderItemSlideIn {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: skip the slide, just appear in place. */
+@media (prefers-reduced-motion: reduce) {
+  .list[data-phase="idle"] .row {
+    animation: none;
+  }
+}
+
 .row {
   /* Wrapper for the sortable surface — ItemSquare provides the visual.
      position: relative anchors the absolutely-positioned .dragHandle. */

@@ -199,7 +199,10 @@ export function QuestionOrder({
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={order} strategy={verticalListSortingStrategy}>
-          <div className={styles.list}>
+          {/* data-phase drives the slide-in cascade (CSS module): rows are
+              visibility:hidden during 'ready' so the list reserves layout
+              space, then animate in when phase flips to 'idle'. */}
+          <div className={styles.list} data-phase={phase}>
             {order.map((name, index) => (
               <SortableRow
                 key={name}
