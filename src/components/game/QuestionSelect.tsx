@@ -188,7 +188,9 @@ export function QuestionSelect({
         ))}
       </div>
 
-      <div className={styles.submitRow}>
+      {/* data-phase drives visibility/fade-in (CSS module): button hidden
+          during ready, fades in when phase flips to idle. */}
+      <div className={styles.submitRow} data-phase={phase}>
         {review ? (
           <Button variant="primary" onClick={review.onNext}>
             {review.nextLabel}

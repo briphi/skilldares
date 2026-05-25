@@ -232,7 +232,9 @@ export function QuestionOrder({
         </SortableContext>
       </DndContext>
 
-      <div className={styles.submitRow}>
+      {/* data-phase drives the visibility/fade-in (CSS module): button
+          is hidden during ready, fades in when phase flips to idle. */}
+      <div className={styles.submitRow} data-phase={phase}>
         {review ? (
           <Button variant="primary" onClick={review.onNext}>
             {review.nextLabel}

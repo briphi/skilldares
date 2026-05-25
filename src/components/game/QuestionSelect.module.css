@@ -93,3 +93,29 @@
   justify-content: center;
   margin-top: var(--space-4);
 }
+
+/* Lock-In button: hidden during ready (preserves layout space), quick
+   opacity fade-in when phase flips to idle. See QuestionOrder for the
+   same pattern. */
+.submitRow[data-phase="ready"] {
+  visibility: hidden;
+}
+
+.submitRow[data-phase="idle"] {
+  animation: submitRowFadeIn 0.3s ease-out both;
+}
+
+@keyframes submitRowFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submitRow[data-phase="idle"] {
+    animation: none;
+  }
+}
