@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EndScreen } from './EndScreen';
@@ -8,6 +8,14 @@ const fixtureStandardMessages = ['Test message A', 'Test message B', 'Test messa
 const fixtureCelebratoryMessages = ['Celebrate A', 'Celebrate B', 'Celebrate C'];
 
 describe('EndScreen', () => {
+  // EndScreen's play-again-label picker reads/writes localStorage
+  // (lastShown exclusion). Without this, the second test in a file
+  // sees the previous test's write and picks a different label —
+  // any assertion against a hardcoded label would fail.
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   describe('standard variant (not a new high score)', () => {
     it('renders the FINAL DAMAGE label and the numeric final score', () => {
       render(

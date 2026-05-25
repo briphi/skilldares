@@ -100,9 +100,11 @@ export function EndScreen({
         <span className={styles.pbValue}>{pbDisplay}</span>
       </p>
       <p className={styles.message}>{message}</p>
-      <Button variant="primary" onClick={onPlayAgain}>
-        {uiStrings.buttons.playAgain}
-      </Button>
+      <div className={styles.playAgainButton}>
+        <Button variant="primary" onClick={onPlayAgain}>
+          {playAgainLabel}
+        </Button>
+      </div>
     </div>
   );
 }
