@@ -129,6 +129,23 @@
 
 /* ---------- Grade badge ---------- */
 
+.gradeRow {
+  /* "Grade:" label sits to the left of the circular badge. Centered as
+     a unit so the whole grade callout stays balanced on the page. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.gradeLabel {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+}
+
 .gradeBadge {
   /* Circular "medal" — the grade letter sits inside a tinted disc
      with a thick tier-colored ring and a soft outer glow. Reads as a

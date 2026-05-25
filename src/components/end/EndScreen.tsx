@@ -95,14 +95,17 @@ export function EndScreen({
           correctCount={correctCount}
           totalQuestions={totalQuestions}
         />
-        <span
-          className={styles.gradeBadge}
-          data-tier={tier}
-          role="img"
-          aria-label={`Grade: ${grade}`}
-        >
-          {grade}
-        </span>
+        <div className={styles.gradeRow}>
+          <span className={styles.gradeLabel}>Grade:</span>
+          <span
+            className={styles.gradeBadge}
+            data-tier={tier}
+            role="img"
+            aria-label={`Grade: ${tier.toUpperCase()}`}
+          >
+            {tier.toUpperCase()}
+          </span>
+        </div>
         <p className={styles.message}>{message}</p>
         <div className={styles.playAgainButton}>
           <Button variant="primary" onClick={onPlayAgain}>
@@ -125,14 +128,17 @@ export function EndScreen({
         correctCount={correctCount}
         totalQuestions={totalQuestions}
       />
-      <span
-        className={styles.gradeBadge}
-        data-tier={tier}
-        role="img"
-        aria-label={`Grade: ${grade}`}
-      >
-        {grade}
-      </span>
+      <div className={styles.gradeRow}>
+        <span className={styles.gradeLabel}>Grade:</span>
+        <span
+          className={styles.gradeBadge}
+          data-tier={tier}
+          role="img"
+          aria-label={`Grade: ${tier.toUpperCase()}`}
+        >
+          {tier.toUpperCase()}
+        </span>
+      </div>
       <p className={styles.message}>{message}</p>
       <div className={styles.playAgainButton}>
         <Button variant="primary" onClick={onPlayAgain}>

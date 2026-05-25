@@ -394,7 +394,7 @@ describe('EndScreen', () => {
       expect(screen.getByText('14 / 15')).toBeTruthy();
     });
 
-    it('renders A+ grade with tier="a" for perfect score', () => {
+    it('renders A tier badge (no +/- modifier) for a perfect 30/30 score', () => {
       const { container } = render(
         <EndScreen
           finalScore={42}
@@ -408,11 +408,13 @@ describe('EndScreen', () => {
         />,
       );
       const grade = container.querySelector('[data-tier]');
-      expect(grade?.textContent).toBe('A+');
+      // Badge shows just the tier letter — no +/- modifier (the full
+      // grade A+ is still computed internally, but the badge displays "A").
+      expect(grade?.textContent).toBe('A');
       expect(grade?.getAttribute('data-tier')).toBe('a');
     });
 
-    it('renders C- grade with tier="c" at 70% (21/30)', () => {
+    it('renders C tier badge for 70% (21/30 = C-)', () => {
       const { container } = render(
         <EndScreen
           finalScore={42}
@@ -426,11 +428,11 @@ describe('EndScreen', () => {
         />,
       );
       const grade = container.querySelector('[data-tier]');
-      expect(grade?.textContent).toBe('C-');
+      expect(grade?.textContent).toBe('C');
       expect(grade?.getAttribute('data-tier')).toBe('c');
     });
 
-    it('renders F grade with tier="f" below 60%', () => {
+    it('renders F tier badge below 60%', () => {
       const { container } = render(
         <EndScreen
           finalScore={5}
@@ -446,6 +448,22 @@ describe('EndScreen', () => {
       const grade = container.querySelector('[data-tier]');
       expect(grade?.textContent).toBe('F');
       expect(grade?.getAttribute('data-tier')).toBe('f');
+    });
+
+    it('renders the "Grade:" label to the left of the badge', () => {
+      render(
+        <EndScreen
+          finalScore={42}
+          personalBest={50}
+          previousPersonalBest={50}
+          correctCount={28}
+          totalQuestions={30}
+          onPlayAgain={() => {}}
+          standardMessages={fixtureStandardMessages}
+          rng={() => 0}
+        />,
+      );
+      expect(screen.getByText('Grade:')).toBeTruthy();
     });
   });
 });
