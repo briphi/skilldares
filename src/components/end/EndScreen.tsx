@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useReducedMotion } from 'motion/react';
 import { Button } from '../shared/Button';
 import { Confetti } from '../shared/Confetti';
 import { uiStrings } from '../../content/uiStrings';
@@ -79,10 +80,35 @@ export function EndScreen({
   const celebrateHeaderRef = useRef<HTMLParagraphElement>(null);
   useFitTextToLines(celebrateHeaderRef, 1, { minFontSizePx: 16 });
 
+  // Gate the confetti so it fires in sync with the grade-badge reveal
+  // (1400ms — same delay the badge waits for the Scorecard count-up
+  // cascade to finish). Reads as one coordinated "verdict + celebration"
+  // beat instead of confetti racing the numbers on mount.
+  //
+  // Under reduced motion, the cascade snaps instantly, so delaying the
+  // confetti would leave a 1.4s empty gap. Initialize the gate open in
+  // that case so Confetti's reduced-motion flash variant still fires
+  // immediately on first render. motion/react's useReducedMotion is
+  // effect-driven (returns null on the first paint), so we read
+  // matchMedia synchronously here to keep the first render correct.
+  const reducedMotion = useReducedMotion();
+  const [confettiReady, setConfettiReady] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+  });
+  useEffect(() => {
+    if (reducedMotion) {
+      setConfettiReady(true);
+      return;
+    }
+    const timeoutId = window.setTimeout(() => setConfettiReady(true), 1400);
+    return () => window.clearTimeout(timeoutId);
+  }, [reducedMotion]);
+
   if (isNewHighScore) {
     return (
       <div className={`${styles.container} ${styles.celebrating}`}>
-        <Confetti />
+        {confettiReady && <Confetti />}
         <p ref={celebrateHeaderRef} className={styles.celebrateHeader}>
           🎉 NEW HIGH SCORE! 🎉
         </p>
