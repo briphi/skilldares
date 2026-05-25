@@ -44,13 +44,14 @@
     opacity var(--motion-base) var(--ease-snappy);
   text-align: center;
   overflow: hidden;
-  /* Idle-state wiggle — see @keyframes mcWiggle below. Per-quadrant
-     animation-delay is set on the .color{N} rules so each square is at
-     a different phase, giving the grid an organic, game-like feel.
-     Halted when the quadrant enters .locked / .correct / .muted /
-     .greyed (those rules override animation-name to "none" so the
-     static transforms in those states take over cleanly). */
-  animation: mcWiggle 3s ease-in-out infinite;
+  /* Each quadrant runs TWO animations declared on its .color{N} rule below:
+       1. mcSlideInLeft / mcSlideInRight — entrance, runs once on mount
+          (left column from the left, right column from the right).
+       2. mcWiggle — idle-state perpetual wiggle, delayed to start AFTER
+          the slide-in has finished + its own per-quadrant stagger.
+     Halted via `animation: none` when the quadrant enters .locked /
+     .correct / .muted / .greyed (those static-transform states would
+     conflict with the wiggle's transform). */
 }
 
 @keyframes mcWiggle {
@@ -59,7 +60,20 @@
   75%      { transform: rotate(0.9deg); }
 }
 
-/* Reduced motion: hold still. */
+/* Entrance — left column flies in from the left, right column from the right.
+   `both` fill-mode keeps the off-screen initial state before the animation
+   begins, so quadrants don't flash at their final position before sliding. */
+@keyframes mcSlideInLeft {
+  from { transform: translateX(-120%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes mcSlideInRight {
+  from { transform: translateX(120%);  opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+/* Reduced motion: hold still. Kills both the entrance and the wiggle. */
 @media (prefers-reduced-motion: reduce) {
   .quadrant {
     animation: none;
@@ -74,10 +88,35 @@
   cursor: default;
 }
 
-.color1 { background-color: var(--color-answer-1); animation-delay: 0s; }
-.color2 { background-color: var(--color-answer-2); animation-delay: 0.75s; }
-.color3 { background-color: var(--color-answer-3); animation-delay: 1.5s; }
-.color4 { background-color: var(--color-answer-4); animation-delay: 2.25s; }
+/* Per-color: background tint + the full animation shorthand. Bottom row
+   (color3, color4) gets a tiny 0.08s slide-in delay so the entrance staggers
+   top → bottom for extra liveliness. Wiggle delays preserve the original
+   0 / 0.75 / 1.5 / 2.25s stagger but offset by the slide-in window so it
+   only starts once the quadrant has landed. */
+.color1 {
+  background-color: var(--color-answer-1);
+  animation:
+    mcSlideInLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    mcWiggle 3s ease-in-out 0.6s infinite;
+}
+.color2 {
+  background-color: var(--color-answer-2);
+  animation:
+    mcSlideInRight 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    mcWiggle 3s ease-in-out 1.35s infinite;
+}
+.color3 {
+  background-color: var(--color-answer-3);
+  animation:
+    mcSlideInLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both,
+    mcWiggle 3s ease-in-out 2.1s infinite;
+}
+.color4 {
+  background-color: var(--color-answer-4);
+  animation:
+    mcSlideInRight 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s both,
+    mcWiggle 3s ease-in-out 2.85s infinite;
+}
 
 .default {
   /* default styling */
