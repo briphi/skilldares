@@ -162,7 +162,10 @@ export function QuestionSelect({
         />
       )}
 
-      <div className={styles.grid}>
+      {/* data-phase drives the pop-in cascade (CSS module): items are
+          visibility:hidden during 'ready' so the grid reserves layout
+          space, then animate in when phase flips to 'idle'. */}
+      <div className={styles.grid} data-phase={phase}>
         {displayItems.map((name) => (
           <ItemSquare
             key={name}

@@ -24,6 +24,50 @@
   width: 100%;
 }
 
+/* Pop-in animation for the grid items as the ready phase ends.
+   - During 'ready': items render in their normal grid cells but are
+     visibility:hidden, so the grid reserves its final height and the
+     Lock-In button below doesn't jump when items appear.
+   - On phase flip to 'idle': data-phase changes → the animation rule
+     below fires. nth-child stagger gives a quick cascade across the
+     6 cells. Same bouncy ease (cubic-bezier 0.34, 1.56, 0.64, 1) as
+     the MC quadrant slide-in and the Order item cascade. */
+.grid[data-phase="ready"] > * {
+  visibility: hidden;
+}
+
+.grid[data-phase="idle"] > * {
+  animation: selectItemPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Schema caps items at 6 (SpeedSelectQuestion.items length 6). 60ms
+   stagger between cells keeps the whole cascade under ~0.45 + 5*0.06
+   = 0.75s total. */
+.grid[data-phase="idle"] > *:nth-child(1) { animation-delay: 0s; }
+.grid[data-phase="idle"] > *:nth-child(2) { animation-delay: 0.06s; }
+.grid[data-phase="idle"] > *:nth-child(3) { animation-delay: 0.12s; }
+.grid[data-phase="idle"] > *:nth-child(4) { animation-delay: 0.18s; }
+.grid[data-phase="idle"] > *:nth-child(5) { animation-delay: 0.24s; }
+.grid[data-phase="idle"] > *:nth-child(6) { animation-delay: 0.30s; }
+
+@keyframes selectItemPop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: skip the pop, just appear in place. */
+@media (prefers-reduced-motion: reduce) {
+  .grid[data-phase="idle"] > * {
+    animation: none;
+  }
+}
+
 .submitRow {
   display: flex;
   justify-content: center;
