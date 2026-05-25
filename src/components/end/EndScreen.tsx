@@ -95,9 +95,14 @@ export function EndScreen({
           correctCount={correctCount}
           totalQuestions={totalQuestions}
         />
-        <p className={styles.gradeLine}>
-          Grade: <span className={styles.grade} data-tier={tier}>{grade}</span>
-        </p>
+        <span
+          className={styles.gradeBadge}
+          data-tier={tier}
+          role="img"
+          aria-label={`Grade: ${grade}`}
+        >
+          {grade}
+        </span>
         <p className={styles.message}>{message}</p>
         <div className={styles.playAgainButton}>
           <Button variant="primary" onClick={onPlayAgain}>
@@ -120,9 +125,14 @@ export function EndScreen({
         correctCount={correctCount}
         totalQuestions={totalQuestions}
       />
-      <p className={styles.gradeLine}>
-        Grade: <span className={styles.grade} data-tier={tier}>{grade}</span>
-      </p>
+      <span
+        className={styles.gradeBadge}
+        data-tier={tier}
+        role="img"
+        aria-label={`Grade: ${grade}`}
+      >
+        {grade}
+      </span>
       <p className={styles.message}>{message}</p>
       <div className={styles.playAgainButton}>
         <Button variant="primary" onClick={onPlayAgain}>
