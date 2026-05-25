@@ -7,6 +7,13 @@
   margin: 0 auto;
 }
 
+.promptSlot {
+  /* See QuestionOrder.module.css .promptSlot for the same arrangement —
+     position context for the Ready? overlay so the cue can occupy the
+     prompt's screen space without affecting layout flow. */
+  position: relative;
+}
+
 .prompt {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -15,6 +22,19 @@
   text-align: center;
   margin: 0;
   line-height: 1.2;
+}
+
+.prompt[data-hidden="true"] {
+  visibility: hidden;
+}
+
+.readyOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .grid {

@@ -183,15 +183,25 @@ export function QuestionOrder({
 
   return (
     <div className={styles.container}>
-      {/* Ready? cue lives ABOVE the prompt and stays mounted at all times
-          (hidden prop drives visibility) so the cluster below doesn't
-          shift when it disappears. Suppressed entirely in review mode —
-          no ready cycle there. */}
-      {!review && <ReadyIndicator hidden={phase !== 'ready'} />}
-      <h2 className={styles.prompt}>{question.prompt}</h2>
-      {/* Timer hidden in review mode (round is over) and during ready
-          (no countdown yet — Ready? is the cue). */}
-      {!review && phase !== 'ready' && (
+      {/* Prompt + Ready? cue share a slot: the cue absolute-overlays the
+          prompt during ready, prompt is visibility-hidden so the slot
+          keeps its full layout height. After ready, the overlay's
+          ReadyIndicator goes visibility-hidden and the prompt becomes
+          visible — zero shift either direction. Review skips the cue. */}
+      <div className={styles.promptSlot}>
+        <h2 className={styles.prompt} data-hidden={!review && phase === 'ready'}>
+          {question.prompt}
+        </h2>
+        {!review && (
+          <div className={styles.readyOverlay}>
+            <ReadyIndicator hidden={phase !== 'ready'} />
+          </div>
+        )}
+      </div>
+      {/* Timer always visible outside review. During ready, useTimer is
+          paused (active=false) so the bar sits full and the urgency cues
+          are silenced — communicates "time is loaded, about to start". */}
+      {!review && (
         <TimerDisplay
           secondsRemaining={secondsRemaining}
           totalSeconds={durationSeconds}

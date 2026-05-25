@@ -7,6 +7,13 @@
   margin: 0 auto;
 }
 
+.promptSlot {
+  /* Wraps the prompt + the Ready? overlay so the cue can occupy the same
+     screen space as the prompt without affecting layout flow. Position
+     relative anchors the absolute-positioned overlay below. */
+  position: relative;
+}
+
 .prompt {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -15,6 +22,23 @@
   text-align: center;
   margin: 0;
   line-height: 1.2;
+}
+
+/* Hidden during the ready phase — preserves layout space so the cluster
+   below (timer / list / Lock-In) stays anchored. */
+.prompt[data-hidden="true"] {
+  visibility: hidden;
+}
+
+.readyOverlay {
+  /* Absolute-positioned so the Ready? cue overlays the prompt without
+     adding to the column-flow height. Centered inside the prompt slot. */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .list {

@@ -149,12 +149,22 @@ export function QuestionSelect({
 
   return (
     <div className={styles.container}>
-      {/* Ready? cue always mounted (visibility-toggled via hidden prop) so
-          the cluster below doesn't shift when it disappears. See
-          QuestionOrder for the same arrangement. */}
-      {!review && <ReadyIndicator hidden={phase !== 'ready'} />}
-      <h2 className={styles.prompt}>{question.prompt}</h2>
-      {!review && phase !== 'ready' && (
+      {/* Prompt + Ready? share a slot: the cue absolute-overlays the prompt
+          during ready, prompt is visibility-hidden so the slot keeps its
+          layout height. See QuestionOrder for the same pattern. */}
+      <div className={styles.promptSlot}>
+        <h2 className={styles.prompt} data-hidden={!review && phase === 'ready'}>
+          {question.prompt}
+        </h2>
+        {!review && (
+          <div className={styles.readyOverlay}>
+            <ReadyIndicator hidden={phase !== 'ready'} />
+          </div>
+        )}
+      </div>
+      {/* Timer always visible outside review — paused at full during ready,
+          ticks when idle. */}
+      {!review && (
         <TimerDisplay
           secondsRemaining={secondsRemaining}
           totalSeconds={durationSeconds}
