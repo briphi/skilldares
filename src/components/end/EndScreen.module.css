@@ -101,6 +101,36 @@
   padding: var(--space-3) var(--space-4);
 }
 
+/* ---------- Letter-grade + correct-count display ---------- */
+
+.grade {
+  /* Big bold letter centered between the score and the PB line.
+     data-tier (a/b/c/d/f) drives the color so the visual rewards the
+     player without making us write 13 separate rules. */
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-black);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.grade[data-tier="a"] { color: var(--color-state-success); }
+.grade[data-tier="b"] { color: var(--color-brand-primary); }
+.grade[data-tier="c"] { color: var(--color-state-warning); }
+.grade[data-tier="d"] { color: var(--color-brand-accent); }
+.grade[data-tier="f"] { color: var(--color-state-error); }
+
+.correctCount {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 .wasLine {
   font-family: var(--font-body);
   font-size: var(--text-md);

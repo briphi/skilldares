@@ -23,6 +23,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={() => 0}
@@ -38,6 +40,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={87}
           previousPersonalBest={87}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={() => 0}
@@ -53,6 +57,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={null}
           previousPersonalBest={42}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={() => 0}
@@ -67,6 +73,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={() => 0}
@@ -88,6 +96,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={drifterRng}
@@ -101,6 +111,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={drifterRng}
@@ -115,6 +127,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           rng={() => 0}
@@ -130,6 +144,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={onPlayAgain}
           standardMessages={fixtureStandardMessages}
           rng={() => 0}
@@ -145,6 +161,8 @@ describe('EndScreen', () => {
           finalScore={50}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -160,6 +178,8 @@ describe('EndScreen', () => {
           finalScore={10}
           personalBest={50}
           previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -177,6 +197,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -192,6 +214,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={42}
           previousPersonalBest={null}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -207,6 +231,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -222,6 +248,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -237,6 +265,8 @@ describe('EndScreen', () => {
           finalScore={42}
           personalBest={42}
           previousPersonalBest={null}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -252,6 +282,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -269,6 +301,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={onPlayAgain}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -284,6 +318,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -299,6 +335,8 @@ describe('EndScreen', () => {
           finalScore={100}
           personalBest={100}
           previousPersonalBest={80}
+          correctCount={10}
+          totalQuestions={15}
           onPlayAgain={() => {}}
           standardMessages={fixtureStandardMessages}
           celebratoryMessages={fixtureCelebratoryMessages}
@@ -306,6 +344,95 @@ describe('EndScreen', () => {
         />,
       );
       expect(screen.queryByText(`${uiStrings.endScreen.personalBestLabel}:`)).toBeNull();
+    });
+  });
+
+  describe('letter grade + correct count', () => {
+    it('renders the "N / M correct" line in the standard variant', () => {
+      render(
+        <EndScreen
+          finalScore={42}
+          personalBest={50}
+          previousPersonalBest={50}
+          correctCount={11}
+          totalQuestions={15}
+          onPlayAgain={() => {}}
+          standardMessages={fixtureStandardMessages}
+          rng={() => 0}
+        />,
+      );
+      expect(screen.getByText('11 / 15 correct')).toBeTruthy();
+    });
+
+    it('renders the "N / M correct" line in the celebrating variant', () => {
+      render(
+        <EndScreen
+          finalScore={100}
+          personalBest={100}
+          previousPersonalBest={80}
+          correctCount={14}
+          totalQuestions={15}
+          onPlayAgain={() => {}}
+          standardMessages={fixtureStandardMessages}
+          celebratoryMessages={fixtureCelebratoryMessages}
+          rng={() => 0}
+        />,
+      );
+      expect(screen.getByText('14 / 15 correct')).toBeTruthy();
+    });
+
+    it('renders A+ grade with tier="a" for perfect score', () => {
+      const { container } = render(
+        <EndScreen
+          finalScore={42}
+          personalBest={50}
+          previousPersonalBest={50}
+          correctCount={30}
+          totalQuestions={30}
+          onPlayAgain={() => {}}
+          standardMessages={fixtureStandardMessages}
+          rng={() => 0}
+        />,
+      );
+      const grade = container.querySelector('[data-tier]');
+      expect(grade?.textContent).toBe('A+');
+      expect(grade?.getAttribute('data-tier')).toBe('a');
+    });
+
+    it('renders C- grade with tier="c" at 70% (21/30)', () => {
+      const { container } = render(
+        <EndScreen
+          finalScore={42}
+          personalBest={50}
+          previousPersonalBest={50}
+          correctCount={21}
+          totalQuestions={30}
+          onPlayAgain={() => {}}
+          standardMessages={fixtureStandardMessages}
+          rng={() => 0}
+        />,
+      );
+      const grade = container.querySelector('[data-tier]');
+      expect(grade?.textContent).toBe('C-');
+      expect(grade?.getAttribute('data-tier')).toBe('c');
+    });
+
+    it('renders F grade with tier="f" below 60%', () => {
+      const { container } = render(
+        <EndScreen
+          finalScore={5}
+          personalBest={50}
+          previousPersonalBest={50}
+          correctCount={10}
+          totalQuestions={30}
+          onPlayAgain={() => {}}
+          standardMessages={fixtureStandardMessages}
+          rng={() => 0}
+        />,
+      );
+      const grade = container.querySelector('[data-tier]');
+      expect(grade?.textContent).toBe('F');
+      expect(grade?.getAttribute('data-tier')).toBe('f');
     });
   });
 });

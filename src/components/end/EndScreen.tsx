@@ -8,6 +8,7 @@ import { defaultRng, type Rng } from '../../lib/rng';
 import { MessagePoolSchema } from '../../lib/schemas/message.schema';
 import { useFitTextToLines } from '../../lib/useFitTextToLines';
 import { getLastShownMessages, setLastShownMessage } from '../../lib/storage';
+import { computeGrade, gradeTier } from '../../lib/grade';
 import rawStandardPool from '../../../data/messages/right-no-streak.json';
 import rawCelebratoryPool from '../../../data/messages/new-high-score.json';
 import styles from './EndScreen.module.css';
@@ -24,6 +25,11 @@ export type EndScreenProps = {
   personalBest: number | null;
   /** PB at game start (pre-update). Drives the celebrating-variant decision. */
   previousPersonalBest: number | null;
+  /** How many questions the player got right this game. Used for the
+      "N/M correct" line and the letter-grade calculation. */
+  correctCount: number;
+  /** Total number of questions in this game. */
+  totalQuestions: number;
   onPlayAgain: () => void;
   /** Override standard-variant pool — used by tests. Defaults to right-no-streak. */
   standardMessages?: string[];
@@ -39,6 +45,8 @@ export function EndScreen({
   finalScore,
   personalBest,
   previousPersonalBest,
+  correctCount,
+  totalQuestions,
   onPlayAgain,
   standardMessages = defaultStandardPool,
   celebratoryMessages = defaultCelebratoryPool,
@@ -48,6 +56,8 @@ export function EndScreen({
   const isNewHighScore = finalScore > (previousPersonalBest ?? -1);
   const messagesPool = isNewHighScore ? celebratoryMessages : standardMessages;
   const [message] = useState<string>(() => pickMessage(messagesPool, rng));
+  const grade = computeGrade(correctCount, totalQuestions);
+  const tier = gradeTier(grade);
 
   // Pick a Play Again label from the pool, avoiding the most-recently-shown
   // one (tracked via localStorage so it survives across games + refreshes).
@@ -79,6 +89,10 @@ export function EndScreen({
         {previousPersonalBest !== null && (
           <p className={styles.wasLine}>Was: {previousPersonalBest}</p>
         )}
+        <p className={styles.grade} data-tier={tier}>{grade}</p>
+        <p className={styles.correctCount}>
+          {correctCount} / {totalQuestions} correct
+        </p>
         <p className={styles.message}>{message}</p>
         <div className={styles.playAgainButton}>
           <Button variant="primary" onClick={onPlayAgain}>
@@ -95,6 +109,10 @@ export function EndScreen({
     <div className={styles.container}>
       <p className={styles.scoreLabel}>{uiStrings.endScreen.finalScoreLabel}</p>
       <p className={styles.score}>{finalScore}</p>
+      <p className={styles.grade} data-tier={tier}>{grade}</p>
+      <p className={styles.correctCount}>
+        {correctCount} / {totalQuestions} correct
+      </p>
       <p className={styles.pbLine}>
         <span className={styles.pbLabel}>{uiStrings.endScreen.personalBestLabel}:</span>{' '}
         <span className={styles.pbValue}>{pbDisplay}</span>

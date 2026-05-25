@@ -46,6 +46,9 @@ export type GameState = {
   roundIndex: number;
   score: number;
   streak: number;
+  /** Count of correct answers so far this game. Used on the End screen
+      for "N/M correct" and the letter-grade calculation. */
+  correctCount: number;
   usedHintThisQuestion: boolean;
   lastFeedback: Feedback | null;
 };
@@ -65,6 +68,7 @@ export const initialGameState: GameState = {
   roundIndex: 0,
   score: 0,
   streak: 0,
+  correctCount: 0,
   usedHintThisQuestion: false,
   lastFeedback: null,
 };
@@ -79,6 +83,7 @@ export function gameReducer(state: GameState, action: Action): GameState {
         roundIndex: 0,
         score: 0,
         streak: 0,
+        correctCount: 0,
         usedHintThisQuestion: false,
         lastFeedback: null,
       };
@@ -95,6 +100,7 @@ export function gameReducer(state: GameState, action: Action): GameState {
         phase: 'feedback',
         score: state.score + points,
         streak: newStreak,
+        correctCount: state.correctCount + (isCorrect ? 1 : 0),
         lastFeedback: { isCorrect, pool },
       };
     }
@@ -146,6 +152,7 @@ export function gameReducer(state: GameState, action: Action): GameState {
         roundIndex: 0,
         score: 0,
         streak: 0,
+        correctCount: 0,
         usedHintThisQuestion: false,
         lastFeedback: null,
       };

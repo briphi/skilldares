@@ -109,6 +109,8 @@ function AppShell() {
             finalScore={testHighScore}
             personalBest={testHighScore}
             previousPersonalBest={null}
+            correctCount={0}
+            totalQuestions={0}
             onPlayAgain={handleStart}
           />
         )}
@@ -133,6 +135,8 @@ function AppShell() {
             finalScore={state.score}
             personalBest={highScore}
             previousPersonalBest={previousHighScore}
+            correctCount={state.correctCount}
+            totalQuestions={state.questions.length}
             onPlayAgain={handlePlayAgain}
           />
         )}

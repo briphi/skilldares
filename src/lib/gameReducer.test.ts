@@ -29,6 +29,7 @@ function playing(overrides: Partial<GameState> = {}): GameState {
     roundIndex: 0,
     score: 0,
     streak: 0,
+    correctCount: 0,
     usedHintThisQuestion: false,
     lastFeedback: null,
     ...overrides,
@@ -49,6 +50,7 @@ describe('initialGameState', () => {
       roundIndex: 0,
       score: 0,
       streak: 0,
+      correctCount: 0,
       usedHintThisQuestion: false,
       lastFeedback: null,
     });
@@ -333,6 +335,7 @@ describe('gameReducer: PLAY_AGAIN', () => {
       roundIndex: TOTAL_ROUNDS - 1,
       score: 87,
       streak: -2,
+      correctCount: 20,
       usedHintThisQuestion: true,
       lastFeedback: { isCorrect: false, pool: 'wrong-no-streak' },
     };
