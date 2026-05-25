@@ -1,10 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import {
   parseGameConfigFromSearch,
-  parseTestHighScoreFromSearch,
+  parseTestEndScreenFromSearch,
   DEFAULT_MC_COUNT,
   DEFAULT_SPEED_COUNT,
   DEFAULT_TEST_HIGH_SCORE,
+  DEFAULT_TEST_CORRECT,
+  DEFAULT_TEST_TOTAL,
 } from './urlConfig';
 
 const POOL_MAXES = { mc: 100, speed: 80 };
@@ -122,37 +124,81 @@ describe('parseGameConfigFromSearch', () => {
   });
 });
 
-describe('parseTestHighScoreFromSearch', () => {
-  it('returns null when the param is absent', () => {
-    expect(parseTestHighScoreFromSearch('')).toBeNull();
-    expect(parseTestHighScoreFromSearch('?utm_source=x')).toBeNull();
-    expect(parseTestHighScoreFromSearch('?mc=5&speed=2')).toBeNull();
+describe('parseTestEndScreenFromSearch', () => {
+  describe('finalScore (driven by ?highScore)', () => {
+    it('returns null when the ?highScore param is absent', () => {
+      expect(parseTestEndScreenFromSearch('')).toBeNull();
+      expect(parseTestEndScreenFromSearch('?utm_source=x')).toBeNull();
+      expect(parseTestEndScreenFromSearch('?mc=5&speed=2')).toBeNull();
+    });
+
+    it('returns config with parsed score when ?highScore=N is given', () => {
+      expect(parseTestEndScreenFromSearch('?highScore=42')?.finalScore).toBe(42);
+      expect(parseTestEndScreenFromSearch('?highScore=999')?.finalScore).toBe(999);
+    });
+
+    it('returns config with finalScore=0 when ?highScore=0', () => {
+      expect(parseTestEndScreenFromSearch('?highScore=0')?.finalScore).toBe(0);
+    });
+
+    it('uses the default score when ?highScore is present without a value', () => {
+      expect(parseTestEndScreenFromSearch('?highScore')?.finalScore).toBe(DEFAULT_TEST_HIGH_SCORE);
+      expect(parseTestEndScreenFromSearch('?highScore=')?.finalScore).toBe(DEFAULT_TEST_HIGH_SCORE);
+    });
+
+    it('uses the default for invalid score values (non-numeric, negative)', () => {
+      expect(parseTestEndScreenFromSearch('?highScore=abc')?.finalScore).toBe(DEFAULT_TEST_HIGH_SCORE);
+      expect(parseTestEndScreenFromSearch('?highScore=-5')?.finalScore).toBe(DEFAULT_TEST_HIGH_SCORE);
+    });
+
+    it('parses an integer when given a decimal (parseInt truncation)', () => {
+      expect(parseTestEndScreenFromSearch('?highScore=42.9')?.finalScore).toBe(42);
+    });
+
+    it('co-exists with other params', () => {
+      expect(parseTestEndScreenFromSearch('?mc=3&highScore=77&speed=2')?.finalScore).toBe(77);
+    });
   });
 
-  it('returns the parsed score when ?highScore=N is given', () => {
-    expect(parseTestHighScoreFromSearch('?highScore=42')).toBe(42);
-    expect(parseTestHighScoreFromSearch('?highScore=999')).toBe(999);
-  });
+  describe('correctCount + totalQuestions (override the grade display)', () => {
+    it('uses the defaults when only ?highScore is given', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=42');
+      expect(cfg?.correctCount).toBe(DEFAULT_TEST_CORRECT);
+      expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
+    });
 
-  it('returns 0 when ?highScore=0 (valid non-negative integer)', () => {
-    expect(parseTestHighScoreFromSearch('?highScore=0')).toBe(0);
-  });
+    it('reads ?correct=N override', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=42&correct=21');
+      expect(cfg?.correctCount).toBe(21);
+      expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
+    });
 
-  it('returns the default when ?highScore is present without a value', () => {
-    expect(parseTestHighScoreFromSearch('?highScore')).toBe(DEFAULT_TEST_HIGH_SCORE);
-    expect(parseTestHighScoreFromSearch('?highScore=')).toBe(DEFAULT_TEST_HIGH_SCORE);
-  });
+    it('reads ?total=M override', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=42&total=20');
+      expect(cfg?.correctCount).toBe(DEFAULT_TEST_CORRECT);
+      expect(cfg?.totalQuestions).toBe(20);
+    });
 
-  it('returns the default for invalid values (non-numeric, negative)', () => {
-    expect(parseTestHighScoreFromSearch('?highScore=abc')).toBe(DEFAULT_TEST_HIGH_SCORE);
-    expect(parseTestHighScoreFromSearch('?highScore=-5')).toBe(DEFAULT_TEST_HIGH_SCORE);
-  });
+    it('reads both ?correct + ?total together', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=42&correct=15&total=30');
+      expect(cfg?.correctCount).toBe(15);
+      expect(cfg?.totalQuestions).toBe(30);
+    });
 
-  it('parses an integer when given a decimal (parseInt truncation)', () => {
-    expect(parseTestHighScoreFromSearch('?highScore=42.9')).toBe(42);
-  });
+    it('accepts 0 for both (renders grade F)', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=42&correct=0&total=30');
+      expect(cfg?.correctCount).toBe(0);
+      expect(cfg?.totalQuestions).toBe(30);
+    });
 
-  it('co-exists with other params', () => {
-    expect(parseTestHighScoreFromSearch('?mc=3&highScore=77&speed=2')).toBe(77);
+    it('falls back to defaults for invalid values', () => {
+      const cfg = parseTestEndScreenFromSearch('?highScore=42&correct=abc&total=-5');
+      expect(cfg?.correctCount).toBe(DEFAULT_TEST_CORRECT);
+      expect(cfg?.totalQuestions).toBe(DEFAULT_TEST_TOTAL);
+    });
+
+    it('ignores ?correct + ?total when ?highScore is absent (test mode off)', () => {
+      expect(parseTestEndScreenFromSearch('?correct=10&total=20')).toBeNull();
+    });
   });
 });

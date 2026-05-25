@@ -10,7 +10,7 @@ import { GameScreen } from './components/game/GameScreen';
 import { EndScreen } from './components/end/EndScreen';
 import { selectGameQuestions } from './lib/questionSelection';
 import { defaultRng } from './lib/rng';
-import { parseGameConfigFromSearch, parseTestHighScoreFromSearch } from './lib/urlConfig';
+import { parseGameConfigFromSearch, parseTestEndScreenFromSearch } from './lib/urlConfig';
 import { gameScreenEnter, transitionFlash } from './lib/motionVariants';
 import styles from './App.module.css';
 import {
@@ -59,12 +59,13 @@ function AppShell() {
     [],
   );
 
-  // Parse ?highScore[=N] once per mount. When set AND the player hasn't
-  // started a real game yet, we short-circuit to the celebrating EndScreen
-  // below. Doesn't touch the persist hook, so it can't pollute the player's
-  // real high score.
-  const testHighScore = useMemo(
-    () => parseTestHighScoreFromSearch(window.location.search),
+  // Parse ?highScore[&correct=&total=] once per mount. When set AND the
+  // player hasn't started a real game yet, we short-circuit to the
+  // celebrating EndScreen below. Doesn't touch the persist hook so it
+  // can't pollute the player's real high score. correct/total drive the
+  // grade badge + correct-count display so any tier is previewable.
+  const testEndScreen = useMemo(
+    () => parseTestEndScreenFromSearch(window.location.search),
     [],
   );
 
@@ -98,23 +99,24 @@ function AppShell() {
           fade-out animation before the GameScreen mounts and plays its
           scale-in + fade-in entrance. */}
       <AnimatePresence mode="wait">
-        {state.phase === 'start' && testHighScore !== null && (
-          // ?highScore[=N] test mode — render the celebrating EndScreen
-          // directly. previousPersonalBest=null guarantees the celebrating
-          // variant fires regardless of stored PB; finalScore is the parsed
-          // (or default) value. Tapping Play Again starts a real game and
-          // the test mode is left behind (state.phase moves away from start).
+        {state.phase === 'start' && testEndScreen !== null && (
+          // ?highScore[&correct=&total=] test mode — render the celebrating
+          // EndScreen directly. previousPersonalBest=null guarantees the
+          // celebrating variant fires regardless of stored PB; correct +
+          // total drive the grade badge + count display so the player can
+          // preview any grade tier. Tapping Play Again starts a real game
+          // and the test mode is left behind (state.phase != 'start').
           <EndScreen
             key="test-high-score"
-            finalScore={testHighScore}
-            personalBest={testHighScore}
+            finalScore={testEndScreen.finalScore}
+            personalBest={testEndScreen.finalScore}
             previousPersonalBest={null}
-            correctCount={0}
-            totalQuestions={0}
+            correctCount={testEndScreen.correctCount}
+            totalQuestions={testEndScreen.totalQuestions}
             onPlayAgain={handleStart}
           />
         )}
-        {state.phase === 'start' && testHighScore === null && (
+        {state.phase === 'start' && testEndScreen === null && (
           <StartScreen key="start" onStart={handleStart} />
         )}
         {(state.phase === 'question' ||

@@ -51,31 +51,53 @@ function parseSingleCount(raw: string | null, fallback: number, max: number): nu
   return Math.min(parsed, max);
 }
 
-/** Default finalScore when `?highScore` is present without a value. */
+/** Defaults when the matching ?param is absent / empty / invalid. */
 export const DEFAULT_TEST_HIGH_SCORE = 100;
+export const DEFAULT_TEST_CORRECT = 28;
+export const DEFAULT_TEST_TOTAL = 30;
+
+export type TestEndScreenConfig = {
+  finalScore: number;
+  correctCount: number;
+  totalQuestions: number;
+};
 
 /**
- * Parse the optional `?highScore` URL parameter — a dev-test affordance
- * that jumps straight to the celebrating End screen variant (skipping
- * the start screen and the actual gameplay).
+ * Parse the optional `?highScore[&correct=&total=]` URL parameters — a
+ * dev-test affordance that jumps straight to the celebrating End screen
+ * variant (skipping the start screen and the actual gameplay).
  *
- * Returns:
- *   - the parsed score when `?highScore=N` is given with a non-negative N
- *   - DEFAULT_TEST_HIGH_SCORE when the param is present without a value
- *     (e.g. `?highScore` or `?highScore=`) or with an invalid value
- *   - null when the param is absent (no jump)
+ * Returns a full TestEndScreenConfig when `?highScore` is present, or
+ * null when it's absent (no jump).
+ *
+ * The presence of `?highScore` is what activates the test mode; `?correct`
+ * and `?total` are optional overrides for the count + grade display so
+ * the player can preview any tier:
+ *
+ *   ?highScore                   → 100 score, 28/30 correct (grade A)
+ *   ?highScore=87                → 87 score,  28/30 correct (grade A)
+ *   ?highScore=87&correct=21&total=30  → 87 score, 21/30 (grade C-)
+ *   ?highScore&correct=0&total=30      → 100 score, 0/30  (grade F)
  *
  * The End screen rendered in this mode does NOT write to localStorage,
- * so testing the celebration doesn't pollute the player's real high
- * score. Tapping "Play Again" leaves the test screen and starts a
- * real game.
+ * so testing doesn't pollute the player's real high score. Tapping
+ * "Play Again" leaves the test screen and starts a real game.
  */
-export function parseTestHighScoreFromSearch(search: string): number | null {
+export function parseTestEndScreenFromSearch(
+  search: string,
+): TestEndScreenConfig | null {
   const params = new URLSearchParams(search);
   if (!params.has('highScore')) return null;
-  const raw = params.get('highScore');
-  if (raw === null || raw === '') return DEFAULT_TEST_HIGH_SCORE;
+  return {
+    finalScore: parsePositiveInt(params.get('highScore'), DEFAULT_TEST_HIGH_SCORE),
+    correctCount: parsePositiveInt(params.get('correct'), DEFAULT_TEST_CORRECT),
+    totalQuestions: parsePositiveInt(params.get('total'), DEFAULT_TEST_TOTAL),
+  };
+}
+
+function parsePositiveInt(raw: string | null, fallback: number): number {
+  if (raw === null || raw === '') return fallback;
   const parsed = parseInt(raw, 10);
-  if (!Number.isFinite(parsed) || parsed < 0) return DEFAULT_TEST_HIGH_SCORE;
+  if (!Number.isFinite(parsed) || parsed < 0) return fallback;
   return parsed;
 }
