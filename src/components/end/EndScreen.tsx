@@ -101,9 +101,9 @@ export function EndScreen({
             className={styles.gradeBadge}
             data-tier={tier}
             role="img"
-            aria-label={`Grade: ${tier.toUpperCase()}`}
+            aria-label={`Grade: ${grade}`}
           >
-            {tier.toUpperCase()}
+            {grade}
           </span>
         </div>
         <p className={styles.message}>{message}</p>
@@ -134,9 +134,9 @@ export function EndScreen({
           className={styles.gradeBadge}
           data-tier={tier}
           role="img"
-          aria-label={`Grade: ${tier.toUpperCase()}`}
+          aria-label={`Grade: ${grade}`}
         >
-          {tier.toUpperCase()}
+          {grade}
         </span>
       </div>
       <p className={styles.message}>{message}</p>

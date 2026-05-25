@@ -394,7 +394,7 @@ describe('EndScreen', () => {
       expect(screen.getByText('14 / 15')).toBeTruthy();
     });
 
-    it('renders A tier badge (no +/- modifier) for a perfect 30/30 score', () => {
+    it('renders A+ grade badge (full grade with modifier) for a perfect 30/30 score', () => {
       const { container } = render(
         <EndScreen
           finalScore={42}
@@ -408,13 +408,11 @@ describe('EndScreen', () => {
         />,
       );
       const grade = container.querySelector('[data-tier]');
-      // Badge shows just the tier letter — no +/- modifier (the full
-      // grade A+ is still computed internally, but the badge displays "A").
-      expect(grade?.textContent).toBe('A');
+      expect(grade?.textContent).toBe('A+');
       expect(grade?.getAttribute('data-tier')).toBe('a');
     });
 
-    it('renders C tier badge for 70% (21/30 = C-)', () => {
+    it('renders C- grade badge for 70% (21/30)', () => {
       const { container } = render(
         <EndScreen
           finalScore={42}
@@ -428,11 +426,11 @@ describe('EndScreen', () => {
         />,
       );
       const grade = container.querySelector('[data-tier]');
-      expect(grade?.textContent).toBe('C');
+      expect(grade?.textContent).toBe('C-');
       expect(grade?.getAttribute('data-tier')).toBe('c');
     });
 
-    it('renders F tier badge below 60%', () => {
+    it('renders F grade badge below 60%', () => {
       const { container } = render(
         <EndScreen
           finalScore={5}
