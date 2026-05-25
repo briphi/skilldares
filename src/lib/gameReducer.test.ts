@@ -239,15 +239,53 @@ describe('gameReducer: ADVANCE_TO_NEXT', () => {
     expect(result.lastFeedback).toBeNull();
   });
 
+  it('also advances from review phase (Review screen → Next)', () => {
+    const state: GameState = {
+      ...feedback({ roundIndex: 5, usedHintThisQuestion: true }),
+      phase: 'review',
+    };
+    const result = gameReducer(state, { type: 'ADVANCE_TO_NEXT' });
+    expect(result.phase).toBe('question');
+    expect(result.roundIndex).toBe(6);
+    expect(result.usedHintThisQuestion).toBe(false);
+  });
+
   it('is a no-op on the last round (use FINISH_GAME)', () => {
     const state = feedback({ roundIndex: TOTAL_ROUNDS - 1 });
     const result = gameReducer(state, { type: 'ADVANCE_TO_NEXT' });
     expect(result).toBe(state);
   });
 
-  it('is a no-op outside feedback phase', () => {
+  it('is a no-op outside feedback / review phase', () => {
     const state = playing();
     const result = gameReducer(state, { type: 'ADVANCE_TO_NEXT' });
+    expect(result).toBe(state);
+  });
+});
+
+// ---------- REVIEW_LAST_ANSWER ----------
+
+describe('gameReducer: REVIEW_LAST_ANSWER', () => {
+  it('transitions feedback → review, preserving everything else', () => {
+    const state = feedback({ roundIndex: 7, score: 30, streak: 2, usedHintThisQuestion: true });
+    const result = gameReducer(state, { type: 'REVIEW_LAST_ANSWER' });
+    expect(result.phase).toBe('review');
+    expect(result.roundIndex).toBe(7);
+    expect(result.score).toBe(30);
+    expect(result.streak).toBe(2);
+    expect(result.usedHintThisQuestion).toBe(true);
+    expect(result.lastFeedback).toEqual(state.lastFeedback);
+  });
+
+  it('is a no-op outside feedback phase', () => {
+    const state = playing();
+    const result = gameReducer(state, { type: 'REVIEW_LAST_ANSWER' });
+    expect(result).toBe(state);
+  });
+
+  it('is a no-op when already in review phase (would be re-entry)', () => {
+    const state: GameState = { ...feedback({ roundIndex: 3 }), phase: 'review' };
+    const result = gameReducer(state, { type: 'REVIEW_LAST_ANSWER' });
     expect(result).toBe(state);
   });
 });
@@ -262,13 +300,23 @@ describe('gameReducer: FINISH_GAME', () => {
     expect(result.score).toBe(42);
   });
 
+  it('also transitions review → end on the last round', () => {
+    const state: GameState = {
+      ...feedback({ roundIndex: TOTAL_ROUNDS - 1, score: 42 }),
+      phase: 'review',
+    };
+    const result = gameReducer(state, { type: 'FINISH_GAME' });
+    expect(result.phase).toBe('end');
+    expect(result.score).toBe(42);
+  });
+
   it('is a no-op before the last round', () => {
     const state = feedback({ roundIndex: 10 });
     const result = gameReducer(state, { type: 'FINISH_GAME' });
     expect(result).toBe(state);
   });
 
-  it('is a no-op outside feedback phase', () => {
+  it('is a no-op outside feedback / review phase', () => {
     const state = playing({ roundIndex: TOTAL_ROUNDS - 1 });
     const result = gameReducer(state, { type: 'FINISH_GAME' });
     expect(result).toBe(state);

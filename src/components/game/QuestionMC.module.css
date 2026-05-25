@@ -122,3 +122,13 @@
   position: relative;
   z-index: 1;
 }
+
+.reviewActions {
+  /* Bottom-row action area used only in review mode (after the player
+     clicked Review on a wrong answer). MC normally has no submit button
+     since the tap IS the submission; review adds a Next button so the
+     player can advance after looking at the revealed correct answer. */
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4);
+}

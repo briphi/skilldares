@@ -14,6 +14,7 @@ export type GameStateHelpers = {
   startGame: (questions: GameQuestion[]) => void;
   answerQuestion: (isCorrect: boolean) => void;
   useHint: () => void;
+  reviewLastAnswer: () => void;
   advanceToNext: () => void;
   finishGame: () => void;
   playAgain: (questions: GameQuestion[]) => void;
@@ -37,6 +38,7 @@ export function useGameState(): UseGameStateResult {
       startGame: (questions) => dispatch({ type: 'START_GAME', payload: { questions } }),
       answerQuestion: (isCorrect) => dispatch({ type: 'ANSWER_QUESTION', payload: { isCorrect } }),
       useHint: () => dispatch({ type: 'USE_HINT' }),
+      reviewLastAnswer: () => dispatch({ type: 'REVIEW_LAST_ANSWER' }),
       advanceToNext: () => dispatch({ type: 'ADVANCE_TO_NEXT' }),
       finishGame: () => dispatch({ type: 'FINISH_GAME' }),
       playAgain: (questions) => dispatch({ type: 'PLAY_AGAIN', payload: { questions } }),

@@ -56,6 +56,53 @@ describe('FeedbackOverlay', () => {
     });
   });
 
+  describe('Review button (wrong-answer two-button layout)', () => {
+    it('renders Review + Next as siblings when answer was wrong and onReview is provided', () => {
+      render(
+        <FeedbackOverlay
+          {...baseProps}
+          isCorrect={false}
+          onReview={() => {}}
+        />,
+      );
+      expect(screen.getByRole('button', { name: 'Review' })).toBeTruthy();
+      expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
+    });
+
+    it('does NOT render Review button when answer was correct (nothing to review)', () => {
+      render(<FeedbackOverlay {...baseProps} isCorrect onReview={() => {}} />);
+      expect(screen.queryByRole('button', { name: 'Review' })).toBeNull();
+      // Still has Next/Finish.
+      expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
+    });
+
+    it('does NOT render Review button when onReview is not provided (wrong answer, no selection captured)', () => {
+      render(<FeedbackOverlay {...baseProps} isCorrect={false} />);
+      expect(screen.queryByRole('button', { name: 'Review' })).toBeNull();
+      expect(screen.getByRole('button', { name: uiStrings.buttons.next })).toBeTruthy();
+    });
+
+    it('calls onReview exactly once when the Review button is tapped', async () => {
+      const onReview = vi.fn();
+      render(<FeedbackOverlay {...baseProps} isCorrect={false} onReview={onReview} />);
+      await userEvent.click(screen.getByRole('button', { name: 'Review' }));
+      expect(onReview).toHaveBeenCalledOnce();
+    });
+
+    it('renders FINISH IT (not NEXT) on the last round when wrong + onReview', () => {
+      render(
+        <FeedbackOverlay
+          {...baseProps}
+          isCorrect={false}
+          isLastRound
+          onReview={() => {}}
+        />,
+      );
+      expect(screen.getByRole('button', { name: 'Review' })).toBeTruthy();
+      expect(screen.getByRole('button', { name: uiStrings.buttons.finish })).toBeTruthy();
+    });
+  });
+
   describe('pool variants', () => {
     const pools: MessagePoolId[] = [
       'right-no-streak',

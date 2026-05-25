@@ -20,6 +20,14 @@ export type FeedbackOverlayProps = {
    * shown above the points line.
    */
   onStreak?: boolean;
+  /**
+   * When provided AND the answer was wrong, render an additional
+   * "Review" button next to "Next" (both equal-width). Tapping Review
+   * takes the player back to the question with the answer revealed, so
+   * they can see what they missed before advancing. Omitted (or
+   * undefined) for correct answers — there's nothing to review.
+   */
+  onReview?: () => void;
 };
 
 function poolVariantKey(pool: MessagePoolId): string {
@@ -44,6 +52,7 @@ export function FeedbackOverlay({
   isLastRound,
   onAdvance,
   onStreak = false,
+  onReview,
 }: FeedbackOverlayProps) {
   const variantClass = styles[poolVariantKey(pool)] ?? '';
   const containerClasses = [styles.container, variantClass].filter(Boolean).join(' ');
@@ -71,9 +80,24 @@ export function FeedbackOverlay({
         <p className={styles.streakBonus}>You're on a streak. Extra point!</p>
       )}
       <p className={styles.points}>+{pointsAwarded} Points</p>
-      <Button variant="primary" onClick={onAdvance}>
-        {buttonLabel}
-      </Button>
+      {!isCorrect && onReview ? (
+        <div className={styles.buttonRow}>
+          <div className={styles.buttonRowSlot}>
+            <Button variant="secondary" onClick={onReview}>
+              Review
+            </Button>
+          </div>
+          <div className={styles.buttonRowSlot}>
+            <Button variant="primary" onClick={onAdvance}>
+              {buttonLabel}
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <Button variant="primary" onClick={onAdvance}>
+          {buttonLabel}
+        </Button>
+      )}
     </motion.div>
   );
 }

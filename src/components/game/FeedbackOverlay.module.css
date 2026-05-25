@@ -40,6 +40,24 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Two-button row used on the wrong-answer FeedbackOverlay (Review + Next).
+   Both buttons are equal width so neither dominates. The shared Button
+   component doesn't accept a className, so each is wrapped in a flex slot
+   that sets width: 100% on the child button via the universal selector. */
+.buttonRow {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.buttonRowSlot {
+  flex: 1;
+}
+
+.buttonRowSlot > button {
+  width: 100%;
+}
+
 .streakBonus {
   /* Sits between the message and the +N Points line when this answer
      earned the streak bonus. Accent-orange to tie back to the

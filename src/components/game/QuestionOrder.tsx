@@ -28,13 +28,31 @@ import { TimerDisplay } from './TimerDisplay';
 import { uiStrings } from '../../content/uiStrings';
 import styles from './QuestionOrder.module.css';
 
+/**
+ * Review-mode payload (see QuestionMCReview for context). Causes the
+ * component to boot into 'revealed' phase with the user's submitted
+ * order, swap the Lock-In button for a Next button, and hide the timer.
+ */
+export type QuestionOrderReview = {
+  submittedOrder: string[];
+  onNext: () => void;
+  nextLabel: string;
+};
+
 export type QuestionOrderProps = {
   question: SpeedOrderQuestion;
   onAnswer: (isCorrect: boolean) => void;
+  /**
+   * Fires slightly BEFORE onAnswer with the order the player submitted.
+   * Used by the parent to support the post-answer Review screen.
+   */
+  onSelectionCaptured?: (selection: { submittedOrder: string[] }) => void;
   rng?: Rng;
   durationSeconds?: number;
   correctRevealMs?: number;
   wrongRevealMs?: number;
+  /** Review-mode payload — present iff this is the review re-mount. */
+  review?: QuestionOrderReview;
 };
 
 type Phase = 'idle' | 'revealed';
@@ -50,18 +68,22 @@ function isOrderCorrect(
 export function QuestionOrder({
   question,
   onAnswer,
+  onSelectionCaptured,
   rng = defaultRng,
   durationSeconds = 15,
   correctRevealMs = 1500,
   wrongRevealMs = 3000,
+  review,
 }: QuestionOrderProps) {
-  // Initial shuffle — stable per mount.
+  // In review mode, use the player's submitted order verbatim — otherwise
+  // shuffle on mount (stable per mount).
   const [order, setOrder] = useState<string[]>(() => {
+    if (review) return review.submittedOrder;
     const names = question.items.map((i) => i.name);
     return pickRandomFromPool(names, names.length, rng);
   });
 
-  const [phase, setPhase] = useState<Phase>('idle');
+  const [phase, setPhase] = useState<Phase>(review ? 'revealed' : 'idle');
   const dispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Lookup: item name → factorValue for reveal subtext.
@@ -88,6 +110,7 @@ export function QuestionOrder({
   const handleSubmit = () => {
     if (phase !== 'idle') return;
     const correct = isOrderCorrect(order, question.items);
+    onSelectionCaptured?.({ submittedOrder: order });
     setPhase('revealed');
     const duration = correct ? correctRevealMs : wrongRevealMs;
     if (duration <= 0) {
@@ -134,11 +157,15 @@ export function QuestionOrder({
   return (
     <div className={styles.container}>
       <h2 className={styles.prompt}>{question.prompt}</h2>
-      <TimerDisplay
-        secondsRemaining={secondsRemaining}
-        totalSeconds={durationSeconds}
-        active={phase === 'idle'}
-      />
+      {/* Timer hidden in review mode — the round is over; countdown
+          context is irrelevant on the look-back screen. */}
+      {!review && (
+        <TimerDisplay
+          secondsRemaining={secondsRemaining}
+          totalSeconds={durationSeconds}
+          active={phase === 'idle'}
+        />
+      )}
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={order} strategy={verticalListSortingStrategy}>
@@ -161,9 +188,15 @@ export function QuestionOrder({
       </DndContext>
 
       <div className={styles.submitRow}>
-        <Button variant="primary" onClick={handleSubmit} disabled={phase !== 'idle'}>
-          {uiStrings.buttons.lockIn}
-        </Button>
+        {review ? (
+          <Button variant="primary" onClick={review.onNext}>
+            {review.nextLabel}
+          </Button>
+        ) : (
+          <Button variant="primary" onClick={handleSubmit} disabled={phase !== 'idle'}>
+            {uiStrings.buttons.lockIn}
+          </Button>
+        )}
       </div>
     </div>
   );

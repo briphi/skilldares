@@ -115,7 +115,9 @@ function AppShell() {
         {state.phase === 'start' && testHighScore === null && (
           <StartScreen key="start" onStart={handleStart} />
         )}
-        {(state.phase === 'question' || state.phase === 'feedback') && (
+        {(state.phase === 'question' ||
+          state.phase === 'feedback' ||
+          state.phase === 'review') && (
           <motion.div
             key="game"
             variants={gameScreenEnter}

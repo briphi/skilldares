@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useGameState } from '../../state/useGameState';
 import { computePoints, STREAK_BONUS_THRESHOLD } from '../../lib/scoring';
 import { pickMessage } from '../../lib/picker';
@@ -14,6 +14,17 @@ import { HintButton } from './HintButton';
 import { FeedbackOverlay } from './FeedbackOverlay';
 import { StreakIndicator } from './StreakIndicator';
 import styles from './GameScreen.module.css';
+
+/**
+ * The player's most recent answer selection, kept in local component
+ * state so the FeedbackOverlay's "Review" button can re-mount the
+ * question in revealed form. Tagged union so each question type
+ * carries the shape it needs.
+ */
+type LastSelection =
+  | { type: 'mc'; selectedIndex: number }
+  | { type: 'order'; submittedOrder: string[] }
+  | { type: 'select'; selectedSet: string[] };
 
 // Pool imports — validated at module scope; failures throw → ErrorBoundary.
 import rightNoStreakJson from '../../../data/messages/right-no-streak.json';
@@ -51,6 +62,24 @@ export function GameScreen({
 }: GameScreenProps = {}) {
   const { state, helpers } = useGameState();
 
+  // Captured per-answer by each question component via onSelectionCaptured.
+  // Read in review phase to re-mount the question in revealed form. Survives
+  // across rounds within a game (GameScreen never unmounts mid-game).
+  const [lastSelection, setLastSelection] = useState<LastSelection | null>(null);
+
+  const captureMC = useCallback(
+    (s: { selectedIndex: number }) => setLastSelection({ type: 'mc', ...s }),
+    [],
+  );
+  const captureOrder = useCallback(
+    (s: { submittedOrder: string[] }) => setLastSelection({ type: 'order', ...s }),
+    [],
+  );
+  const captureSelect = useCallback(
+    (s: { selectedSet: string[] }) => setLastSelection({ type: 'select', ...s }),
+    [],
+  );
+
   const feedbackMessage = useMemo<string>(() => {
     if (state.phase !== 'feedback' || !state.lastFeedback) return '';
     const pool = POOLS[state.lastFeedback.pool];
@@ -73,13 +102,21 @@ export function GameScreen({
     setLastShownMessage(state.lastFeedback.pool, feedbackMessage);
   }, [feedbackMessage, state.phase, state.lastFeedback]);
 
-  if (state.phase !== 'question' && state.phase !== 'feedback') return null;
+  if (
+    state.phase !== 'question' &&
+    state.phase !== 'feedback' &&
+    state.phase !== 'review'
+  ) {
+    return null;
+  }
 
   const currentQuestion = state.questions[state.roundIndex];
   if (!currentQuestion) return null;
 
   const isLastRound = state.roundIndex === state.questions.length - 1;
   const isMC = currentQuestion.type === 'mc';
+  const onNextFromReview = isLastRound ? helpers.finishGame : helpers.advanceToNext;
+  const nextLabelFromReview = isLastRound ? uiStrings.buttons.finish : uiStrings.buttons.next;
 
   // state.streak is the POST-update value (already includes this answer's
   // contribution). Bonus + indicator both use the same threshold so the
@@ -106,6 +143,7 @@ export function GameScreen({
             question={currentQuestion.question}
             usedHint={state.usedHintThisQuestion}
             onAnswer={helpers.answerQuestion}
+            onSelectionCaptured={captureMC}
             correctRevealMs={mcCorrectRevealMs}
             wrongRevealMs={mcWrongRevealMs}
             lockDurationMs={mcLockDurationMs}
@@ -116,6 +154,7 @@ export function GameScreen({
             key={state.roundIndex}
             question={currentQuestion.question}
             onAnswer={helpers.answerQuestion}
+            onSelectionCaptured={captureOrder}
           />
         )}
         {state.phase === 'question' && currentQuestion.type === 'select' && (
@@ -123,6 +162,7 @@ export function GameScreen({
             key={state.roundIndex}
             question={currentQuestion.question}
             onAnswer={helpers.answerQuestion}
+            onSelectionCaptured={captureSelect}
           />
         )}
         {state.phase === 'feedback' && state.lastFeedback && (
@@ -135,8 +175,52 @@ export function GameScreen({
             isLastRound={isLastRound}
             onAdvance={isLastRound ? helpers.finishGame : helpers.advanceToNext}
             onStreak={onStreak && state.lastFeedback.isCorrect}
+            onReview={lastSelection !== null ? helpers.reviewLastAnswer : undefined}
           />
         )}
+        {state.phase === 'review' &&
+          currentQuestion.type === 'mc' &&
+          lastSelection?.type === 'mc' && (
+            <QuestionMC
+              key={`review-${state.roundIndex}`}
+              question={currentQuestion.question}
+              usedHint={state.usedHintThisQuestion}
+              onAnswer={() => {}}
+              review={{
+                selectedIndex: lastSelection.selectedIndex,
+                onNext: onNextFromReview,
+                nextLabel: nextLabelFromReview,
+              }}
+            />
+          )}
+        {state.phase === 'review' &&
+          currentQuestion.type === 'order' &&
+          lastSelection?.type === 'order' && (
+            <QuestionOrder
+              key={`review-${state.roundIndex}`}
+              question={currentQuestion.question}
+              onAnswer={() => {}}
+              review={{
+                submittedOrder: lastSelection.submittedOrder,
+                onNext: onNextFromReview,
+                nextLabel: nextLabelFromReview,
+              }}
+            />
+          )}
+        {state.phase === 'review' &&
+          currentQuestion.type === 'select' &&
+          lastSelection?.type === 'select' && (
+            <QuestionSelect
+              key={`review-${state.roundIndex}`}
+              question={currentQuestion.question}
+              onAnswer={() => {}}
+              review={{
+                selectedSet: lastSelection.selectedSet,
+                onNext: onNextFromReview,
+                nextLabel: nextLabelFromReview,
+              }}
+            />
+          )}
       </main>
 
       {state.phase === 'question' && isMC && (

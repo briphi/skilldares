@@ -9,13 +9,32 @@ import { TimerDisplay } from './TimerDisplay';
 import { uiStrings } from '../../content/uiStrings';
 import styles from './QuestionSelect.module.css';
 
+/**
+ * Review-mode payload (see QuestionMCReview for context). Causes the
+ * component to boot into 'revealed' phase with the user's selected
+ * items, swap the Lock-In button for a Next button, and hide the timer.
+ */
+export type QuestionSelectReview = {
+  selectedSet: string[];
+  onNext: () => void;
+  nextLabel: string;
+};
+
 export type QuestionSelectProps = {
   question: SpeedSelectQuestion;
   onAnswer: (isCorrect: boolean) => void;
+  /**
+   * Fires slightly BEFORE onAnswer with the set of items the player
+   * had selected at submit time. Used by the parent to support the
+   * post-answer Review screen.
+   */
+  onSelectionCaptured?: (selection: { selectedSet: string[] }) => void;
   rng?: Rng;
   durationSeconds?: number;
   correctRevealMs?: number;
   wrongRevealMs?: number;
+  /** Review-mode payload — present iff this is the review re-mount. */
+  review?: QuestionSelectReview;
 };
 
 type Phase = 'idle' | 'revealed';
@@ -31,18 +50,22 @@ function isSelectionCorrect(selected: Set<string>, correctSet: Set<string>): boo
 export function QuestionSelect({
   question,
   onAnswer,
+  onSelectionCaptured,
   rng = defaultRng,
   durationSeconds = 15,
   correctRevealMs = 1500,
   wrongRevealMs = 3000,
+  review,
 }: QuestionSelectProps) {
   // Display order shuffled per mount (prevents position-memorization across plays).
   const [displayItems] = useState<string[]>(() =>
     pickRandomFromPool(question.items, question.items.length, rng),
   );
 
-  const [selected, setSelected] = useState<Set<string>>(() => new Set());
-  const [phase, setPhase] = useState<Phase>('idle');
+  const [selected, setSelected] = useState<Set<string>>(() =>
+    review ? new Set(review.selectedSet) : new Set(),
+  );
+  const [phase, setPhase] = useState<Phase>(review ? 'revealed' : 'idle');
   const dispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const correctSet = useMemo(() => new Set(question.correctSet), [question]);
@@ -69,6 +92,7 @@ export function QuestionSelect({
   const handleSubmit = () => {
     if (phase !== 'idle') return;
     const correct = isSelectionCorrect(selected, correctSet);
+    onSelectionCaptured?.({ selectedSet: Array.from(selected) });
     setPhase('revealed');
     const duration = correct ? correctRevealMs : wrongRevealMs;
     if (duration <= 0) {
@@ -102,11 +126,14 @@ export function QuestionSelect({
   return (
     <div className={styles.container}>
       <h2 className={styles.prompt}>{question.prompt}</h2>
-      <TimerDisplay
-        secondsRemaining={secondsRemaining}
-        totalSeconds={durationSeconds}
-        active={phase === 'idle'}
-      />
+      {/* Timer hidden in review mode (see QuestionOrder for the same logic). */}
+      {!review && (
+        <TimerDisplay
+          secondsRemaining={secondsRemaining}
+          totalSeconds={durationSeconds}
+          active={phase === 'idle'}
+        />
+      )}
 
       <div className={styles.grid}>
         {displayItems.map((name) => (
@@ -122,9 +149,15 @@ export function QuestionSelect({
       </div>
 
       <div className={styles.submitRow}>
-        <Button variant="primary" onClick={handleSubmit} disabled={phase !== 'idle'}>
-          {uiStrings.buttons.lockIn}
-        </Button>
+        {review ? (
+          <Button variant="primary" onClick={review.onNext}>
+            {review.nextLabel}
+          </Button>
+        ) : (
+          <Button variant="primary" onClick={handleSubmit} disabled={phase !== 'idle'}>
+            {uiStrings.buttons.lockIn}
+          </Button>
+        )}
       </div>
     </div>
   );

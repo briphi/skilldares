@@ -1,12 +1,36 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { MultipleChoiceQuestion } from '../../lib/schemas/question.schema';
 import { defaultRng, type Rng } from '../../lib/rng';
+import { Button } from '../shared/Button';
 import styles from './QuestionMC.module.css';
+
+/**
+ * Review-mode payload passed when re-mounting QuestionMC from the
+ * FeedbackOverlay's "Review" path. Causes the component to:
+ *  - boot directly into 'revealed' phase (no taps, no timers)
+ *  - preserve the prior selectedIndex (kept for clarity even though the
+ *    revealed visual doesn't distinguish the user's wrong-pick from
+ *    other wrongs in the existing reveal styling)
+ *  - render a Next button at the bottom (MC has no Lock In button to
+ *    repurpose, so review adds one).
+ */
+export type QuestionMCReview = {
+  selectedIndex: number;
+  onNext: () => void;
+  nextLabel: string;
+};
 
 export type QuestionMCProps = {
   question: MultipleChoiceQuestion;
   usedHint: boolean;
   onAnswer: (isCorrect: boolean) => void;
+  /**
+   * Fired when the player taps an answer — slightly BEFORE onAnswer.
+   * Lets the parent capture which quadrant was picked so it can offer
+   * a review screen if the answer was wrong. Optional; tests that don't
+   * exercise the review path can omit it.
+   */
+  onSelectionCaptured?: (selection: { selectedIndex: number }) => void;
   /** Override randomness — used by tests. Defaults to Math.random(). */
   rng?: Rng;
   /**
@@ -27,6 +51,8 @@ export type QuestionMCProps = {
    * Default 400ms. Same for both correct and wrong answers.
    */
   lockDurationMs?: number;
+  /** Review-mode payload — present iff this is the review re-mount. */
+  review?: QuestionMCReview;
 };
 
 function pickHintGreyedIndex(question: MultipleChoiceQuestion, rng: Rng): number {
@@ -69,13 +95,19 @@ export function QuestionMC({
   question,
   usedHint,
   onAnswer,
+  onSelectionCaptured,
   rng = defaultRng,
   correctRevealMs = 1500,
   wrongRevealMs = 3000,
   lockDurationMs = 400,
+  review,
 }: QuestionMCProps) {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [revealPhase, setRevealPhase] = useState<RevealPhase>('idle');
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(
+    review?.selectedIndex ?? null,
+  );
+  const [revealPhase, setRevealPhase] = useState<RevealPhase>(
+    review ? 'revealed' : 'idle',
+  );
   const lockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dispatchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -98,6 +130,7 @@ export function QuestionMC({
     if (index === greyedIndex) return;
 
     setSelectedIndex(index);
+    onSelectionCaptured?.({ selectedIndex: index });
     const isCorrect = index === question.correctIndex;
     const totalDuration = isCorrect ? correctRevealMs : wrongRevealMs;
 
@@ -151,6 +184,13 @@ export function QuestionMC({
           );
         })}
       </div>
+      {review && (
+        <div className={styles.reviewActions}>
+          <Button variant="primary" onClick={review.onNext}>
+            {review.nextLabel}
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

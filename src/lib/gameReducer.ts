@@ -33,7 +33,7 @@ export const TOTAL_ROUNDS = 30;
 // Re-export so existing import sites (useGameState, gameSetup, tests) keep working.
 export type { GameQuestion } from './schemas/question.schema';
 
-export type GamePhase = 'start' | 'question' | 'feedback' | 'end';
+export type GamePhase = 'start' | 'question' | 'feedback' | 'review' | 'end';
 
 export type Feedback = {
   isCorrect: boolean;
@@ -54,6 +54,7 @@ export type Action =
   | { type: 'START_GAME'; payload: { questions: GameQuestion[] } }
   | { type: 'ANSWER_QUESTION'; payload: { isCorrect: boolean } }
   | { type: 'USE_HINT' }
+  | { type: 'REVIEW_LAST_ANSWER' }
   | { type: 'ADVANCE_TO_NEXT' }
   | { type: 'FINISH_GAME' }
   | { type: 'PLAY_AGAIN'; payload: { questions: GameQuestion[] } };
@@ -104,8 +105,19 @@ export function gameReducer(state: GameState, action: Action): GameState {
       return { ...state, usedHintThisQuestion: true };
     }
 
-    case 'ADVANCE_TO_NEXT': {
+    case 'REVIEW_LAST_ANSWER': {
+      // Only reachable from feedback phase — when the player clicked the
+      // "Review" button after a wrong answer. Keeps lastFeedback so
+      // GameScreen can still know which question to render in revealed
+      // form for the review screen.
       if (state.phase !== 'feedback') return state;
+      return { ...state, phase: 'review' };
+    }
+
+    case 'ADVANCE_TO_NEXT': {
+      // Reachable from either 'feedback' (player tapped Next directly) or
+      // 'review' (player tapped Next from the review screen).
+      if (state.phase !== 'feedback' && state.phase !== 'review') return state;
       // Use state.questions.length so the guard works for both Epic 1's
       // 15-question milestone games AND full 30-round games.
       if (state.roundIndex >= state.questions.length - 1) return state;
@@ -119,7 +131,8 @@ export function gameReducer(state: GameState, action: Action): GameState {
     }
 
     case 'FINISH_GAME': {
-      if (state.phase !== 'feedback') return state;
+      // Reachable from either 'feedback' or 'review' (same as ADVANCE).
+      if (state.phase !== 'feedback' && state.phase !== 'review') return state;
       // Use state.questions.length (see ADVANCE_TO_NEXT comment).
       if (state.roundIndex !== state.questions.length - 1) return state;
       return { ...state, phase: 'end' };
