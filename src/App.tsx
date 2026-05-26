@@ -87,11 +87,14 @@ function AppShell() {
     );
   }, [helpers, roundCounts]);
 
-  const handlePlayAgain = useCallback(() => {
-    helpers.playAgain(
-      selectGameQuestions(mcPool, orderPool, selectPool, defaultRng, roundCounts),
-    );
-  }, [helpers, roundCounts]);
+  // End screen's Play Again button drops back to the Start screen so
+  // the player can re-read the encouragement message and decide whether
+  // to commit to another round. The actual game-start flow happens when
+  // they then tap Start, which routes through handleStart above (with
+  // the transition flash and fresh question selection).
+  const handleReturnToStart = useCallback(() => {
+    helpers.returnToStart();
+  }, [helpers]);
 
   return (
     <>
@@ -150,7 +153,7 @@ function AppShell() {
             previousPersonalBest={previousHighScore}
             correctCount={state.correctCount}
             totalQuestions={state.questions.length}
-            onPlayAgain={handlePlayAgain}
+            onPlayAgain={handleReturnToStart}
           />
         )}
       </AnimatePresence>

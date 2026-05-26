@@ -17,7 +17,7 @@ export type GameStateHelpers = {
   reviewLastAnswer: () => void;
   advanceToNext: () => void;
   finishGame: () => void;
-  playAgain: (questions: GameQuestion[]) => void;
+  returnToStart: () => void;
 };
 
 export type UseGameStateResult = {
@@ -41,7 +41,7 @@ export function useGameState(): UseGameStateResult {
       reviewLastAnswer: () => dispatch({ type: 'REVIEW_LAST_ANSWER' }),
       advanceToNext: () => dispatch({ type: 'ADVANCE_TO_NEXT' }),
       finishGame: () => dispatch({ type: 'FINISH_GAME' }),
-      playAgain: (questions) => dispatch({ type: 'PLAY_AGAIN', payload: { questions } }),
+      returnToStart: () => dispatch({ type: 'RETURN_TO_START' }),
     }),
     [dispatch],
   );

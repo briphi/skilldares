@@ -325,10 +325,10 @@ describe('gameReducer: FINISH_GAME', () => {
   });
 });
 
-// ---------- PLAY_AGAIN ----------
+// ---------- RETURN_TO_START ----------
 
-describe('gameReducer: PLAY_AGAIN', () => {
-  it('resets game state and seeds fresh questions from end phase', () => {
+describe('gameReducer: RETURN_TO_START', () => {
+  it('resets to initial start state from end phase', () => {
     const state: GameState = {
       phase: 'end',
       questions: makeQuestions(TOTAL_ROUNDS),
@@ -339,20 +339,20 @@ describe('gameReducer: PLAY_AGAIN', () => {
       usedHintThisQuestion: true,
       lastFeedback: { isCorrect: false, pool: 'wrong-no-streak' },
     };
-    const fresh = makeQuestions(TOTAL_ROUNDS);
-    const result = gameReducer(state, { type: 'PLAY_AGAIN', payload: { questions: fresh } });
-    expect(result.phase).toBe('question');
-    expect(result.questions).toBe(fresh);
+    const result = gameReducer(state, { type: 'RETURN_TO_START' });
+    expect(result.phase).toBe('start');
+    expect(result.questions).toEqual([]);
     expect(result.roundIndex).toBe(0);
     expect(result.score).toBe(0);
     expect(result.streak).toBe(0);
+    expect(result.correctCount).toBe(0);
     expect(result.usedHintThisQuestion).toBe(false);
     expect(result.lastFeedback).toBeNull();
   });
 
   it('is a no-op outside end phase', () => {
     const state = playing();
-    const result = gameReducer(state, { type: 'PLAY_AGAIN', payload: { questions: makeQuestions(30) } });
+    const result = gameReducer(state, { type: 'RETURN_TO_START' });
     expect(result).toBe(state);
   });
 });

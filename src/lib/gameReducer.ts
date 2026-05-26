@@ -60,7 +60,7 @@ export type Action =
   | { type: 'REVIEW_LAST_ANSWER' }
   | { type: 'ADVANCE_TO_NEXT' }
   | { type: 'FINISH_GAME' }
-  | { type: 'PLAY_AGAIN'; payload: { questions: GameQuestion[] } };
+  | { type: 'RETURN_TO_START' };
 
 export const initialGameState: GameState = {
   phase: 'start',
@@ -144,18 +144,13 @@ export function gameReducer(state: GameState, action: Action): GameState {
       return { ...state, phase: 'end' };
     }
 
-    case 'PLAY_AGAIN': {
+    case 'RETURN_TO_START': {
+      // The End screen's Play Again button drops the player back at
+      // the Start screen rather than auto-starting a new game — gives
+      // them a moment to decide and lets them see the encouragement
+      // message again before committing to another round.
       if (state.phase !== 'end') return state;
-      return {
-        phase: 'question',
-        questions: action.payload.questions,
-        roundIndex: 0,
-        score: 0,
-        streak: 0,
-        correctCount: 0,
-        usedHintThisQuestion: false,
-        lastFeedback: null,
-      };
+      return initialGameState;
     }
   }
 }

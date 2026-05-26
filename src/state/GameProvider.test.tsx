@@ -76,7 +76,7 @@ describe('useGameState', () => {
     expect(result.current.state.lastFeedback).toEqual({ isCorrect: true, pool: 'right-no-streak' });
   });
 
-  it('drives a full mini-game loop: start → answer → advance → … → finish → playAgain', () => {
+  it('drives a full mini-game loop: start → answer → advance → … → finish → returnToStart', () => {
     const { result } = renderHook(() => useGameState(), { wrapper });
 
     // Start
@@ -136,14 +136,17 @@ describe('useGameState', () => {
     const finalScore = result.current.state.score;
     expect(finalScore).toBeGreaterThan(0);
 
-    // Play again wipes the slate
+    // Return to start wipes the slate back to the initial state —
+    // the UI then routes through Start screen → startGame for a new
+    // round.
     act(() => {
-      result.current.helpers.playAgain(makeQuestions(TOTAL_ROUNDS));
+      result.current.helpers.returnToStart();
     });
-    expect(result.current.state.phase).toBe('question');
+    expect(result.current.state.phase).toBe('start');
     expect(result.current.state.score).toBe(0);
     expect(result.current.state.streak).toBe(0);
     expect(result.current.state.roundIndex).toBe(0);
+    expect(result.current.state.questions).toEqual([]);
   });
 
   it('helpers have stable identity across re-renders', () => {
