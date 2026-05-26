@@ -396,7 +396,7 @@
     "options": [
       "Portobello Mushroom, Mixed Greens, Tomatoes, Cucumbers, Red Onion, Fresh Mozzarella, Roasted Peppers, Fresh Pesto, on Toasted Flatbread",
       "Corned Beef, Swiss, Sauerkraut, Marie Rose Dressing, on Rye",
-      "Cucumbers, Red Onion, A Side-Eye",
+      "Cucumbers, Red Onion, Random Garbage",
       "American Cheese, Sauteed Mushrooms, Guinness Caramelized Onions"
     ],
     "correctIndex": 0,
@@ -410,7 +410,7 @@
     "options": [
       "American Cheese, Sauteed Mushrooms, and Guinness Caramelized Onions",
       "Cheddar Cheese, Rasher, Guinness Caramelized Onions, Tomato Jam, Grilled Tomato",
-      "Wallpaper Paste",
+      "Cheddar Cheese, Guinness Caramelized Onions, Wallpaper Paste",
       "Lettuce, Tomato, Red Onion, American Cheese, Bacon"
     ],
     "correctIndex": 0,
@@ -422,9 +422,9 @@
   {
     "prompt": "What's served with the Steak Frites?",
     "options": [
-      "8oz Flatiron with Chimichurri, Queso Fresco, Cucumber Tomato Salad",
+      "Chimichurri, Queso Fresco, Cucumber Tomato Salad",
       "Bangers, Rashers, Beans, Roasted Tomato, Eggs, Black & White Pudding, Toast",
-      "Cardboard, Seasoned",
+      "Queso Fresco, Cardboard (Seasoned)",
       "Traditional Irish Sausages, Champ Potatoes, Whiskey Demi, Caramelized Onions"
     ],
     "correctIndex": 0,
@@ -453,7 +453,7 @@
       "Couscous, Roasted Broccoli & Cauliflower, Green Goddess Dressing",
       "Pineapples, Cucumber, Seaweed Salad, Avocado, Citrus Ponzu",
       "Green Goddess Dressing, Sour Patch Kids",
-      "8oz Flatiron with Chimichurri, Queso Fresco, Cucumber Tomato Salad"
+      "Chimichurri, Queso Fresco, Cucumber Tomato Salad"
     ],
     "correctIndex": 0,
     "funnyWrongIndex": 2,
@@ -480,7 +480,7 @@
     "options": [
       "Ale Battered Fish, Fries, and Herbed Tartar Sauce",
       "Beer Battered Fish, Lettuce, Tomato, Chipotle Mayo",
-      "Buffalo Chicken, Cheddar Sauce, Five Napkins",
+      "Buffalo Chicken, Cheddar Sauce, Wet Napkins",
       "Couscous, Roasted Broccoli & Cauliflower, Green Goddess Dressing"
     ],
     "correctIndex": 0,
@@ -494,7 +494,7 @@
     "options": [
       "Traditional Irish Sausages, Champ Potatoes, Whiskey Demi, Caramelized Onions",
       "Bangers, Rashers, Beans, Roasted Tomato, Eggs, Black & White Pudding, Toast",
-      "A heartfelt apology",
+      "Bangers, Rashers, Beans, A Heartfelt Apology",
       "Beef, Carrots, Onions, Brown Gravy, Peas, Mashed Potatoes"
     ],
     "correctIndex": 0,
@@ -522,7 +522,7 @@
     "options": [
       "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water",
       "Botanist Gin, Muddled Cucumbers, St. Germain, Simple, Lemon Juice",
-      "Your watch (it's worth less)",
+      "Botanist Gin, Muddled Cucumbers, Toilet Water",
       "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Espresso"
     ],
     "correctIndex": 0,
@@ -536,7 +536,7 @@
     "options": [
       "Old Forester High Proof Bourbon, Angostura and Orange Bitters, Demerara Syrup, Luxardo Cherry",
       "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Dry Curacao, Agave",
-      "Three nickels and a sad story",
+      "Gray Whale Vodka, Fresh Squeezed Lime Juice, A Deep Sense of Regret",
       "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Espresso"
     ],
     "correctIndex": 0,
@@ -550,7 +550,7 @@
     "options": [
       "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Dry Curacao, Agave",
       "Bacardi Dragonberry Rum, Coconut Rum, Mint, Lime, Dragonfruit Simple Syrup",
-      "An expired Groupon",
+      "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Pepper Spray",
       "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water"
     ],
     "correctIndex": 0,
@@ -564,7 +564,7 @@
     "options": [
       "Bacardi Dragonberry Rum, Coconut Rum, Mint, Lime, Dragonfruit Simple Syrup",
       "Casamigos Jalapeno Tequila, Fresh Squeezed Lime Juice, Dry Curacao",
-      "$2.99 (clearance)",
+      "Botanist Gin, Muddled Cucumbers, St. Germain, Mint Gum",
       "Botanist Gin, Muddled Cucumbers, St. Germain, Simple, Lemon Juice"
     ],
     "correctIndex": 0,
@@ -578,7 +578,7 @@
     "options": [
       "Botanist Gin, Muddled Cucumbers, St. Germain, Simple, Lemon Juice",
       "Fords Gin, Hibiscus Simple Syrup, Lime Juice, Soda Water",
-      "Simple, Dandruff",
+      "Fords Gin, Simple Syrup, Dandruff",
       "Pineapple Infused Strawberry Holla Vodka, Triple Sec, Simple, Cran"
     ],
     "correctIndex": 0,
@@ -592,7 +592,7 @@
     "options": [
       "Pineapple Infused Strawberry Holla Vodka, Triple Sec, Simple, Splash of Cran",
       "Holla Strawberry Infused with Fresh Pineapples, Fresh Squeezed OJ, Triple Sec, Sprite",
-      "$1.21 jiggawatts",
+      "Strawberry Holla Vodka, Triple Sec, Splash of Body Wash",
       "Gray Whale Vodka, Tia Maria Coffee Liqueur, Simple, Espresso"
     ],
     "correctIndex": 0,
@@ -606,7 +606,7 @@
     "options": [
       "A blend of white wines, Pureed Peaches and Fruit",
       "Bacardi Dragonberry Rum, Coconut Rum, Mint, Lime",
-      "Two pesos and a wink",
+      "A blend of red wines, Pureed Peaches and Rotten Fruit",
       "Holla Vanilla Vodka, Fresh Squeezed Limes, Simple Syrup, Sprite"
     ],
     "correctIndex": 0,
@@ -648,7 +648,7 @@
     "options": [
       "Holla Vanilla Vodka, Fresh Squeezed Limes, Simple Syrup, Sprite",
       "Holla Blueberry, Fresh Squeezed Lemons, Simple Syrup, Water",
-      "$15.99 (price match guarantee)",
+      "Butter, sugar, Graham Crackers, Fresh Squeezed Limes",
       "Holla Orange Vodka, Triple Sec, Fresh Squeezed Orange Juice, Sprite"
     ],
     "correctIndex": 0,
@@ -732,7 +732,7 @@
     "options": [
       "Carrots, Celery, Corn Tortillas, and Flatbread",
       "Fries and Whiskey Honey Mustard",
-      "Existential Dread for Dipping",
+      "Carrots, Celery, Tongue Depressors",
       "Pita and Hummus Board accompaniments"
     ],
     "correctIndex": 0,
