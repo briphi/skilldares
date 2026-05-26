@@ -7,7 +7,7 @@
  * message pools — see `lib/picker.ts` and `lib/storage.ts`.
  *
  * Labels are uppercase to match the existing button-label voice
- * (NEXT →, FINISH IT, START GAME, etc.). Length matters here — the
+ * (NEXT →, FINISH IT, START QUIZ, etc.). Length matters here — the
  * Button is `white-space: nowrap`, so labels that don't fit will
  * overflow horizontally. The Play Again button uses tightened
  * font + padding (see EndScreen.module.css .playAgainButtonWrapper)

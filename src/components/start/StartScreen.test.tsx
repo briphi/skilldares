@@ -23,7 +23,7 @@ describe('StartScreen', () => {
     expect(screen.getByText('Test message A')).toBeTruthy();
   });
 
-  it('renders the START GAME button label', () => {
+  it('renders the START QUIZ button label', () => {
     render(<StartScreen onStart={() => {}} messages={fixtureMessages} rng={() => 0} />);
     expect(screen.getByRole('button', { name: uiStrings.buttons.start })).toBeTruthy();
   });

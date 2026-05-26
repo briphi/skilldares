@@ -13,7 +13,7 @@ export const uiStrings = {
   tagline: 'A Kildares Menu Training Quiz',
 
   buttons: {
-    start: 'START GAME',
+    start: 'START QUIZ',
     lockIn: 'LOCK IT IN',
     hint: 'Hint',
     /** Lightbulb emoji shown before the hint button label. Lives separately

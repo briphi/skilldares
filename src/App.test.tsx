@@ -11,7 +11,7 @@ describe('App (integration)', () => {
     expect(screen.getByRole('button', { name: uiStrings.buttons.start })).toBeTruthy();
   });
 
-  it('tapping START GAME transitions to the Game screen with the first MC question', async () => {
+  it('tapping START QUIZ transitions to the Game screen with the first MC question', async () => {
     render(<App />);
     await userEvent.click(screen.getByRole('button', { name: uiStrings.buttons.start }));
     // AnimatePresence mode="wait" delays GameScreen mount until StartScreen's
