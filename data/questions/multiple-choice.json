@@ -844,7 +844,7 @@
     "options": [
       "$8.99",
       "$9.99",
-      "An IOU written in salsa",
+      "$999",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -858,7 +858,7 @@
     "options": [
       "$9.99",
       "$8.99",
-      "Free if you arm wrestle the manager",
+      "$0.50",
       "$11.99"
     ],
     "correctIndex": 0,
@@ -886,7 +886,7 @@
     "options": [
       "$10",
       "$5",
-      "Negotiable",
+      "$499",
       "$14"
     ],
     "correctIndex": 0,
@@ -928,7 +928,7 @@
     "options": [
       "$1",
       "$5",
-      "Trust me, dude",
+      "$250",
       "$3"
     ],
     "correctIndex": 0,
@@ -942,7 +942,7 @@
     "options": [
       "$15.99",
       "$14.99",
-      "Pay what you weigh",
+      "$0.25",
       "$17.99"
     ],
     "correctIndex": 0,
@@ -970,7 +970,7 @@
     "options": [
       "$15.99",
       "$14.99",
-      "Whatever feels right",
+      "$1,200",
       "$17.99"
     ],
     "correctIndex": 0,
@@ -1068,7 +1068,7 @@
     "options": [
       "$15.99",
       "$16.99",
-      "Three chicken nuggets",
+      "$0.99",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1124,7 +1124,7 @@
     "options": [
       "$10.99",
       "$11.99",
-      "Just take them, please",
+      "$499",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1152,7 +1152,7 @@
     "options": [
       "$12.99",
       "$11.99",
-      "It's complimentary",
+      "$0.50",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1180,7 +1180,7 @@
     "options": [
       "$11.99",
       "$10.99",
-      "A 5-star Yelp (no photo)",
+      "$350",
       "$13.99"
     ],
     "correctIndex": 0,
@@ -1208,7 +1208,7 @@
     "options": [
       "$13.99",
       "$12.99",
-      "An Instagram check-in",
+      "$0.99",
       "$11.99"
     ],
     "correctIndex": 0,
@@ -1250,7 +1250,7 @@
     "options": [
       "$12.99",
       "$10.99",
-      "Cheaper than your gym membership",
+      "$850",
       "$8.99"
     ],
     "correctIndex": 0,
@@ -1292,7 +1292,7 @@
     "options": [
       "$10.99",
       "$9.99",
-      "A polite request",
+      "$0.01",
       "$12.99"
     ],
     "correctIndex": 0,
@@ -1390,7 +1390,7 @@
     "options": [
       "$14.99",
       "$13.99",
-      "Your address",
+      "$400",
       "$15.99"
     ],
     "correctIndex": 0,
@@ -1404,7 +1404,7 @@
     "options": [
       "$13.99",
       "$14.99",
-      "One sincere apology",
+      "$0.75",
       "$11.99"
     ],
     "correctIndex": 0,
@@ -1432,7 +1432,7 @@
     "options": [
       "$23.99",
       "$19.99",
-      "Your hand in marriage",
+      "$1,200",
       "$17.99"
     ],
     "correctIndex": 0,
@@ -1446,7 +1446,7 @@
     "options": [
       "$17.99",
       "$19.99",
-      "A solid handshake",
+      "$0.99",
       "$23.99"
     ],
     "correctIndex": 0,
@@ -1488,7 +1488,7 @@
     "options": [
       "$17.99",
       "$10",
-      "Negotiable on Mondays",
+      "$1.50",
       "$23.99"
     ],
     "correctIndex": 0,
@@ -1516,7 +1516,7 @@
     "options": [
       "$7",
       "$8",
-      "Your dignity",
+      "$475",
       "$12"
     ],
     "correctIndex": 0,
@@ -1558,7 +1558,7 @@
     "options": [
       "$8",
       "$9",
-      "Free with a mac & cheese joke",
+      "$0.10",
       "$5"
     ],
     "correctIndex": 0,
@@ -1768,7 +1768,7 @@
     "options": [
       "$12",
       "$11",
-      "Three strawberry secrets",
+      "$599",
       "$14"
     ],
     "correctIndex": 0,
@@ -1810,7 +1810,7 @@
     "options": [
       "$10",
       "$11",
-      "Compliments to the vineyard",
+      "$0.99",
       "$13"
     ],
     "correctIndex": 0,
@@ -1824,7 +1824,7 @@
     "options": [
       "$30",
       "$33",
-      "Three sincere wine tears",
+      "$3,000",
       "$24"
     ],
     "correctIndex": 0,
@@ -1838,7 +1838,7 @@
     "options": [
       "$11",
       "$10",
-      "Pay in wine puns",
+      "$0.50",
       "$13"
     ],
     "correctIndex": 0,
@@ -1852,7 +1852,7 @@
     "options": [
       "$33",
       "$30",
-      "Three Malbec-inspired haikus",
+      "$899",
       "$24"
     ],
     "correctIndex": 0,
@@ -1866,7 +1866,7 @@
     "options": [
       "$11",
       "$10",
-      "A song about grapes",
+      "$0.99",
       "$13"
     ],
     "correctIndex": 0,
@@ -1880,7 +1880,7 @@
     "options": [
       "$10",
       "$11",
-      "Whatever Chardonnay feels right",
+      "$1",
       "$13"
     ],
     "correctIndex": 0,
@@ -1894,7 +1894,7 @@
     "options": [
       "$11",
       "$10",
-      "A sav-blanc serenade",
+      "$750",
       "$13"
     ],
     "correctIndex": 0,
@@ -1936,7 +1936,7 @@
     "options": [
       "$11",
       "$10",
-      "Three Riesling riddles",
+      "$0.99",
       "$13"
     ],
     "correctIndex": 0,
@@ -1964,7 +1964,7 @@
     "options": [
       "$8",
       "$10",
-      "Three brut comments",
+      "$1,800",
       "$13"
     ],
     "correctIndex": 0,
@@ -1978,7 +1978,7 @@
     "options": [
       "$24",
       "$30",
-      "An emotional commitment",
+      "$1",
       "$33"
     ],
     "correctIndex": 0,
@@ -2928,7 +2928,7 @@
     "options": [
       "$15.99",
       "$29.99",
-      "Ten apologies",
+      "$1",
       "$11.99"
     ],
     "correctIndex": 0,
@@ -2942,7 +2942,7 @@
     "options": [
       "$29.99",
       "$15.99",
-      "Two airplane tickets",
+      "$499",
       "$25.99"
     ],
     "correctIndex": 0,
@@ -2984,7 +2984,7 @@
     "options": [
       "$2",
       "$3",
-      "An aggressive nod",
+      "$75",
       "$4"
     ],
     "correctIndex": 0,
@@ -2999,7 +2999,7 @@
     "options": [
       "$4",
       "$3",
-      "A sweet potato story",
+      "$0.10",
       "$2"
     ],
     "correctIndex": 0,
@@ -3071,7 +3071,7 @@
     "options": [
       "$5 Levante Cloudy",
       "$4 Michelob Drafts",
-      "Five beers but they're all foam",
+      "$55 Levante",
       "$4 Harp Lager"
     ],
     "correctIndex": 0,
@@ -3113,7 +3113,7 @@
     "options": [
       "$1 Wings All Day",
       "$15.99 for 10",
-      "Bring your own wing",
+      "$0.01 Wings All Day",
       "Half off wings 4-6PM"
     ],
     "correctIndex": 0,
@@ -3127,7 +3127,7 @@
     "options": [
       "$6 Holla Orange Crushes",
       "$6 Mojitos",
-      "Orange-flavored Despair",
+      "$99 Orange Crushes",
       "$4 Michelob Drafts"
     ],
     "correctIndex": 0,
@@ -3141,7 +3141,7 @@
     "options": [
       "$4 Miller Lite",
       "$4 Michelob Drafts",
-      "Beer if you can guess the bartender's mood",
+      "$0.50 Miller Lite",
       "$5 Levante Cloudy"
     ],
     "correctIndex": 0,
@@ -3211,7 +3211,7 @@
     "options": [
       "$3 OFF Draft Beer, Specialty Cocktails, Wine",
       "$5 OFF Anything",
-      "Free if you cry",
+      "$0.10 OFF Everything",
       "$3 OFF only beer"
     ],
     "correctIndex": 0,
@@ -3239,7 +3239,7 @@
     "options": [
       "$3",
       "$4",
-      "Free if you finish a poem",
+      "$200",
       "$5"
     ],
     "correctIndex": 0,
@@ -3267,7 +3267,7 @@
     "options": [
       "$5",
       "$3",
-      "Three ranch facts",
+      "$0.50",
       "$4"
     ],
     "correctIndex": 0,
@@ -3281,7 +3281,7 @@
     "options": [
       "$6",
       "$5",
-      "A sun-related dare",
+      "$499",
       "$4"
     ],
     "correctIndex": 0,
