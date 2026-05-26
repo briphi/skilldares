@@ -2172,7 +2172,7 @@
     "options": [
       "Yes",
       "No",
-      "Yes, Mulch",
+      "What's Gluten?",
       "Maybe, ask your server"
     ],
     "correctIndex": 0,
@@ -2214,7 +2214,7 @@
     "options": [
       "Yes",
       "No",
-      "Yes, Earwax",
+      "Double No",
       "Only on Wednesdays"
     ],
     "correctIndex": 0,
@@ -2242,7 +2242,7 @@
     "options": [
       "Yes",
       "No",
-      "Yes, Peeps",
+      "Sometimes...",
       "Only the guacamole"
     ],
     "correctIndex": 0,
@@ -2312,7 +2312,7 @@
     "options": [
       "Fry Baskets",
       "Shareables",
-      "Soup Wing",
+      "Greasy Confessions",
       "Entrees"
     ],
     "correctIndex": 0,
@@ -2354,7 +2354,7 @@
     "options": [
       "Tacos",
       "Shareables",
-      "Pig Special",
+      "Tortilla Tribunal",
       "Handhelds"
     ],
     "correctIndex": 0,
@@ -2620,7 +2620,7 @@
     "options": [
       "Entrees",
       "Tacos",
-      "Aquarium",
+      "Bottom Feeders",
       "Shareables"
     ],
     "correctIndex": 0,
@@ -2662,7 +2662,7 @@
     "options": [
       "Wheat Beer",
       "Irish Lager",
-      "Crown Juice",
+      "Eiffel Pale",
       "Pilsner"
     ],
     "correctIndex": 0,
@@ -2676,7 +2676,7 @@
     "options": [
       "NEIPA",
       "Stout",
-      "Hop Soup",
+      "Hop Hospice",
       "Pilsner"
     ],
     "correctIndex": 0,
@@ -2746,7 +2746,7 @@
     "options": [
       "Danish Pilsner",
       "Stout",
-      "Pirate ale",
+      "Pirate Ale",
       "NEIPA"
     ],
     "correctIndex": 0,
@@ -3437,7 +3437,7 @@
     "options": [
       "Garlic Parmesan",
       "Lemon Pepper",
-      "Suffering",
+      "Knuckle Rub",
       "Ranch"
     ],
     "correctIndex": 0,
