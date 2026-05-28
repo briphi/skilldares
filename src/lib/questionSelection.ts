@@ -78,16 +78,18 @@ export type SelectGameQuestionsOptions = {
 /**
  * Builds a game of MC rounds + speed rounds.
  *
- * Per FR2: MC rounds come first, then speed rounds.
- * Per FR3: speed rounds split ~50/50 (±1) between Type A (drag-order) and
- *          Type B (multi-select).
+ * All question types are shuffled together into one interleaved
+ * sequence — MC, drag-order, and multi-select rounds appear in random
+ * order across the whole game (supersedes the original FR2 "MC first,
+ * then speed" ordering). The player can't predict the type of the next
+ * round from its position.
+ *
+ * Per FR3: speed rounds still split ~50/50 (±1) between Type A
+ *          (drag-order) and Type B (multi-select). This controls the
+ *          COUNT of each speed type, independent of ordering.
  *
  * Each MC question's options are shuffled (per FR9.1) so the correct
  * answer doesn't always land in the same quadrant.
- *
- * Speed-round mix is interleaved randomly within the speed section (no
- * deterministic A-then-B order — the player shouldn't be able to predict
- * type from round number).
  *
  * Default round counts are 15/15 (the v1 production game). Optional
  * `options.mcCount` / `options.speedCount` allow shorter games for
@@ -122,15 +124,17 @@ export function selectGameQuestions(
     question: shuffleMCQuestion(q, rng),
   }));
 
-  // Speed rounds: pick N each, wrap, interleave randomly.
+  // Speed rounds: pick N of each type.
   const speedASelected = pickRandomFromPool(allOrder, speedACount, rng);
   const speedBSelected = pickRandomFromPool(allSelect, speedBCount, rng);
-  const speedWrapped: GameQuestion[] = [
+  const speedRounds: GameQuestion[] = [
     ...speedASelected.map((q) => ({ type: 'order' as const, question: q })),
     ...speedBSelected.map((q) => ({ type: 'select' as const, question: q })),
   ];
-  // Shuffle by drawing all of them via pickRandomFromPool with count=length.
-  const speedShuffled = pickRandomFromPool(speedWrapped, speedWrapped.length, rng);
 
-  return [...mcRounds, ...speedShuffled];
+  // Shuffle MC + speed rounds all together so the question types are
+  // interleaved across the whole game rather than grouped MC-then-speed.
+  // Drawing count=length via pickRandomFromPool is a full Fisher-Yates.
+  const allRounds = [...mcRounds, ...speedRounds];
+  return pickRandomFromPool(allRounds, allRounds.length, rng);
 }

@@ -164,25 +164,33 @@ describe('selectGameQuestions', () => {
     expect(game).toHaveLength(30);
   });
 
-  it('first 15 are all type=mc', () => {
+  it('contains exactly 15 type=mc rounds', () => {
     const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5);
-    for (let i = 0; i < 15; i++) {
-      expect(game[i]!.type).toBe('mc');
-    }
+    expect(game.filter((g) => g.type === 'mc')).toHaveLength(15);
   });
 
-  it('last 15 are all type=order or type=select', () => {
+  it('contains exactly 15 speed rounds (type=order or type=select)', () => {
     const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5);
-    for (let i = 15; i < 30; i++) {
-      expect(['order', 'select']).toContain(game[i]!.type);
-    }
+    expect(game.filter((g) => g.type === 'order' || g.type === 'select')).toHaveLength(15);
+  });
+
+  it('interleaves MC and speed rounds (not grouped MC-then-speed)', () => {
+    // With types shuffled together, at least one speed round should
+    // appear before the last MC round. A fixed 0.5 rng makes this
+    // deterministic; the guard against a coincidental MC-first layout
+    // is that the assertion would have failed under the old behavior.
+    const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5);
+    const lastMcIndex = game.map((g) => g.type).lastIndexOf('mc');
+    const firstSpeedIndex = game.findIndex(
+      (g) => g.type === 'order' || g.type === 'select',
+    );
+    expect(firstSpeedIndex).toBeLessThan(lastMcIndex);
   });
 
   it('speed rounds split 7+8 = 15 (FR3 50/50 ±1)', () => {
     const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5);
-    const speed = game.slice(15);
-    const aCount = speed.filter((g) => g.type === 'order').length;
-    const bCount = speed.filter((g) => g.type === 'select').length;
+    const aCount = game.filter((g) => g.type === 'order').length;
+    const bCount = game.filter((g) => g.type === 'select').length;
     expect(aCount + bCount).toBe(15);
     expect([7, 8]).toContain(aCount);
     expect([7, 8]).toContain(bCount);
@@ -197,21 +205,18 @@ describe('selectGameQuestions', () => {
 
   it('includes BOTH speed types in the output', () => {
     const game = selectGameQuestions(allMC, allOrder, allSelect, () => 0.5);
-    const speed = game.slice(15);
-    expect(speed.some((g) => g.type === 'order')).toBe(true);
-    expect(speed.some((g) => g.type === 'select')).toBe(true);
+    expect(game.some((g) => g.type === 'order')).toBe(true);
+    expect(game.some((g) => g.type === 'select')).toBe(true);
   });
 
   it('rng < 0.5 gives speedA=7, rng >= 0.5 gives speedA=8 (deterministic split)', () => {
     // rng()=>0 always returns 0 (< 0.5) → speedA=7
     const lowRng = selectGameQuestions(allMC, allOrder, allSelect, () => 0);
-    const lowSpeed = lowRng.slice(15);
-    expect(lowSpeed.filter((g) => g.type === 'order').length).toBe(7);
+    expect(lowRng.filter((g) => g.type === 'order').length).toBe(7);
 
     // rng()=>0.9 always returns 0.9 (>= 0.5) → speedA=8
     const highRng = selectGameQuestions(allMC, allOrder, allSelect, () => 0.9);
-    const highSpeed = highRng.slice(15);
-    expect(highSpeed.filter((g) => g.type === 'order').length).toBe(8);
+    expect(highRng.filter((g) => g.type === 'order').length).toBe(8);
   });
 
   describe('custom round counts via options', () => {
@@ -221,8 +226,10 @@ describe('selectGameQuestions', () => {
         speedCount: 2,
       });
       expect(game).toHaveLength(5);
-      expect(game.slice(0, 3).every((g) => g.type === 'mc')).toBe(true);
-      expect(game.slice(3).every((g) => g.type === 'order' || g.type === 'select')).toBe(true);
+      expect(game.filter((g) => g.type === 'mc')).toHaveLength(3);
+      expect(
+        game.filter((g) => g.type === 'order' || g.type === 'select'),
+      ).toHaveLength(2);
     });
 
     it('mcCount=0 → speed-only game', () => {
