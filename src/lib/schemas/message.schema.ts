@@ -17,6 +17,7 @@ export const MessagePoolIdSchema = z.enum([
   'streak-broken',
   'comeback',
   'new-high-score',
+  'game-over',
 ]);
 
 export type MessagePoolId = z.infer<typeof MessagePoolIdSchema>;

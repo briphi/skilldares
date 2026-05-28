@@ -25,7 +25,8 @@
  *     - else                     → 'wrong-no-streak'
  *
  * Note: pickPool returns one of 6 active per-answer pools. `pre-game-encouragement`
- * (Start screen) and `new-high-score` (End screen) are picked elsewhere, not here.
+ * (Start screen), `new-high-score` (End screen, new record) and `game-over`
+ * (End screen, no new record) are picked elsewhere, not here.
  */
 
 import type { MessagePoolId } from './schemas/message.schema';

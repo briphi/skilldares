@@ -11,7 +11,7 @@ import { useFitTextToLines } from '../../lib/useFitTextToLines';
 import { useCountUp } from '../../lib/useCountUp';
 import { getLastShownMessages, setLastShownMessage } from '../../lib/storage';
 import { computeGrade, gradeTier } from '../../lib/grade';
-import rawStandardPool from '../../../data/messages/right-no-streak.json';
+import rawStandardPool from '../../../data/messages/game-over.json';
 import rawCelebratoryPool from '../../../data/messages/new-high-score.json';
 import styles from './EndScreen.module.css';
 
@@ -33,7 +33,7 @@ export type EndScreenProps = {
   /** Total number of questions in this game. */
   totalQuestions: number;
   onPlayAgain: () => void;
-  /** Override standard-variant pool — used by tests. Defaults to right-no-streak. */
+  /** Override standard-variant pool — used by tests. Defaults to game-over. */
   standardMessages?: string[];
   /** Override celebrating-variant pool — used by tests. Defaults to new-high-score. */
   celebratoryMessages?: string[];
